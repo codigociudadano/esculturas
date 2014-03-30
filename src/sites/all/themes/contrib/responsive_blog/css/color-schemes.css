@@ -1,0 +1,165 @@
+
+/* =Global
+----------------------------------------------- */
+
+body.dark {
+  color: #bbb;
+  background-color: #1d1d1d;
+}
+.dark #wrapper {
+  background: #111;
+}
+
+/* Headings */
+.dark hr {
+  background-color: #333;
+}
+
+/* Text elements */
+.dark blockquote, .dark cite {
+  color: #999;
+}
+.dark pre {
+  background: #0b0b0b;
+}
+.dark code, .dark kbd {
+  font: 13px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+.dark abbr, .dark acronym, .dark dfn {
+  border-bottom: 1px dotted #999;
+}
+.dark ins {
+  background: #00063f;
+}
+.dark input[type=text],
+.post-password-required input[type=password],
+.dark textarea {
+  border: 1px solid #222;
+}
+.dark input[type=text]:focus,
+.dark textarea:focus {
+}
+/* Links */
+.dark a {
+}
+
+.dark li a.active {
+  color: #fff;
+}
+
+/* =Header
+----------------------------------------------- */
+
+.dark #header {
+  background-color: #222;
+  border-color: #333;
+}
+.dark #site-name a {
+  color: #eee;
+}
+.dark #site-name a:hover,
+.dark #site-name a:focus,
+.dark #site-name a:active {
+}
+.dark #site-slogan {
+  color: #858585;
+}
+
+
+/* =Menu
+----------------------------------------------- */
+
+.dark #navigation {
+  background: #333; /* Show a solid color for older browsers */
+  background: -moz-linear-gradient(#383838, #272727);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#383838), to(#272727)); /* older webkit syntax */
+  background: -webkit-linear-gradient(#383838, #272727);
+  border-bottom: 1px solid #222;
+}
+
+.dark #preface-area {
+  background-color: #222;
+  border-color: #333;
+}
+
+/* =Content
+----------------------------------------------- */
+.dark #main {
+  background-color: #222;
+}
+.dark #slider { 
+  background-color: #111111;
+  border-color: #333333;
+}
+.dark .node h2.title,
+.dark .node h2.title a {
+  color: #ccc;
+}
+.dark #preface-area .block,
+.dark .region-content-top .block,
+.dark #footer-area .block,
+.dark #sidebar .block, 
+.dark #content-wrap {
+  background-color: #111;
+  border-color: #333;
+}
+.dark .page-title,
+.dark .page-title a {
+  color: #ddd;
+}
+.dark .page-title a:hover,
+.dark .page-title a:focus,
+.dark .page-title a:active {
+}
+.dark table,
+.dark table {
+  border-color: #222;
+}
+.dark th,
+.dark th {
+  color: #999;
+}
+.dark td,
+.dark td {
+  border-color: #222;
+}
+/* Image borders */
+.dark .node-teaser img {
+  border-color: #2c2c2c;
+}
+
+.dark .comment .comment-text .comment-arrow, 
+.dark .comment .comment-arrow {
+  border-left:none;
+  border-right:none;
+}
+
+.dark .submitted,
+.dark .links li a {
+  background-color: #555;
+  color: #ccc;
+  text-shadow: 1px 1px #111;
+}
+
+.dark #preface-area .block > h2,
+.dark .region-content-top .block > h2,
+.dark #footer-area .block > h2,
+.dark #sidebar .block > h2 {
+  color: #ddd;
+  border-color: #333;
+}
+
+/* =Footer
+----------------------------------------------- */
+.dark #footer-bottom {
+  border-color: #333;
+}
+.dark #footer-area {
+  background-color: #222;
+  border-color: #333;
+}
+.dark #bottom {
+  background-color: #222;
+  border-color: #333;
+}
+

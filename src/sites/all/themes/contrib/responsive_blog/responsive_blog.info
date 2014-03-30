@@ -1,0 +1,53 @@
+name = Responsive Blog
+description = Responsive Blog is a premium Drupal 7 theme. Developed by <a href="http://www.devsaran.com">Devsaran.com</a>.
+core = 7.x
+engine = phptemplate
+stylesheets[all][] = css/dark.css
+stylesheets[all][] = style.css
+scripts[] = js/main-menu.js
+scripts[] = js/pngfix.min.js
+regions[sidebar_first]  = First Sidebar
+regions[header]         = Header
+regions[preface_first]  = Preface First
+regions[preface_middle] = Preface Middle
+regions[preface_last]   = Preface Last
+regions[content_top]    = Content Top
+regions[content]        = Content
+regions[help]           = Help
+regions[footer]         = Footer
+regions[footer_first]   = First Bottom
+regions[footer_second]  = Second Bottom
+regions[footer_third]   = Third Bottom
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = comment_user_verification
+features[] = favicon
+features[] = main_menu
+features[] = secondary_menu
+settings[color_scheme]  = "white"
+settings[sidebar_layout]  = "right_sidebar"
+settings[sidebar_width]  = "narrow_sidebar"
+settings[image_logo]  = 1
+settings[slideshow_display]  = 1
+settings[breadcrumbs]  = 1
+settings[socialicon_display]  = 1
+settings[slide1_desc]  = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor elit, sed in Lorem do eiusmod tempor ..."
+settings[slide2_desc]  = "Eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit reprehenderit in Lorem ipsum dolor ..."
+settings[slide3_desc]  = "Duis aute irure dolor in reprehenderit inLorem ipsum dolor sit amet, consectetur sit amet, consectetur adipisicing fers ..."
+settings[facebook_url]  = "http://www.facebook.com/devsaran.drupal"
+settings[twitter_url]  = "http://www.twitter.com/saranquardz"
+settings[google_plus_url]  = "https://plus.google.com/u/0/109064032428497406718"
+settings[pinterest_url]  = "http://pinterest.com"
+settings[slide1_url]  = "node/1"
+settings[slide2_url]  = "node/2"
+settings[slide3_url]  = "node/3"
+
+; Information added by drupal.org packaging script on 2013-09-02
+version = "7.x-1.7"
+core = "7.x"
+project = "responsive_blog"
+datestamp = "1378143174"
+
