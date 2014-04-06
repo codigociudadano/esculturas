@@ -17,3 +17,8 @@ sites/all/README.txt
 sites/all/modules/README.txt
 sites/all/themes/README.txt
 
+
+.DS_Store
+.idea
+*.sql
+*.tar.gz
