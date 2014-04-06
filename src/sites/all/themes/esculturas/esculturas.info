@@ -1,0 +1,6 @@
+name = Esculturas Theme
+description = Theme para esculturas
+core = 7.x
+engine = phptemplate
+base theme = nexus
+stylesheets[all][] = css/overrides.css

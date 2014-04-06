@@ -1,6 +1,0 @@
-name = Responsive Blog Custom
-description = Responsive Blog is a premium Drupal 7 theme. Developed by <a href="http://www.devsaran.com">Devsaran.com</a>.
-base theme = responsive_blog
-core = 7.x
-engine = phptemplate
-stylesheets[all][] = css/styles.css

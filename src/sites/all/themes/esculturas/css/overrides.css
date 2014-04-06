@@ -1,0 +1,117 @@
+input {
+  padding: 0px;
+}
+
+html.js input.form-autocomplete {
+  background-position: 100% 4px;
+}
+
+body.node-type-page h1.page-title {
+  display: none ;
+}
+
+.galleryview {
+  margin-bottom: 50px;
+}
+
+.page-node #content-wrap .gallery-slides img {
+  border: 0px;
+  padding: 0px;
+  max-width: 100%;
+  margin: 0px;
+}
+
+#page div.field {
+  margin-bottom: 10px;
+}
+
+#outerImageContainer {
+  border-radius: 20px;
+}
+
+#imageData {
+  display: none;
+}
+
+#imageContainer img {
+  border-radius: 20px;
+}
+
+.views-exposed-widgets {
+  padding: 10px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border: 1px solid #ccc;
+}
+
+#slidebox > ul.slides > li.flex-active-slide > div > h2 {
+  background-color: #f4473a;
+  opacity: 0.95;
+}
+
+.view-autores td,
+.view-esculturas td {
+  width: auto;
+  text-align: center;
+}
+
+#primary td {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin: 10px;
+}
+
+#primary table {
+  border: 0px;
+}
+
+.views-field-title {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: ghostwhite;
+  color: #fff;
+  margin: 0px 20px;
+  opacity: 0.90;
+}
+
+.views-field-title a {
+  color: #000;
+}
+
+.field-name-field-premios .field-items {
+  margin: 10px;
+}
+
+.field-name-field-premios .field-items .field-item {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px dotted #eee;
+}
+
+.field-name-field-premios .field-items .field-item.last {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.google_map_field_display {
+  margin : 10px auto;
+}
+
+.galleryformatter-greenarrows .gallery-thumbs .arrow {
+  bottom: 25px;
+  display: block;
+  height: 46px;
+  position: absolute;
+  text-indent: -9999px;
+  width: 46px;
+}
+
+.page-node.node-type-page #content-wrap img {
+  border: 0px;
+  padding: 0px;
+  height: auto;
+  max-width: 100%;
+  margin: 0px;
+}

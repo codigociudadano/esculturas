@@ -1,0 +1,26 @@
+
+.field-type-google-map-field .field-item {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.google_map_field_left40pc {
+  float: left;
+  width: 40%;
+}
+
+.google_map_field_left60pc {
+  float: left;
+  margin-top: 27px;
+  width: 60%;
+}
+
+#google_map_picker {
+  height: 350px;
+  width: 100%;
+}
+
+.google_map_field_display {
+  height: 200px;
+  width: 300px;
+}

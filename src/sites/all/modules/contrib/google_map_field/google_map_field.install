@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Defines schema for google_map fields
+ */
+
+/**
+ * Implements hook_field_schema().
+ */
+function google_map_field_field_schema($field) {
+  return array(
+    'columns' => array(
+      'lat' => array(
+        'type' => 'float',
+        'size' => 'big',
+        'default' => 0.0,
+        'not null' => FALSE,
+      ),
+      'lon' => array(
+        'type' => 'float',
+        'size' => 'big',
+        'default' => 0.0,
+        'not null' => FALSE,
+      ),
+      'map_width' => array(
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'map_height' => array(
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'zoom' => array(
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function google_map_field_uninstall() {
+  variable_del('google_map_field_*');
+}
+
+/**
+ * Change precision of LAT,LON fields to prevent coords being truncated.
+ */
+function google_map_field_update_7001() {
+  $fields = google_map_field_get_fields();
+
+  foreach ($fields as $field) {
+    $table_prefixes = array(
+      _field_sql_storage_tablename($field),
+      _field_sql_storage_revision_tablename($field),
+    );
+    foreach ($table_prefixes as $table_prefix) {
+
+      $field_name = $field['field_name']; // eg 'field_dimensions' ;
+      $table = $table_prefix; // . $field_name;
+
+      // Convert two db columns from float to double precision
+      $column1 = $field_name . '_lat';
+      $column2 = $field_name . '_lon';
+      $spec = array('type' => 'float', 'size' => 'big', 'default' => 0.0);
+
+      db_change_field($table, $column1, $column1, $spec);
+      db_change_field($table, $column2, $column2, $spec);
+    }
+  }
+  return t('Changed precision of LAT,LON fields to prevent coords being truncated.');
+}

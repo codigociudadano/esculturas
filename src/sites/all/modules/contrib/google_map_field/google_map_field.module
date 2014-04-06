@@ -1,0 +1,346 @@
+<?php
+
+/**
+ * @file
+ * This file defines all the necessary hooks and functions to create
+ * a Google Map Field field type and also a WYSIWYG editor plugin
+ * for inserting maps directly into filtered content.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function google_map_field_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case 'admin/help#google_map_field':
+      $output = t('Add Google Map type fields to content types.');
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_init().
+ */
+function google_map_field_init() {
+  google_map_field_add_maps_api();
+  drupal_add_js(drupal_get_path('module', 'google_map_field') . '/js/google_map_field_node_display.js', 'file');
+}
+
+/**
+ * Implements hook_menu().
+ */
+function google_map_field_menu() {
+  $items = array();
+
+  $items['admin/config/google-map-field-apikey'] = array(
+    'title' => 'Google Map Field API Key',
+    'description' => 'Set your Google Maps API key.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('google_map_field_apikey_settings_form'),
+    'file' => 'includes/google_map_field.admin.inc',
+    'access arguments' => array('access administration pages'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_field_info().
+ */
+function google_map_field_field_info() {
+  return array(
+    'google_map_field' => array(
+      'label' => t('Google Map Field'),
+      'description' => t('This field stores and renders Google Maps.'),
+      'instance_settings' => array(
+        'cardinality' => 1,
+      ),
+      'default_widget' => 'google_map_field_widget',
+      'default_formatter' => 'google_map_field_formatter_default',
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function google_map_field_field_widget_info() {
+  return array(
+    'google_map_field_widget' => array(
+      'label' => t('Map'),
+      'field types' => array('google_map_field'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function google_map_field_field_formatter_info() {
+  $formats = array(
+    'google_map_field_formatter_default' => array(
+      'label' => t('Map'),
+      'description' => t('Default display for Google map field.'),
+      'field types' => array('google_map_field'),
+    ),
+    'google_map_field_formatter_wkt' => array(
+      'label' => t('WKT'),
+      'description' => t('Use WKT format to display the google maps point info'),
+      'field types' => array('google_map_field'),
+    ),
+  );
+  return $formats;
+}
+
+/**
+ * Implements hook_field_widget_error().
+ */
+function google_map_field_field_widget_error($element, $error, $form, &$form_state) {
+  form_error($element, $error['message']);
+}
+
+/**
+ * Implements hook_field_is_empty().
+ */
+function google_map_field_field_is_empty($item, $field) {
+  if (empty($item['lat']) || empty($item['lon'])) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function google_map_field_field_formatter_view($object_type, $object, $field, $instance, $langcode, $items, $display) {
+  drupal_add_css(drupal_get_path('module', 'google_map_field') . '/css/google_map_field.css');
+  $element = array();
+
+  // include the google maps api.
+  //google_map_field_add_maps_api();
+
+  switch ($display['type']) {
+    case 'google_map_field_formatter_wkt':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array('#markup' => 'POINT(' . $item['lon'] . ' ' . $item['lat'] . ')');
+      }
+      break;
+    case 'google_map_field_formatter_default':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = google_map_field_format_field($item, $delta, $display);
+      }
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * This function formats the google map field for display,
+ * called by google_map_field_field_formatter_view().
+ */
+function google_map_field_format_field($item, $delta, $display) {
+  $map_id = uniqid();
+
+  // Get the map details and place in an array to pass to Drupal.settings.
+  $settings = array(
+    'gmf_node_display' => array(
+      'google_map_field_' . $map_id => array(
+        'lat' => $item['lat'],
+        'lon' => $item['lon'],
+        'zoom' => $item['zoom'],
+      ),
+    ),
+  );
+
+  $element = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('field-item')),
+  );
+  $element['google_map_field'] = array(
+    'item' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('field-item')),
+      'text' => array(
+        '#markup' => theme('google_map_field', array(
+          'name' => check_plain($item['name']),
+          'map_id' => $map_id,
+        )),
+      ),
+    ),
+  );
+  drupal_add_js($settings, 'setting');
+  return $element;
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function google_map_field_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+
+  // include the google maps api.
+  //google_map_field_add_maps_api();
+
+  $fname = str_replace('_', '-', $element['#field_name']);
+  $element['#title'] = t('Google Map Field Settings');
+  $element['#description'] = '<p>' . t('To set a location for the map, use the controls to zoom in or out and drag the map to find the correct area. Once you have found the correct location click that point to set the map.') . '</p>';
+
+  $element += array(
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'google_map_field') . '/js/google_map_field_widget_form.js',
+      ),
+      'css' => array(
+        drupal_get_path('module', 'google_map_field') . '/css/google_map_field.css',
+      ),
+    ),
+    '#fname' => $fname,
+  );
+
+  $element['fname'] = array(
+    '#type' => 'hidden',
+    '#value' => $fname,
+  );
+  $element['name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Map Name'),
+    '#default_value' => isset($items[$delta]['name']) ? $items[$delta]['name'] : NULL,
+    '#prefix' => '<div><div class="clearfix"><div class="google_map_field_left40pc">',
+  );
+  $element['lat'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Latitude'),
+    '#required' => $instance['required'],
+    '#element_validate' => array('google_map_field_latlon_validate'),
+    '#default_value' => isset($items[$delta]['lat']) ? $items[$delta]['lat'] : 51.51906840672028,
+  );
+  $element['lon'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Longitude'),
+    '#required' => $instance['required'],
+    '#element_validate' => array('google_map_field_latlon_validate'),
+    '#default_value' => isset($items[$delta]['lon']) ? $items[$delta]['lon'] : -0.11661621093753638,
+  );
+  $element['zoom'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Zoom'),
+    '#default_value' => isset($items[$delta]['zoom']) ? $items[$delta]['zoom'] : 9,
+    '#attributes' => array('readonly' => 'readonly'),
+  );
+  $element['center_on'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Center On'),
+    '#description' => t('To center the map on an approximate location, enter the location in the box above, e.g. "London, UK" or "1 Southwark Street, London, UK" and click \'center\''),
+  );
+  $element['do_center'] = array(
+    '#type' => 'button',
+    '#value' => t('center'),
+    '#attributes' => array('onclick' => 'return google_map_field_doCenter();'),
+    '#suffix' => '</div>',
+  );
+  $element['map'] = array(
+    '#markup' => theme('google_map_field_map_picker'),
+    '#prefix' => '<div class="google_map_field_left60pc">',
+    '#suffix' => '</div></div></div>',
+  );
+
+  $settings = array(
+      'lat' => $element['lat']['#default_value'],
+      'lon' => $element['lon']['#default_value'],
+      'zoom' => $element['zoom']['#default_value'],
+      'fname' => $fname,
+  );
+
+  $form['#attached']['js'][] = array(
+    'data' => array('gmf_widget_form' => $settings),
+    'type' => 'setting',
+  );
+
+  return $element;
+}
+
+/**
+ * Custom validation function for latitude/longitude fields.
+ */
+function google_map_field_latlon_validate($element, $form, &$form_state) {
+  if (!is_numeric($element['#value']) && !empty($element['#value'])) {
+    $field = implode('][', $element['#array_parents']);
+    form_set_error($field, t('Invalid value - @title', array('@title' => $element['#title'])));
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function google_map_field_theme($existing, $type, $theme, $path) {
+  if ($type == 'module') {
+    return array(
+      'google_map_field' => array(
+        'variables' => array(
+          'name' => NULL,
+          'map_id' => NULL,
+        ),
+        'template' => 'google-map-field',
+        'path' => drupal_get_path('module', 'google_map_field') . '/theme',
+      ),
+      'google_map_field_map_picker' => array(
+        'render_element' => 'element',
+      ),
+    );
+  }
+  return array();
+}
+
+/**
+ * Implements form_field_ui_field_edit_form_alter().
+ */
+function google_map_field_form_field_ui_field_edit_form_alter(&$form, &$form_state) {
+  if ($form['#field']['type'] == 'google_map_field') {
+    drupal_add_css(drupal_get_path('module', 'google_map_field') . '/css/google_map_field.css');
+    $form['field']['cardinality']['#default_value'] = 1;
+    $form['field']['#access'] = FALSE;
+  }
+}
+
+/**
+ *  Theme function to return map picker div on node edit form.
+ */
+function theme_google_map_field_map_picker($variables) {
+  return '<div id="google_map_picker"></div>';
+}
+
+/**
+ * Helper function to add the Google Maps API.
+ */
+function google_map_field_add_maps_api() {
+  if (variable_get('google_map_field_apikey', '') != '') {
+    $element = array(
+      '#type' => 'markup',
+      '#markup' => '<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false&key=' . variable_get('google_map_field_apikey', '') . '"></script>',
+    );
+    drupal_add_html_head($element, 'google_maps_api');
+  }
+  else {
+    drupal_add_js('//maps.googleapis.com/maps/api/js?sensor=false', 'external');
+  }
+}
+
+/**
+ * Helper function to return all fields created on the system
+ * of the google map field type.
+ */
+function google_map_field_get_fields() {
+  $types = array_keys(google_map_field_field_info());
+  $fields = array();
+  foreach (field_info_fields() as $field) {
+    if (in_array($field['type'], $types)) {
+      $fields[] = $field;
+    }
+  }
+  return $fields;
+}

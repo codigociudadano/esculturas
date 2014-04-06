@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function entityreference_filter_views_api() {
+  return array('api' => 3);
+}
