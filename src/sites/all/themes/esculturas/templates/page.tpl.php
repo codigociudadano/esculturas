@@ -95,11 +95,11 @@
 
 
   <?php if ($is_front): ?>
-  <?php if (theme_get_setting('slideshow_display','nexus')): ?>
+  <?php if (theme_get_setting('slideshow_display','esculturas')): ?>
   <?php 
-    $slide1_head = check_plain(theme_get_setting('slide1_head','nexus'));   $slide1_desc = check_markup(theme_get_setting('slide1_desc','nexus'), 'full_html'); $slide1_url = check_plain(theme_get_setting('slide1_url','nexus'));
-    $slide2_head = check_plain(theme_get_setting('slide2_head','nexus'));   $slide2_desc = check_markup(theme_get_setting('slide2_desc','nexus'), 'full_html'); $slide2_url = check_plain(theme_get_setting('slide2_url','nexus'));
-    $slide3_head = check_plain(theme_get_setting('slide3_head','nexus'));   $slide3_desc = check_markup(theme_get_setting('slide3_desc','nexus'), 'full_html'); $slide3_url = check_plain(theme_get_setting('slide3_url','nexus'));
+    $slide1_head = check_plain(theme_get_setting('slide1_head','esculturas'));   $slide1_desc = check_markup(theme_get_setting('slide1_desc','esculturas'), 'full_html'); $slide1_url = check_plain(theme_get_setting('slide1_url','esculturas'));
+    $slide2_head = check_plain(theme_get_setting('slide2_head','esculturas'));   $slide2_desc = check_markup(theme_get_setting('slide2_desc','esculturas'), 'full_html'); $slide2_url = check_plain(theme_get_setting('slide2_url','esculturas'));
+    $slide3_head = check_plain(theme_get_setting('slide3_head','esculturas'));   $slide3_desc = check_markup(theme_get_setting('slide3_desc','esculturas'), 'full_html'); $slide3_url = check_plain(theme_get_setting('slide3_url','esculturas'));
   ?>
   <div id="slidebox" class="flexslider">
     <ul class="slides">
