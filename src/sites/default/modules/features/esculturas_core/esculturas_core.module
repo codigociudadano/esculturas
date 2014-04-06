@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Esculturas Core feature.
+ */
+
+include_once 'esculturas_core.features.inc';
