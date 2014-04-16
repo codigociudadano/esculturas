@@ -9,9 +9,7 @@ El sitio web esta desarrollador con Drupal, este sitio cuenta con los siguientes
 La idea de esculturas es obvia, toda la info importante de la obra.
 La idea de autores es poder filtrar por autor, tener información del autor y sus obras.
 La idea de evento es poder filtrar por evento, ver que obras surgieron de ese evento.
-
 Las esculturas son nuestra entidad principal. 
-
 Las esculturas pueden tener un autor y pueden pertenecer a un evento.
 
 A su vez, la esculturas:
@@ -19,7 +17,6 @@ A su vez, la esculturas:
   * Tienen un tipo
   * Tiene un Material
   * Tienen tags (keywords) para catalogarla
-
   * Tags, Material y Tipo son en Drupal Taxonomias.
 
 # Fields
