@@ -24,7 +24,7 @@ A su vez, la esculturas:
 
 # Fields
 
-Las esculturas tiene estas fields
+##Esculturas tiene
 
 Titulo
 Autor
@@ -39,7 +39,7 @@ Descripcion
 Fotos
 Tags
 
-Los Autores tienen
+## Autores tiene
 
 Nombre
 Bio
@@ -47,14 +47,14 @@ Nacionalidad (Taxonomía, referencia a otra entidad).
 Fotos
 Links
 
-Eventos tiene
+## Eventos tiene
 
 Nombre del evento
 Información del Evento
 Año del Evento
 Participantes (Referencia a Authores, Muchos autores pudieron haber participado en un evento).
 
-API
+# API
 
 Para poder acceder a estos datos vamos a usar nuestra API rest, esta API esta generada por medio
 de un modulo de drupal llamado services, asi que pueden ver info relacionada a este modulo para tirarnos
