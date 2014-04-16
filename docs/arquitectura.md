@@ -16,43 +16,43 @@ Las esculturas pueden tener un autor y pueden pertenecer a un evento.
 
 A su vez, la esculturas:
 
-  Tienen un tipo
-  Tiene un Material
-  Tienen tags (keywords) para catalogarla
+  * Tienen un tipo
+  * Tiene un Material
+  * Tienen tags (keywords) para catalogarla
 
-  Tags, Material y Tipo son en Drupal Taxonomias.
+  * Tags, Material y Tipo son en Drupal Taxonomias.
 
 # Fields
 
 ##Esculturas tiene
 
-Titulo
-Autor
-Tipo
-Material
-Ubicación
-Ubicación Mapa (Coordenadas para el Google Maps).
-Año de elaboracion
-Evento
-Premios
-Descripcion
-Fotos
-Tags
+* Titulo
+* Autor
+* Tipo
+* Material
+* Ubicación
+* Ubicación Mapa (Coordenadas para el Google Maps).
+* Año de elaboracion
+* Evento
+* Premios
+* Descripcion
+* Fotos
+* Tags
 
 ## Autores tiene
 
-Nombre
-Bio
-Nacionalidad (Taxonomía, referencia a otra entidad).
-Fotos
-Links
+* Nombre
+* Bio
+* Nacionalidad (Taxonomía, referencia a otra entidad).
+* Fotos
+* Links
 
 ## Eventos tiene
 
-Nombre del evento
-Información del Evento
-Año del Evento
-Participantes (Referencia a Authores, Muchos autores pudieron haber participado en un evento).
+* Nombre del evento
+* Información del Evento
+* Año del Evento
+* Participantes (Referencia a Authores, Muchos autores pudieron haber participado en un evento).
 
 # API
 
