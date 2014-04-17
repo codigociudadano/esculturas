@@ -84,20 +84,32 @@ http://esculturas.codigociudadano.com.ar/api/v1/node?page=1&fields=nid,title
   Notar parámetro fields
   
   Nota, nid es el ID del contenido
+  
+## Traer solo Esculturas
 
-## Treaer mas de 20 item
+http://esculturas.codigociudadano.com.ar/api/v1/node?parameters[type]=escultura
+
+## Traer solo Autores
+
+http://esculturas.codigociudadano.com.ar/api/v1/node?parameters[type]=autores
+
+## Traer solo Eventos
+
+http://esculturas.codigociudadano.com.ar/api/v1/node?parameters[type]=eventos
+
+## Traer mas de 20 item
 
 http://esculturas.codigociudadano.com.ar/api/v1/node?pagesize=50
 
   Nota no abusar de page size sino va a matar al server, Cachear el total de nodos puede ser una buena opción.
  
-## Treaer info de un nid
+## Traer info de un nid
 
 http://esculturas.codigociudadano.com.ar/api/v1/node/1457
 
   nid = 1457
   
-## Trear imagenes de una escultura
+## Traer imagenes de una escultura
 
 http://esculturas.codigociudadano.com.ar/api/v1/file/828
 
