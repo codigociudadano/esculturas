@@ -59,6 +59,8 @@ ideas si necesitan algo.
 
 https://drupal.org/project/services
 
+La API es solo lectura, asi que que van a necesitar solo GET. Devuelve Jsons.
+
 NOTA : Desarrollen sus Apps sabiendo que el dominio base va a cambiar en un futuro, haganlo variable y facil de cambiar, posiblemente como configuracion. El path en la url de los enpoints no va debería cambiar, "debería".
 
 Algunos ejemplos de Endpoints que les pueden ir sirviendo.
@@ -110,3 +112,9 @@ Aca van a tener que tener en cuenta los vids que son los ids de taxonomias
 ## Traer un Termino puntual con su TID (term id).
 
 http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term/21
+
+## Traer las Esculturas de un termino
+
+TBD (To be done), no tengo esto todavía :S
+
+
