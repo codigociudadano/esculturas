@@ -91,4 +91,22 @@ http://esculturas.codigociudadano.com.ar/api/v1/node/1457
 
   nid = 1457
   
-## Taer imagenes de una escultura
+## Trear imagenes de una escultura
+
+http://esculturas.codigociudadano.com.ar/api/v1/file/828
+
+  828 = fid que pueden sacar al traer la info de esculturas
+  
+## Traer las Taxonomias
+
+http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_vocabulary
+
+Aca van a tener que tener en cuenta los vids que son los ids de taxonomias
+
+## Traer los terminos de una Taxonomia
+
+ http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term?parameter[vid]=4
+ 
+## Traer un Termino puntual con su TID (term id).
+
+http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term/21
