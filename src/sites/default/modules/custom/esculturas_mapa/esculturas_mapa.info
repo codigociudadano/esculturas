@@ -1,0 +1,6 @@
+name = Esculturas Mapa
+description = Vista de Mapa para las esculturas
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = esculturas_mapa
