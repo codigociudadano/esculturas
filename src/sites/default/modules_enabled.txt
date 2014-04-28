@@ -12,6 +12,7 @@ entityreference
 entityreference_filter
 esculturas_configs
 esculturas_core
+esculturas_contexto
 features
 galleryformatter
 googleanalytics

@@ -51,25 +51,30 @@ body.node-type-page h1.page-title {
 }
 
 .view-autores td,
-.view-esculturas td {
+.view-display-id-page .view-esculturas td {
   width: auto;
   text-align: center;
 }
 
 #primary td {
-  border: 1px solid #eee;
-  padding: 10px;
-  margin: 10px;
-}
-
-#primary table {
+  vertical-align: top;
   border: 0px;
 }
 
-.views-field-title {
+#primary .view-display-id-page td {
+  padding: 10px;
+  margin: 10px;
+  border: 0px;
+  width: 50%;
+}
+
+#primary .view-display-id-page table {
+  border: 0px;
+}
+
+.view-display-id-page  .views-field-title {
   font-size: 20px;
   font-weight: bold;
-  background-color: ghostwhite;
   color: #fff;
   margin: 0px 20px;
   opacity: 0.90;
@@ -77,6 +82,20 @@ body.node-type-page h1.page-title {
 
 .views-field-title a {
   color: #000;
+}
+
+.view-display-id-page .views-field.views-field-field-fotos  {
+  float: left;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.view-display-id-page .views-field {
+  text-align: left;
+}
+
+.view-display-id-page .views-field .field-content {
+  display: inline;
 }
 
 .field-name-field-premios .field-items {

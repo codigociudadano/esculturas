@@ -39,7 +39,7 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = 'siguiente ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'última »';
   $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '3';
+  $handler->display->display_options['style_options']['columns'] = '2';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Campo: Contenido: Fotos */
   $handler->display->display_options['fields']['field_fotos']['id'] = 'field_fotos';
@@ -61,6 +61,10 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Campo: Contenido: Nacionalidad */
+  $handler->display->display_options['fields']['field_nacionalidad']['id'] = 'field_nacionalidad';
+  $handler->display->display_options['fields']['field_nacionalidad']['table'] = 'field_data_field_nacionalidad';
+  $handler->display->display_options['fields']['field_nacionalidad']['field'] = 'field_nacionalidad';
   /* Sort criterion: Contenido: Título */
   $handler->display->display_options['sorts']['title_1']['id'] = 'title_1';
   $handler->display->display_options['sorts']['title_1']['table'] = 'node';
@@ -99,6 +103,7 @@ function esculturas_core_views_default_views() {
     t('‹ anterior'),
     t('siguiente ›'),
     t('última »'),
+    t('Nacionalidad'),
     t('Page'),
   );
   $export['autores'] = $view;
@@ -124,7 +129,7 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Enviar';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Reiniciar';
   $handler->display->display_options['pager']['type'] = 'mini';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '9';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['tags']['first'] = '« primera';
@@ -132,7 +137,7 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = 'siguiente ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'última »';
   $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '3';
+  $handler->display->display_options['style_options']['columns'] = '2';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Campo: Contenido: Fotos */
   $handler->display->display_options['fields']['field_fotos']['id'] = 'field_fotos';
@@ -154,6 +159,34 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Campo: Contenido: Participantes */
+  $handler->display->display_options['fields']['field_autor']['id'] = 'field_autor';
+  $handler->display->display_options['fields']['field_autor']['table'] = 'field_data_field_autor';
+  $handler->display->display_options['fields']['field_autor']['field'] = 'field_autor';
+  $handler->display->display_options['fields']['field_autor']['settings'] = array(
+    'link' => 0,
+  );
+  /* Campo: Contenido: Material */
+  $handler->display->display_options['fields']['field_material']['id'] = 'field_material';
+  $handler->display->display_options['fields']['field_material']['table'] = 'field_data_field_material';
+  $handler->display->display_options['fields']['field_material']['field'] = 'field_material';
+  /* Campo: Contenido: Tipo */
+  $handler->display->display_options['fields']['field_tipo']['id'] = 'field_tipo';
+  $handler->display->display_options['fields']['field_tipo']['table'] = 'field_data_field_tipo';
+  $handler->display->display_options['fields']['field_tipo']['field'] = 'field_tipo';
+  /* Campo: Contenido: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Información del Evento';
+  $handler->display->display_options['fields']['body']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['body']['alter']['more_link'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['more_link_text'] = 'Leer Mas';
+  $handler->display->display_options['fields']['body']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '200',
+  );
   /* Sort criterion: Contenido: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -238,6 +271,103 @@ function esculturas_core_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'esculturas';
+
+  /* Display: Bloque */
+  $handler = $view->new_display('block', 'Bloque', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Esculturas del Autor';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_fotos' => 'field_fotos',
+    'title' => 'title',
+    'field_material' => 'field_material',
+    'field_tipo' => 'field_tipo',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_fotos' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_material' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_tipo' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Campo: Contenido: Fotos */
+  $handler->display->display_options['fields']['field_fotos']['id'] = 'field_fotos';
+  $handler->display->display_options['fields']['field_fotos']['table'] = 'field_data_field_fotos';
+  $handler->display->display_options['fields']['field_fotos']['field'] = 'field_fotos';
+  $handler->display->display_options['fields']['field_fotos']['label'] = '';
+  $handler->display->display_options['fields']['field_fotos']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_fotos']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_fotos']['settings'] = array(
+    'image_style' => 'thumbnail',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_fotos']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_fotos']['delta_offset'] = '0';
+  /* Campo: Contenido: Título */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Nombre de la Obra';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Campo: Contenido: Material */
+  $handler->display->display_options['fields']['field_material']['id'] = 'field_material';
+  $handler->display->display_options['fields']['field_material']['table'] = 'field_data_field_material';
+  $handler->display->display_options['fields']['field_material']['field'] = 'field_material';
+  /* Campo: Contenido: Tipo */
+  $handler->display->display_options['fields']['field_tipo']['id'] = 'field_tipo';
+  $handler->display->display_options['fields']['field_tipo']['table'] = 'field_data_field_tipo';
+  $handler->display->display_options['fields']['field_tipo']['field'] = 'field_tipo';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Contenido: Participantes (field_autor) */
+  $handler->display->display_options['arguments']['field_autor_target_id']['id'] = 'field_autor_target_id';
+  $handler->display->display_options['arguments']['field_autor_target_id']['table'] = 'field_data_field_autor';
+  $handler->display->display_options['arguments']['field_autor_target_id']['field'] = 'field_autor_target_id';
+  $handler->display->display_options['arguments']['field_autor_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_autor_target_id']['exception']['title'] = 'Todo(s)';
+  $handler->display->display_options['arguments']['field_autor_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_autor_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_autor_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_autor_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Contenido: Publicado */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   $translatables['esculturas'] = array(
     t('Master'),
     t('Esculturas'),
@@ -254,11 +384,18 @@ function esculturas_core_views_default_views() {
     t('‹ anterior'),
     t('siguiente ›'),
     t('última »'),
-    t('Nombre '),
-    t('Tipo'),
+    t('Participantes'),
     t('Material'),
+    t('Tipo'),
+    t('Información del Evento'),
+    t('Leer Mas'),
+    t('Nombre '),
     t('Año '),
     t('Page'),
+    t('Bloque'),
+    t('Esculturas del Autor'),
+    t('Nombre de la Obra'),
+    t('Todo(s)'),
   );
   $export['esculturas'] = $view;
 
