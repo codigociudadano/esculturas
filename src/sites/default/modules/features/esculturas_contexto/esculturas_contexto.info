@@ -1,0 +1,10 @@
+name = Esculturas Contexto
+description = Contextos para Esculturas
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = esculturas_contexto
+dependencies[] = context
+dependencies[] = ctools
+dependencies[] = views
+features[features_api][] = api:2
