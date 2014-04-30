@@ -19,6 +19,7 @@
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
+        
         //recorro las esculturas    
         esculturas.forEach( function(escultura){
             var e = new Array(escultura[0], escultura[1], escultura[2], escultura[3]);
@@ -29,7 +30,7 @@
             //posicion del marker
             marker = new google.maps.Marker({            
             position: new google.maps.LatLng(e[1].lat, e[1].lon),
-                map: map
+                map: map               
             });
                 //evento del marker
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -44,7 +45,7 @@
                             '<h5> Ubicación: </h5>'+e[0].ubicacion+'</td>'+                            
                             '<td>'+'<img border="0" align="left" src="'+e[3].uri+'">'+
                             '</td>'+'</tr>'+'</table>'+
-                            'Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.'+                                                                                                
+                            '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
                             '</div>'+
                             '</div>';
 
