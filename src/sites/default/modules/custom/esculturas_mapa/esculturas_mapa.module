@@ -25,10 +25,95 @@ function esculturas_mapa_theme() {
   return $themes;
 }
 
+
 function esculturas_mapa_page() {
   drupal_add_js(drupal_get_path('module', 'esculturas_mapa') . '/js/mapa.js');
+  
+  //traer todas las esculturas
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node') 
+      ->entityCondition('bundle', 'escultura') 
+      ->propertyCondition('status', 1) 
+      ;
+
+  $result = $query->execute();
+
+    if (isset($result['node'])) {
+        $esculturas_nids = array_keys($result['node']);
+        $entities_esculturas = entity_load('node', $esculturas_nids);
+    }
+
+    $esculturas = array();
+
+    foreach($entities_esculturas as $e){
+
+        $field_autor = null;
+        $field_evento = null;
+        $field_foto = null;
+        $field_ubicacion = null;
+        $entity_autor = null;
+        $entity_evento = null;              
+        $url = null;
+        $data = null;        
+        $latlon = null;
+        $location = array();
+        $autor_nid = array();
+        $evento_nid = array();            
+        $foto_info = array();
+        $info = array();
+        $foto = array();
+
+        //titulo
+        $data['titulo'] = $e->title;   
+
+        //autor        
+        $target_id = null;
+        $field_autor = field_get_items('node', $e, 'field_autor');
+        $target_id = $field_autor[0]['target_id'];
+        $autor_nid[] = (int)$target_id;
+        $entity_autor = entity_load('node', $autor_nid);
+        $data['autor'] = $entity_autor[$autor_nid[0]]->title; 
+
+        //evento          
+        $target_id = null;
+        $field_evento = field_get_items('node', $e, 'field_evento');
+        $target_id = $field_evento[0]['target_id'];
+        $evento_nid[] = (int)$target_id;
+        $entity_evento = entity_load('node', $evento_nid);
+        $data['evento'] = $entity_evento[$evento_nid[0]]->title; 
+
+        //ubicacion         
+        $target_id = null;
+        $field_ubicacion = field_get_items('node', $e, 'field_ubicacion');       
+        $data['ubicacion'] = $field_ubicacion[0]['value']; 
+    
+         $info = $data;
+
+        //locacion
+        $field_mapa = field_get_items('node', $e, 'field_mapa');              
+        $latlon['lat'] = $field_mapa[0]['lat'];
+        $latlon['lon'] = $field_mapa[0]['lon'];
+        $location = $latlon; 
+        
+        //foto                      
+        $field_foto = field_get_items('node', $e, 'field_fotos');      
+        $foto_info['foto'] = $field_foto[0]['filename']; 
+        $foto_info['uri'] =  $field_foto[0]['uri'];
+        
+        $foto = $foto_info;
+
+        //link
+        $options = array('absolute'=>TRUE);       
+        $url['url']= url('esculturas/'.$data['titulo'], $options);
+        $url['url']= str_replace('%20','-', $url['url']); 
+                    
+
+        $escultura = array($data, $location, $url, $foto);
+        $esculturas[] = $escultura;
+    }
+
   return theme('esculturas_mapa', array(
-    'variable1' => 'FFF',
-    'variable2' => 'ZZZ',
+    'esculturas' => $esculturas,
   ));
+
 }

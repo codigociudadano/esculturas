@@ -22,3 +22,4 @@ sites/all/themes/README.txt
 .idea
 *.sql
 *.tar.gz
+/nbproject/private/

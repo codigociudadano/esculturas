@@ -21,6 +21,8 @@ body.node-type-page h1.page-title {
   margin: 0px;
 }
 
+#map_canvas img { max-width: none; }
+
 #page div.field {
   margin-bottom: 10px;
 }
