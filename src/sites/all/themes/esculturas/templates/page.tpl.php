@@ -189,6 +189,11 @@
               <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
               <?php print render($page['content']); ?>
             </div>
+		    <?php if (!empty($page['content_bottom'])): ?>
+		  	  <div id="content_bottom">
+			    <?php print render($page['content_bottom']); ?>
+			  </div>
+			<?php endif; ?>
           </section>
         </div>
         <?php if (!empty($page['sidebar_first'])): ?>
