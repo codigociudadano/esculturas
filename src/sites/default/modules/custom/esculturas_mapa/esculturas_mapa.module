@@ -97,11 +97,8 @@ function esculturas_mapa_page() {
         
         //foto                      
         $field_foto = field_get_items('node', $e, 'field_fotos');              
-        $foto_info['uri'] =  variable_get('file_public_path', conf_path() . '/files/esculturas/'.$field_foto[0]['filename']);
-
-                
-        $foto = $foto_info;      
-        //var_dump($field_foto);
+        $foto['uri'] =  variable_get('file_public_path', conf_path() . '/files/esculturas/'.$field_foto[0]['filename']);
+       
         //link
         $options = array('absolute'=>TRUE);       
         $url['url']= url('esculturas/'.$data['titulo'], $options);

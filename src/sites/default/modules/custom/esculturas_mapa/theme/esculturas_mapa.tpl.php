@@ -19,7 +19,6 @@
   }
 
   div.scrollWrapper{
-
   height:300px;
   width:300px;  
   overflow-y: scroll;  
@@ -27,9 +26,7 @@
 
 div.scrollWrapper:hover {
      overflow: auto;     
-}
-  
-}
+}  
 </style>
 
 <div id="map_canvas" style="width:100%; height:500px;"></div>

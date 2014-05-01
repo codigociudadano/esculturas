@@ -18,7 +18,6 @@
     function initialize() {
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
-
         
         //recorro las esculturas    
         esculturas.forEach( function(escultura){
@@ -58,10 +57,12 @@
                                 '</tr>'+
                             '</table>'+
                             '</div>'+
-                            '<div align="right">Saber más sobre <a href="'+e[2].uri+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
+                            '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
                             '</div>'+
                             '</div>';
 
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                        setTimeout(function(){ marker.setAnimation(null); }, 3000);
                         infoWindow.setContent(contentString);
                         infoWindow.open(map, marker);
                     }
