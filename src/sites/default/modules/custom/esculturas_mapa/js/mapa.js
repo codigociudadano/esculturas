@@ -35,7 +35,7 @@
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         var contentString = null;
-                        contentString = '<div style="overflow:hidden">'+                                            
+                        contentString = '<div>'+                                            
                             '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
                             '<div class="scrollWrapper">'+
@@ -62,7 +62,7 @@
                             '</div>';
 
                         marker.setAnimation(google.maps.Animation.BOUNCE);
-                        setTimeout(function(){ marker.setAnimation(null); }, 3000);
+                        setTimeout(function(){ marker.setAnimation(null); }, 2998);
                         infoWindow.setContent(contentString);
                         infoWindow.open(map, marker);
                     }

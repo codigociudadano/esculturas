@@ -10,23 +10,27 @@
     }
     
     .hr{
-    border: 0;
-    height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-  }
+      border: 0;
+      height: 1px;
+      background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+      background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+      background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+      background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    }
 
-  div.scrollWrapper{
-  height:300px;
-  width:300px;  
-  overflow-y: scroll;  
-}
+   div.scrollWrapper{ 
+      height:300px;
+      width:300px;          
+      overflow-y: hidden;  
+    }
 
-div.scrollWrapper:hover {
-     overflow: auto;     
-}  
+  div.scrollWrapper:hover {
+      height:300px;
+      width:300px;  
+      overflow-y: auto;
+          
+    }
+
 </style>
 
-<div id="map_canvas" style="width:100%; height:500px;"></div>
+<div id="map_canvas" style="width:100%; height:600px;"></div>
