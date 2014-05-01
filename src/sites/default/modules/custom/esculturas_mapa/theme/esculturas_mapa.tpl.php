@@ -17,6 +17,17 @@
     background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
   }
+
+  div.scrollWrapper{
+
+  height:300px;
+  width:300px;  
+  overflow-y: scroll;  
+}
+
+div.scrollWrapper:hover {
+     overflow: auto;     
+}
   
 }
 </style>

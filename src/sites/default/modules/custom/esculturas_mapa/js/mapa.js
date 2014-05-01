@@ -39,13 +39,26 @@
                         contentString = '<div style="overflow:hidden">'+                                            
                             '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
-                            '<table>'+'<tr>'+'<td style="width:75%">'+                                                    
-                            '<h5> Autor: </h5>'+e[0].autor+'<div class="hr"><hr></div>'+
-                            '<h5> Evento: </h5>'+e[0].evento+'<div class="hr"><hr></div>'+
-                            '<h5> Ubicación: </h5>'+e[0].ubicacion+'</td>'+                            
-                            '<td>'+'<img border="0" align="left" src="'+e[3].uri+'">'+
-                            '</td>'+'</tr>'+'</table>'+
-                            '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
+                            '<div class="scrollWrapper">'+
+                            '<table style="width: 247px;">'+
+                                '<tr>'+
+                                    '<td style="width: 123px;">'+                                                    
+                                        '<h5> Autor: </h5>'+e[0].autor+'<div class="hr"><hr></div>'+
+                                        '<h5> Evento: </h5>'+e[0].evento+
+                                    '</td>'+                            
+                                    '<td>'+
+                                        '<img border="0" style="width: 124px; height: 150px;" align="left" src="'+e[3].uri+'">'+
+                                    '</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<td colspan="2">'+
+                                        '<div class="hr"><hr></div>'+
+                                        '<h5> Ubicación: </h5>'+e[0].ubicacion+
+                                    '</td>'+
+                                '</tr>'+
+                            '</table>'+
+                            '</div>'+
+                            '<div align="right">Saber más sobre <a href="'+e[2].uri+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
                             '</div>'+
                             '</div>';
 

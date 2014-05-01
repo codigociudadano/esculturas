@@ -96,12 +96,12 @@ function esculturas_mapa_page() {
         $location = $latlon; 
         
         //foto                      
-        $field_foto = field_get_items('node', $e, 'field_fotos');      
-        $foto_info['foto'] = $field_foto[0]['filename']; 
-        $foto_info['uri'] =  $field_foto[0]['uri'];
-        
-        $foto = $foto_info;
+        $field_foto = field_get_items('node', $e, 'field_fotos');              
+        $foto_info['uri'] =  variable_get('file_public_path', conf_path() . '/files/esculturas/'.$field_foto[0]['filename']);
 
+                
+        $foto = $foto_info;      
+        //var_dump($field_foto);
         //link
         $options = array('absolute'=>TRUE);       
         $url['url']= url('esculturas/'.$data['titulo'], $options);
