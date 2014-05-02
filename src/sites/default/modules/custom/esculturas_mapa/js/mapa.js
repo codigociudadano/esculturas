@@ -5,8 +5,7 @@
         center: new google.maps.LatLng(-27.4531453,-58.9862608), // seteas la coordenada
         div: '#map_canvas',
         zoom: 13, //seteas altura del zoom
-        zoomControl: true,
-        //Determina el tamaño del control de zoom
+        zoomControl: true,    
         mapTypeId: 'roadmap'
     };
 
@@ -18,8 +17,7 @@
     function initialize() {
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
-        
-        //recorro las esculturas    
+                
         esculturas.forEach( function(escultura){
             var e = new Array(escultura[0], escultura[1], escultura[2], escultura[3]);
             
