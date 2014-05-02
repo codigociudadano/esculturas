@@ -1,30 +1,39 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
 function esculturas_mapa_menu() {
   $items['mapa'] = array(
-      'title' => 'Mapa Interactivo',
-      'description' => 'Mapa Interactivo',
-      'page callback' => 'esculturas_mapa_page',
-      'access callback' => true,
-      'type' => MENU_CALLBACK,
-      );
+    'title' => 'Mapa Interactivo',
+    'description' => 'Mapa Interactivo',
+    'page callback' => 'esculturas_mapa_page',
+    'access callback' => true,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
+/**
+ * Implements hook_theme().
+ */
 function esculturas_mapa_theme() {
   $path = drupal_get_path('module', 'esculturas_mapa');
 
   $base = array(
-      'path' => $path . '/theme',
-      );
+    'path' => $path . '/theme',
+  );
 
   $themes['esculturas_mapa'] = $base + array(
-      'template' => 'esculturas_mapa',
-      );
+    'template' => 'esculturas_mapa',
+  );
 
   return $themes;
 }
 
+/**
+ * Displays put together the information and displays the "/mapa" section of the site.
+ */
 function esculturas_mapa_page() {
   drupal_add_js(drupal_get_path('module', 'esculturas_mapa') . '/js/mapa.js');
 
@@ -109,7 +118,7 @@ function esculturas_mapa_page() {
   }
 
   return theme('esculturas_mapa', array(
-        'esculturas' => $esculturas,
-        ));
+    'esculturas' => $esculturas,
+  ));
 
 }
