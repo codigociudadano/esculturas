@@ -13,6 +13,7 @@ entityreference_filter
 esculturas_configs
 esculturas_core
 esculturas_contexto
+esculturas_mapa
 features
 galleryformatter
 googleanalytics
@@ -31,3 +32,4 @@ token
 views
 views_ui
 wysiwyg
+jquery_update
