@@ -39,14 +39,14 @@
                             '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
                             '<div class="scrollWrapper">'+
-                            '<table style="width: 247px;">'+
+                            '<table style="width: 280px;">'+
                                 '<tr>'+
-                                    '<td style="width: 123px;">'+                                                    
+                                    '<td style="width: 140px;">'+                                                    
                                         '<h5> Autor: </h5>'+e[0].autor+'<div class="hr"><hr></div>'+
                                         '<h5> Evento: </h5>'+e[0].evento+
                                     '</td>'+                            
                                     '<td>'+
-                                        '<img border="0" style="width: 124px; height: 150px;" align="left" src="'+e[3].uri+'">'+
+                                        '<img border="0" style="width: 140px; height: 150px;" align="left" src="'+e[3].uri+'">'+
                                     '</td>'+
                                 '</tr>'+
                                 '<tr>'+
@@ -57,6 +57,7 @@
                                 '</tr>'+
                             '</table>'+
                             '</div>'+
+                            '<p>'+
                             '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
                             '</div>'+
                             '</div>';
