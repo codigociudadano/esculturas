@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * Implements hook_perm().
+ * 
+ * Reservado para todos los permisos que se necesite implementar en este modulo.
+ */
+//function esculturas_webservices_permission() {
+//  return array(
+//    'ew nodes' => array(
+//      'title' => t('Titulo del permiso'),
+//      'description' => t('Comentario del permiso.'),
+//    ),
+//  );
+//}
+  
+/**
+ * Implements hook_services_resources().
+ * 
+ * Se agrega tantos *_resource como tipos de endpoints se necesiten para otras
+ * cosas como taxonomias, noticias, etc.
+ */
+function esculturas_webservices_services_resources() {
+  module_load_include('inc', 'esculturas_webservices', 'resources/node_resource');
+  
+  $resources = array();
+  $resources += ew_node_resource_definition();
+
+  return $resources;
+}

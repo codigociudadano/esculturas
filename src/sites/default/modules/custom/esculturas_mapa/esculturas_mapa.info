@@ -6,4 +6,3 @@ version = 7.x-1.0
 project = esculturas_mapa
 
 dependencies[] = services
-dependencies[] = rest_server

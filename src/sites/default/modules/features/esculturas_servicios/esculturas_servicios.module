@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Esculturas Servicios feature.
+ */
+
+include_once 'esculturas_servicios.features.inc';
