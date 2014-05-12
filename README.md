@@ -41,24 +41,27 @@ Por el momento, la documentación del sitio está disponible en este [doc](https
 
 El sitio esta hecho en su mayoría con varias tecnologías, principalmente en Drupal. En esta sección podés encontrar links útiles que te pueden ser de ayuda:
 
- ### PHP
+### PHP ####
+ 
  - Manual de PHP: [Link](http://www.php.net/manual/es/)
 
- ### Drupal
+### Drupal ###
  - Documentación oficial: [Link](https://drupal.org/documentation)
  - Foro oficial: [Link](https://drupal.org/forum)
  - Drupal Answers : [Link](http://drupal.stackexchange.com/)
 
- ### HTML/CSS/Javascript
+### HTML/CSS/Javascript
+
  - (General) Mozilla Developer Network español: [Link](https://developer.mozilla.org/es/)
  - (Javascript) Eloquent Javascript: [Link](http://eloquentjavascript.net/contents.html)
  - (jQuery) jQuery API Documentation: [Link](http://api.jquery.com/)
  - (jQuery) jQuery enlightment: [Link](http://jqueryenlightenment.com/jquery_enlightenment.pdf)
 
- ### Google Map
+### Google Map
+
  - Google developers - Google Map API: [Link](https://developers.google.com/maps/)
 
- ## Comunidad
+## Comunidad
 
  Seguí las ultimas noticias de Esculturas y mas sobre Código Ciudadano en:
  - El sitio oficial: [Link](http://www.codigociudadano.com.ar/)
