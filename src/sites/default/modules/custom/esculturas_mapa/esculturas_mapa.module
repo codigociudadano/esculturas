@@ -1,33 +1,46 @@
 <?php
 
+/**
+ * @file
+ *  Provee distintas funcionalidades para geo-localizar esculturas.
+ */
+
+/**
+ * Implements hook_menu().
+ */
 function esculturas_mapa_menu() {
   $items['mapa'] = array(
-      'title' => 'Mapa Interactivo',
-      'description' => 'Mapa Interactivo',
-      'page callback' => 'esculturas_mapa_page',
-      'access callback' => true,
-      'type' => MENU_CALLBACK,
-      );
+    'title' => 'Mapa Interactivo',
+    'description' => 'Mapa Interactivo',
+    'page callback' => 'esculturas_mapa_page',
+    'access callback' => true,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
+/**
+ * Implements hook_theme().
+ */
 function esculturas_mapa_theme() {
   $path = drupal_get_path('module', 'esculturas_mapa');
 
   $base = array(
-      'path' => $path . '/theme',
-      );
+    'path' => $path . '/theme',
+  );
 
   $themes['esculturas_mapa'] = $base + array(
-      'template' => 'esculturas_mapa',
-      );
+    'template' => 'esculturas_mapa',
+  );
 
   return $themes;
 }
 
+/**
+ * Displays put together the information and displays the "/mapa" section of the site.
+ */
 function esculturas_mapa_page() {
   drupal_add_js(drupal_get_path('module', 'esculturas_mapa') . '/js/mapa.js');
-  //drupal_add_library('system', 'jquery.cookie');
 
   //traer todas las esculturas
   $query = new EntityFieldQuery();
@@ -196,4 +209,27 @@ function esculturas_mapa_page() {
         'categorias' => $categorias
         ));
 
+}
+/**
+ * Implements hook_perm().
+ */
+function esculturas_mapa_permission() {
+  return array(
+    'em get closest nodes by coord' => array(
+      'title' => t('EM get closest nodes nodes by coordinates.'),
+      'description' => t('Retrieves the closest nodes of a sculpture give a position coordinate.'),
+    ),
+  );
+}
+  
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function esculturas_mapa_ctools_plugin_api($owner, $api) {
+  if ($owner == 'services' && $api == 'services') {
+    return array(
+      'version' => 3,
+      'file' => 'resources/esculturas_mapa.services.inc',
+    );
+  }
 }

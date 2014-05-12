@@ -14,6 +14,8 @@ esculturas_configs
 esculturas_core
 esculturas_contexto
 esculturas_mapa
+esculturas_servicios
+esculturas_webservices
 features
 galleryformatter
 googleanalytics

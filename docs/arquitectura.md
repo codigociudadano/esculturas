@@ -133,4 +133,9 @@ http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term/21
 
 TBD (To be done), no tengo esto todavía :S
 
+## Trear las N esculturas próximas a una coordenada lat/long
 
+http://esculturas.codigociudadano.com.ar/api/v1/closest_nodes_by_coord?lat=-27.454528&lon=-58.976896
+
+Opcionalmente se puede indicar el nro de items qty_nodes=5
+Opcionalmente se puede indicar la distancia a cubrir dist=50

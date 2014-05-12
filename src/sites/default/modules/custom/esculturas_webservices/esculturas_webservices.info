@@ -1,0 +1,8 @@
+name = Esculturas WebServices
+description = Provee funcionalidades para los distintos web services que provea el sitio.
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = esculturas_webservices
+
+dependencies[] = services

@@ -1,0 +1,14 @@
+name = Esculturas Servicios
+description = Configuraciones y permisos varios para webservices.
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = esculturas_servicios
+dependencies[] = ctools
+dependencies[] = esculturas_webservices
+dependencies[] = features
+dependencies[] = services
+features[ctools][] = services:services:3
+features[features_api][] = api:2
+features[services_endpoint][] = api_v1_esculturas
+features[user_permission][] = em get closest nodes by coord
