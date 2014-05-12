@@ -22,7 +22,7 @@ Crear una base de datos MYSQL llamada esculturas.
 
 Crear un usuario esculturas en MYSQL con la password esculturas y que tenga accesso full en la base esculturas.
 
-Bajar la ultima base de datos para development desde [aqui|http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz].
+Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz).
 
 Importar el dump de la base de datos de prueba.
 
