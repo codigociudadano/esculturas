@@ -1,73 +1,274 @@
 /** Javscripts aca **/
 
 (function($, document){
+
+    //opciones del mapa
     var mapOptions = {
-        center: new google.maps.LatLng(-27.4531453,-58.9862608), // seteas la coordenada
+        center: new google.maps.LatLng(-27.4531453,-58.9862608),
         div: '#map_canvas',
-        zoom: 13, //seteas altura del zoom
+        zoom: 13, 
         zoomControl: true,    
-        mapTypeId: 'roadmap'
+        mapTypeId: 'roadmap'   
+
     };
 
-    var map = null;    
+    var map = null;
     var i = 0;
     var marker = null;
+    var my_marker = null;
     var infoWindow = null;
-
+    var my_infoWindow = null;
+    var markers = new Array();
+    var my_iconSource = 'http://earth.google.com/images/kml-icons/track-directional/track-8.png';
+    
     function initialize() {
+
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
-                
-        esculturas.forEach( function(escultura){
-            var e = new Array(escultura[0], escultura[1], escultura[2], escultura[3]);
-            
-            //instanciar un popup                                                            
-            infoWindow = new google.maps.InfoWindow({maxWidth: 300 }), marker, i;
 
+        esculturas.forEach( function(escultura){
+            var e = [escultura[0], escultura[1], escultura[2], escultura[3]];
+
+            //instanciar un popup
+            infoWindow = new google.maps.InfoWindow({maxWidth: 300 }), marker, i;
+            
             //posicion del marker
-            marker = new google.maps.Marker({            
-            position: new google.maps.LatLng(e[1].lat, e[1].lon),
-                map: map               
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(e[1].lat, e[1].lon),
+                map: map,
+                title: e[0].titulo,
+                tag: [e[0].autor, e[0].material, e[0].tipo, e[0].evento] //arreglo de tags para filtrar los markers
             });
-                //evento del marker
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        var contentString = null;
-                        contentString = '<div>'+                                            
-                            '<h1>'+e[0].titulo+'</h1>'+
+
+            markers.push(marker);
+
+//evento del marker que llama al popup
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    var contentString = null;
+                    contentString = '<div>'+
+                        '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
                             '<div class="scrollWrapper">'+
-                            '<table style="width: 280px;">'+
-                                '<tr>'+
-                                    '<td style="width: 140px;">'+                                                    
-                                        '<h5> Autor: </h5>'+e[0].autor+'<div class="hr"><hr></div>'+
-                                        '<h5> Evento: </h5>'+e[0].evento+
-                                    '</td>'+                            
-                                    '<td>'+
-                                        '<img border="0" style="width: 140px; height: 150px;" align="left" src="'+e[3].uri+'">'+
-                                    '</td>'+
-                                '</tr>'+
-                                '<tr>'+
-                                    '<td colspan="2">'+
-                                        '<div class="hr"><hr></div>'+
-                                        '<h5> Ubicación: </h5>'+e[0].ubicacion+
-                                    '</td>'+
-                                '</tr>'+
-                            '</table>'+
+                                '<table style="width: 280px;">'+
+                                    '<tr>'+
+                                        '<td style="width: 140px;">'+
+                                            '<h5> Autor: </h5>'+e[0].autor+'<div class="hr"><hr></div>'+
+                                            '<h5> Evento: </h5>'+e[0].evento+
+                                        '</td>'+
+                                        '<td>'+
+                                            '<img border="0" style="width: 140px; height: 150px;" align="left" src="'+e[3].uri+'">'+
+                                        '</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                        '<td colspan="2">'+
+                                            '<div class="hr"><hr></div>'+
+                                            '<h5> Ubicación: </h5>'+e[0].ubicacion+
+                                        '</td>'+
+                                    '</tr>'+
+                                '</table>'+
                             '</div>'+
-                            '<p>'+
-                            '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+                                                                                                
-                            '</div>'+
-                            '</div>';
+                        '<p>'+
+                        '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+
+                        '</div>'+
+                        '</div>';
 
-                        marker.setAnimation(google.maps.Animation.BOUNCE);
-                        setTimeout(function(){ marker.setAnimation(null); }, 2998);
-                        infoWindow.setContent(contentString);
-                        infoWindow.open(map, marker);
-                    }
-                })(marker, i));                
+                    marker.setAnimation(google.maps.Animation.BOUNCE); //animación del marker
+                    setTimeout(function(){ marker.setAnimation(null); }, 2998); //tiempo de animación
+                    infoWindow.setContent(contentString);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
             i++;
-        });        
+        });
+
+//obtengo texto inicial de los select        
+       var autor = $("#autores").find(":selected").text(); 
+       var evento = $("#eventos").find(":selected").text();
+       var values = null;
+
+//checkboxes Material, Tipo y Evento
+
+        $('.checkboxes input').click(function(){            
+            markers.forEach(function(marker){
+                 infoWindow.close();
+                 marker.setMap(null);
+            });
+            var count = 0;
+
+            $("input:checkbox:checked").each(function(){
+                infoWindow.close();
+                var values = $(this).val();
+                //si valor del select Autor y Evento no esta modificado a Todos
+                if(autor !== 'Todos' && evento !== 'Todos'){
+                    markers.forEach(function(marker){
+                        if(marker.tag[0] === autor && marker.tag[3] === evento){ //verifica evento y autor con los tags
+                            if(marker.tag[1]=== values || marker.tag[2] === values){ //verifica los checkboxes con los tags
+                                marker.setMap(map);
+                            }
+                        }
+                        count++;
+                    });
+                }else{ //caso contrario solo verifica los checkboxes con los tags
+                    markers.forEach(function(marker){
+                        if(marker.tag[1]=== values || marker.tag[2] === values){
+                            marker.setMap(map);
+                        }
+                        count++;
+                    });
+                }
+            });  
+            //si no hay nada checkeado            
+            if(count === 0){
+                markers.forEach(function(marker){
+                    infoWindow.close();
+                    marker.setMap(map);
+                });
+            }
+        });
+
+//VERÉ SI PUEDO ACORTAR CODIGO CON LOS SELECT, por el momento anda
+
+//select de Autores
+
+        $("#autores").change(function(){
+            infoWindow.close();
+            autor = $(this).find(":selected").text();
+            //si select Autor y Evento estan modificados
+            if(autor !== 'Todos' && evento !== 'Todos'){
+                markers.forEach(function(marker){
+                    if(marker.tag[0] === autor && marker.tag[3] === evento){ 
+                        marker.setVisible(true);
+                    }else{
+                        marker.setVisible(false);
+                    }
+                });
+            }else //si select Autor esta modificado y Evento no
+                if(autor !== 'Todos' && evento ==='Todos'){
+                    markers.forEach(function(marker){
+                        if(marker.tag[0] === autor){
+                            marker.setVisible(true);
+                        }else{
+                            marker.setVisible(false);
+                        }
+                });
+            }else //si ningún checkbox esta checkeado y Evento en Todos
+                if(values===null && evento === 'Todos'){
+                    markers.forEach(function(marker){
+                        marker.setVisible(true);
+                    });
+                }else{//si select Evento esta modificado y Autor no
+                    markers.forEach(function(marker){
+                        if(marker.tag[3] === evento){
+                            marker.setVisible(true);
+                        }else{
+                            marker.setVisible(false);
+                        }
+                    });
+                }
+        });
+
+//select de Eventos (es lo mismo pero este tiene en cuenta el valor del select Autor)
+
+        $("#eventos").change(function(){
+            infoWindow.close();
+            evento = $(this).find(":selected").text(); 
+            if(evento !== 'Todos' && autor !=='Todos'){
+                markers.forEach(function(marker){
+                    if(marker.tag[3] === evento && marker.tag[0] === autor){
+                        marker.setVisible(true);
+                    }else{
+                        marker.setVisible(false);
+                    }
+                });
+            }else if(evento !== 'Todos' && autor ==='Todos'){
+                markers.forEach(function(marker){
+                    if(marker.tag[3] === evento){
+                        marker.setVisible(true);
+                    }else{
+                        marker.setVisible(false);
+                    }
+                });
+            }else
+                if(values===null && autor==='Todos'){
+                    markers.forEach(function(marker){
+                        marker.setVisible(true);
+                    });
+                }else{
+                    markers.forEach(function(marker){
+                        if(marker.tag[0] === autor){
+                            marker.setVisible(true);
+                        }else{
+                            marker.setVisible(false);
+                        }
+                    });
+                }
+        });
+
+//geolocalización
+
+        $("#ubicame").click(function (){
+
+           //si el navegador es compatible cn geolocalización
+           if(navigator.geolocation){
+               if(my_marker){
+                   my_marker.setMap(null);
+               }
+
+               var my_String = '<h5>Aquí estas!</h5>';
+
+               navigator.geolocation.getCurrentPosition(function(position) {
+                   var pos = new google.maps.LatLng(position.coords.latitude,
+                       position.coords.longitude);
+
+                   my_infoWindow = new google.maps.InfoWindow({
+                            maxWidth: 200,
+                            position: pos,
+                            content: my_String
+                        });
+
+                   my_marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            title: 'Aquí estas!',
+                            icon: my_iconSource,
+                            animation: google.maps.Animation.BOUNCE
+                        });
+
+                   my_infoWindow.open(map, my_marker);
+
+                        google.maps.event.addListener(my_marker, 'click', function(){
+                            my_infoWindow.setContent(my_String);
+                            my_infoWindow.open(map, my_marker);
+                        });
+
+                        google.maps.event.addListener(my_marker, 'dblclick', function(){
+                            my_infoWindow.close(map, my_marker);
+                            my_marker.setMap(null);
+                        });
+
+                   map.setCenter(pos);
+                   map.setZoom(15);
+
+               }, function() {
+                   //si el servicio falla por x motivo
+                   handleNoGeolocation(true);
+               });
+           } else {
+               //si el browser no soporta geolocalización
+               handleNoGeolocation(false);
+           }
+
+            function handleNoGeolocation(errorFlag) {
+                if (errorFlag) {
+                    alert('Error: Este servicio ha fallado.');
+                } else {
+                    alert('Error: Su navegador no soporta este servicio.');
+                }
+            }
+        });
+
     }
 
     $(document).ready(function(){
