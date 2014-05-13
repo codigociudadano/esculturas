@@ -87,15 +87,15 @@ http://esculturas.codigociudadano.com.ar/api/v1/node?page=1&fields=nid,title
   
 ## Traer solo Esculturas
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?parameters[type]=escultura
+http://esculturas.codigociudadano.com.ar/api/v1/node?type=escultura
 
 ## Traer solo Autores
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?parameters[type]=autores
+http://esculturas.codigociudadano.com.ar/api/v1/node?type=autores
 
 ## Traer solo Eventos
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?parameters[type]=eventos
+http://esculturas.codigociudadano.com.ar/api/v1/node?type=eventos
 
 ## Traer mas de 20 item
 
@@ -123,7 +123,7 @@ Aca van a tener que tener en cuenta los vids que son los ids de taxonomias
 
 ## Traer los terminos de una Taxonomia
 
- http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term?parameter[vid]=4
+ http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term?vid=4
  
 ## Traer un Termino puntual con su TID (term id).
 
