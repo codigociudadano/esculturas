@@ -25,7 +25,8 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
 
 2) Configurar un Virtual Host de Apache para que apunte a src/ donde el servername sea local.esculturas. 
    Un ejemplo: 
-   `<VirtualHost *:80>      
+   ```
+    <VirtualHost *:80>      
       DocumentRoot {DocumentRoot de Apache}/esculturas/src
       ServerName local.esculturas
       RewriteEngine On
@@ -37,7 +38,8 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
         order allow,deny
         allow from all
       </Directory>
-    </VirtualHost>`
+    </VirtualHost>
+   ```
 
 3) Añadir local.esculturas a la tabla de hosts (/etc/hosts).
 
