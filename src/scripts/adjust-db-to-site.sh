@@ -24,8 +24,8 @@ drush vset preprocres_js 0
 echo ""
 echo "Updating modules enabled ..."
 drush cc all
-drush dis `cat modules_disabled.txt` -y
-drush en `cat modules_enabled.txt` -y
+drush dis `cat sites/default/modules_disabled.txt` -y
+drush en `cat sites/default/modules_enabled.txt` -y
 
 echo ""
 echo "Applying database updates ..."
