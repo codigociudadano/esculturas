@@ -32,7 +32,7 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
       RewriteEngine On
       RewriteOptions inherit
       CustomLog /var/log/apache2/esculturas.log combined
-      <Directory /home/www/drupal5/>
+      <Directory {DocumentRoot de Apache}/esculturas/src>
         Options +FollowSymLinks Indexes
         AllowOverride All
         order allow,deny
@@ -91,4 +91,5 @@ El sitio esta hecho en su mayoría con varias tecnologías, principalmente en Dr
 
  Seguí las ultimas noticias de Esculturas y mas sobre Código Ciudadano en:
  - El sitio oficial: [Link](http://www.codigociudadano.com.ar/)
- - Seguí a [@CiudadanoCo en Twitter](https://twitter.com/CiudadanoCo)
+ - Seguinos en Facebook[CiudadanosC](https://www.facebook.com/CiudadanosC)
+ - Seguinos en Twitter: [@CiudadanoCo](https://twitter.com/CiudadanoCo)
