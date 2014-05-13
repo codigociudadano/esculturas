@@ -75,11 +75,8 @@ function ew_esculturas_resource_definition() {
  */
 function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
   $query = "SELECT n.nid AS id,
-              n.title AS title,
-              ff.field_fotos_title AS ftitle
+              n.title AS title
             FROM {node} n
-              JOIN {field_data_field_fotos} ff
-                ON n.nid = ff.entity_id
             WHERE ((n.status = '1') AND (n.type IN  ('escultura')))";
 
   $result = db_query_range($query, $page, $pagesize, array());
@@ -87,10 +84,28 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
   $response = array();
   if ($result) {
     while ($row = $result->fetchObject()) {
-      $row->link = "/api/v1/esculturas/esculturas/".$row->id;
-      $response[] = $row;
+      $resource = new stdClass();
+
+      $node = node_load($row->id);
+      $autor_field = field_get_items('node', $node, 'field_autor');
+      $autor = node_load($autor_field[0]["target_id"]);
+      $fotos = field_get_items('node', $node, 'field_fotos');
+
+      $resource->id = $row->id;
+      $resource->href = "/api/v1/esculturas/esculturas/".$resource->id;
+      $resource->name = $row->title;
+      $resource->image = file_create_url($fotos[0]['uri']);
+      $resource->autor = array(
+        "id" => $autor->nid,
+        "href" => "/api/v1/esculturas/autores/".$autor->nid,
+        "name" => $autor->title
+      );
+      $response[] = $resource;
     }
   }
+
+  ## TODO: Add Caching.
+
   return $response;
 }
 
@@ -102,11 +117,13 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
  */
 function _ew_esculturas_resource_retrieve($id) {
   $query = "SELECT n.nid AS id,
-              n.title AS title
+              n.title AS name
             FROM {node} n
             WHERE (n.nid = :id)
               AND ((n.status = '1')
               AND (n.type IN  ('escultura')))";
+
+  ## TODO: Add Caching.
 
   $result = db_query($query, array(
       'id' => $id
@@ -114,6 +131,7 @@ function _ew_esculturas_resource_retrieve($id) {
 
   if ($result) {
     $response = $result;
+    ## TODO: Add more fields.
   }
   else {
     $response = services_error(t("Recurso con id:".$id." no encontrado."), 404);
