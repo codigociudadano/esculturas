@@ -66,6 +66,8 @@ function ew_esculturas_resource_definition() {
 
 }
 
+define("MAX_PAGESIZE", 100);
+
 /**
  *
  *
@@ -78,6 +80,10 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
               n.title AS title
             FROM {node} n
             WHERE ((n.status = '1') AND (n.type IN  ('escultura')))";
+
+  if($pagesize > MAX_PAGESIZE) {
+    return services_error("pagesize should not be greater than ".MAX_PAGESIZE);
+  }
 
   $result = db_query_range($query, $page, $pagesize, array());
 
