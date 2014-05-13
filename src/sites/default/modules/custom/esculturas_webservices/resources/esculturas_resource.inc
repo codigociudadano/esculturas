@@ -66,6 +66,8 @@ function ew_esculturas_resource_definition() {
 
 }
 
+define("MAX_PAGESIZE", 100);
+
 /**
  *
  *
@@ -79,18 +81,39 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
             FROM {node} n
             WHERE ((n.status = '1') AND (n.type IN  ('escultura')))";
 
+  if($pagesize > MAX_PAGESIZE) {
+    return services_error("pagesize should not be greater than ".MAX_PAGESIZE);
+  }
+
   $result = db_query_range($query, $page, $pagesize, array());
 
   $response = array();
   if ($result) {
     while ($row = $result->fetchObject()) {
       $resource = new stdClass();
-
+      //Open Node Base Info
       $node = node_load($row->id);
+      // Author Info
       $autor_field = field_get_items('node', $node, 'field_autor');
       $autor = node_load($autor_field[0]["target_id"]);
+      // Pictures Info
       $fotos = field_get_items('node', $node, 'field_fotos');
+      //Tags Info
+      $tags_field = field_get_items('node', $node, 'field_tags');
+      foreach ($tags_field as $tag) {
+        $tags_tids[] = $tag["tid"];
+      }
+      $tags_terms = taxonomy_term_load_multiple($tags_tids);
+      $tags = array();
+      foreach ($tags_terms as $tag_term) {
+        $tag = new stdClass();
+        $tag->id = $tag_term->tid;
+        $tag->href = "/api/v1/esculturas/esculturas/tag/".$tag_term->tid;
+        $tag->name = $tag_term->name;
+        $tags[] = $tag;
+      }
 
+      // Fill resource info
       $resource->id = $row->id;
       $resource->href = "/api/v1/esculturas/esculturas/".$resource->id;
       $resource->name = $row->title;
@@ -100,6 +123,8 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
         "href" => "/api/v1/esculturas/autores/".$autor->nid,
         "name" => $autor->title
       );
+      $resource->tags = $tags;
+
       $response[] = $resource;
     }
   }
