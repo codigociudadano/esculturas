@@ -23,10 +23,12 @@
 function esculturas_webservices_services_resources() {
   module_load_include('inc', 'esculturas_webservices', 'resources/node_resource');
   module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
+  module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
 
   $resources = array();
   $resources += ew_node_resource_definition();
   $resources += ew_esculturas_resource_definition();
+  $resources += ew_autores_resource_definition();
 
   return $resources;
 }

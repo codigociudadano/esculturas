@@ -9,24 +9,24 @@
  *
  * @return array
  */
-function ew_esculturas_resource_definition() {
+function ew_autores_resource_definition() {
   return array(
-    'esculturas' => array(
+    'autores' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Obtener una escultura.',
+          'help' => 'Obtener un Autor.',
           'file' => array(
               'type' => 'inc',
               'module' => 'esculturas_webservices',
-              'name' => 'resources/esculturas_resource'),
-          'callback' => '_ew_esculturas_resource_retrieve',
+              'name' => 'resources/autores_resource'),
+          'callback' => '_ew_autores_resource_retrieve',
           'args' => array(
             array(
               'name' => 'id',
               'optional' => FALSE,
               'source' => array('path' => 0),
               'type' => 'int',
-              'description' => 'Id de la escultura a obtener.',
+              'description' => 'Id del Autor a obtener.',
             ),
           ),
           'access callback' => '_node_resource_access',
@@ -34,12 +34,12 @@ function ew_esculturas_resource_definition() {
           'access arguments append' => TRUE,
         ),
         'index' => array(
-          'help' => 'Listar Esculturas.',
+          'help' => 'Listar Autores.',
           'file' => array(
             'type' => 'inc',
             'module' => 'esculturas_webservices',
-            'name' => 'resources/esculturas_resource'),
-          'callback' => '_ew_esculturas_resource_index',
+            'name' => 'resources/autores_resource'),
+          'callback' => '_ew_autores_resource_index',
           'args' => array(
             array(
               'name' => 'page',
@@ -66,7 +66,7 @@ function ew_esculturas_resource_definition() {
 
 }
 
-define("EW_ESCULTURAS_MAX_PAGESIZE", 100);
+define("EW_AUTORES_MAX_PAGESIZE", 100);
 
 /**
  *
@@ -75,13 +75,13 @@ define("EW_ESCULTURAS_MAX_PAGESIZE", 100);
  * @param string $pagesize | cantidad de resultados por pagina a obtener.
  * @return array
  */
-function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
+function _ew_autores_resource_index($page = '0' ,$pagesize = '5') {
   $query = "SELECT n.nid AS id,
-              n.title AS title
+              n.title AS name
             FROM {node} n
-            WHERE ((n.status = '1') AND (n.type IN  ('escultura')))";
+            WHERE ((n.status = '1') AND (n.type IN  ('autores')))";
 
-  if($pagesize > EW_ESCULTURAS_MAX_PAGESIZE) {
+  if($pagesize > EW_AUTORES_MAX_PAGESIZE) {
     return services_error("pagesize should not be greater than ".MAX_PAGESIZE);
   }
 
@@ -93,37 +93,14 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
       $resource = new stdClass();
       //Open Node Base Info
       $node = node_load($row->id);
-      // Author Info
-      $autor_field = field_get_items('node', $node, 'field_autor');
-      $autor = node_load($autor_field[0]["target_id"]);
       // Pictures Info
       $fotos = field_get_items('node', $node, 'field_fotos');
-      //Tags Info
-      $tags_field = field_get_items('node', $node, 'field_tags');
-      foreach ($tags_field as $tag) {
-        $tags_tids[] = $tag["tid"];
-      }
-      $tags_terms = taxonomy_term_load_multiple($tags_tids);
-      $tags = array();
-      foreach ($tags_terms as $tag_term) {
-        $tag = new stdClass();
-        $tag->id = $tag_term->tid;
-        $tag->href = "/api/v1/esculturas/esculturas/tag/".$tag_term->tid;
-        $tag->name = $tag_term->name;
-        $tags[] = $tag;
-      }
 
       // Fill resource info
       $resource->id = $row->id;
-      $resource->href = "/api/v1/esculturas/esculturas/".$resource->id;
-      $resource->name = $row->title;
+      $resource->href = "/api/v1/esculturas/autores/".$resource->id;
+      $resource->name = $row->name;
       $resource->image = file_create_url($fotos[0]['uri']);
-      $resource->autor = array(
-        "id" => $autor->nid,
-        "href" => "/api/v1/esculturas/autores/".$autor->nid,
-        "name" => $autor->title
-      );
-      $resource->tags = $tags;
 
       $response[] = $resource;
     }
@@ -140,13 +117,13 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
  * @param string $id | Id de la escultura a obtener.
  * @return array
  */
-function _ew_esculturas_resource_retrieve($id) {
+function _ew_autores_resource_retrieve($id) {
   $query = "SELECT n.nid AS id,
               n.title AS name
             FROM {node} n
             WHERE (n.nid = :id)
               AND ((n.status = '1')
-              AND (n.type IN  ('escultura')))";
+              AND (n.type IN  ('autores')))";
 
   ## TODO: Add Caching.
 
