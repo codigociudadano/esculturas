@@ -35,3 +35,4 @@ views
 views_ui
 wysiwyg
 jquery_update
+diff
