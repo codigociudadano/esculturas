@@ -15,7 +15,7 @@ function esculturas_servicios_default_services_endpoint() {
   $endpoint->api_version = 3;
   $endpoint->name = 'api_v1_esculturas';
   $endpoint->server = 'rest_server';
-  $endpoint->path = 'api/v1';
+  $endpoint->path = 'api/v1/esculturas';
   $endpoint->authentication = array();
   $endpoint->server_settings = array(
     'formatters' => array(
