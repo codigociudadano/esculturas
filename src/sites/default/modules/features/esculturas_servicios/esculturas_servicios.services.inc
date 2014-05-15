@@ -35,8 +35,28 @@ function esculturas_servicios_default_services_endpoint() {
     ),
   );
   $endpoint->resources = array(
+    'autores' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'enabled' => '1',
+        ),
+        'index' => array(
+          'enabled' => '1',
+        ),
+      ),
+    ),
     'closest_nodes_by_coord' => array(
       'operations' => array(
+        'index' => array(
+          'enabled' => '1',
+        ),
+      ),
+    ),
+    'esculturas' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'enabled' => '1',
+        ),
         'index' => array(
           'enabled' => '1',
         ),
