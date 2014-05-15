@@ -31,7 +31,7 @@ function esculturas_webservices_services_resources() {
   return $resources;
 }
 
-function ew_get_href($entity, $id, $filters) {
+function ew_get_href($entity, $id = null, $filters = null) {
   if(!isset($entity)) {
     throw new Error('$entity must be provided.');
   }
