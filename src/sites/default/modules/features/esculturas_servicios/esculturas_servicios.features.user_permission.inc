@@ -18,7 +18,7 @@ function esculturas_servicios_user_default_permissions() {
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
-    'module' => 'esculturas_webservices',
+    'module' => 'esculturas_mapa',
   );
 
   return $permissions;

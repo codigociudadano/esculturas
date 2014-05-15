@@ -5,6 +5,7 @@ package = Esculturas
 version = 7.x-1.0
 project = esculturas_servicios
 dependencies[] = ctools
+dependencies[] = esculturas_mapa
 dependencies[] = esculturas_webservices
 dependencies[] = features
 dependencies[] = services
