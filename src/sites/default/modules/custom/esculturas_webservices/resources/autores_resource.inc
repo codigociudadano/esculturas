@@ -98,7 +98,7 @@ function _ew_autores_resource_index($page = '0' ,$pagesize = '5') {
 
       // Fill resource info
       $resource->id = $row->id;
-      $resource->href = "/api/v1/esculturas/autores/".$resource->id;
+      $resource->href = ew_get_href("autores", $resource->id);
       $resource->name = $row->name;
       $resource->image = file_create_url($fotos[0]['uri']);
 
