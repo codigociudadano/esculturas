@@ -19,12 +19,15 @@
     var infoWindow = null;
     var my_infoWindow = null;
     var markers = new Array();
+    var markers_cercanos = new Array();
     var my_iconSource = 'http://earth.google.com/images/kml-icons/track-directional/track-8.png';
     
     function initialize() {
 
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
+
+        $('.checkbox_cercanas input').attr("disabled", true);
 
         esculturas.forEach( function(escultura){
             var e = [escultura[0], escultura[1], escultura[2], escultura[3]];
@@ -53,23 +56,18 @@
                             '<div class="scrollWrapper">'+
                                 '<table style="width: 280px;">'+
                                     '<tr>'+
-                                        '<td style="width: 140px;">'+
+                                        '<td style="width: 150px;">'+
                                             '<h5> Autor: </h5>'+e[0].autor+'<div class="hr"><hr></div>'+
+                                            '<h5> Tipo: </h5>'+e[0].tipo+'<div class="hr"><hr></div>'+
+                                            '<h5> Material: </h5>'+e[0].material+'<div class="hr"><hr></div>'+
                                             '<h5> Evento: </h5>'+e[0].evento+
                                         '</td>'+
                                         '<td>'+
-                                            '<img border="0" style="width: 140px; height: 150px;" align="left" src="'+e[3].uri+'">'+
-                                        '</td>'+
-                                    '</tr>'+
-                                    '<tr>'+
-                                        '<td colspan="2">'+
-                                            '<div class="hr"><hr></div>'+
-                                            '<h5> Ubicación: </h5>'+e[0].ubicacion+
+                                            '<img border="0" style="width: 150px; height: 180px;" align="left" src="'+e[3].uri+'">'+
                                         '</td>'+
                                     '</tr>'+
                                 '</table>'+
                             '</div>'+
-                        '<p>'+
                         '<div align="right">Saber más sobre <a href="'+e[2].url+'">'+''+e[0].titulo+'</a>.</div>'+
                         '</div>'+
                         '</div>';
@@ -83,7 +81,7 @@
             i++;
         });
 
-//obtengo texto inicial de los select        
+       //obtengo texto inicial de los select
        var autor = $("#autores").find(":selected").text(); 
        var evento = $("#eventos").find(":selected").text();
        var values = null;
@@ -99,7 +97,9 @@
 
             $("input:checkbox:checked").each(function(){
                 infoWindow.close();
+
                 var values = $(this).val();
+
                 //si valor del select Autor y Evento no esta modificado a Todos
                 if(autor !== 'Todos' && evento !== 'Todos'){
                     markers.forEach(function(marker){
@@ -119,7 +119,7 @@
                     });
                 }
             });  
-            //si no hay nada checkeado            
+            //checkboxes sin marcar
             if(count === 0){
                 markers.forEach(function(marker){
                     infoWindow.close();
@@ -153,7 +153,7 @@
                             marker.setVisible(false);
                         }
                 });
-            }else //si ningún checkbox esta checkeado y Evento en Todos
+            }else //si ningún checkbox esta marcado y Evento en Todos
                 if(values===null && evento === 'Todos'){
                     markers.forEach(function(marker){
                         marker.setVisible(true);
@@ -209,7 +209,6 @@
 //geolocalización
 
         $("#ubicame").click(function (){
-
            //si el navegador es compatible cn geolocalización
            if(navigator.geolocation){
                if(my_marker){
@@ -236,6 +235,7 @@
                             animation: google.maps.Animation.BOUNCE
                         });
 
+                   infoWindow.close();
                    my_infoWindow.open(map, my_marker);
 
                         google.maps.event.addListener(my_marker, 'click', function(){
@@ -246,10 +246,17 @@
                         google.maps.event.addListener(my_marker, 'dblclick', function(){
                             my_infoWindow.close(map, my_marker);
                             my_marker.setMap(null);
+                            $('.checkbox_cercanas input').attr("disabled", true);
+                            markers.forEach(function(marker){
+                                infoWindow.close();
+                                marker.setMap(map);
+                            });
                         });
 
                    map.setCenter(pos);
-                   map.setZoom(15);
+                   map.setZoom(16);
+
+                       $('.checkbox_cercanas input').attr("disabled", false);
 
                }, function() {
                    //si el servicio falla por x motivo
@@ -269,6 +276,63 @@
             }
         });
 
+//desactivar ciertos controles
+
+        function onoffControl(flag){
+            $('.checkboxes input').attr("disabled", flag);
+            $('.checkboxes input').attr("checked", false);
+            $("#autores").attr("disabled", flag);
+            $("#eventos").attr("disabled", flag);
+        }
+
+//checkbox top 5 esculturas cercanas
+
+        $('.checkbox_cercanas input').click(function (){
+
+            if ($('.checkbox_cercanas input').is(':checked')) {
+                onoffControl(true);
+
+                var metros = new Array();
+
+                if(my_marker){
+                    var i = 0;
+
+                    markers.forEach(function(marker){
+                        //obtengo la distancia  en metros entre el marker y la posición actual
+                        metros.push(google.maps.geometry.spherical.computeDistanceBetween(marker.position, my_marker.position));
+                    });
+                    //ordeno los metros de menor a mayor
+                    metros.sort(function(a,b){ return a-b});
+
+                    metros.forEach(function (metro){
+                        if (i < 5){
+                            markers.forEach(function(marker){
+                                var distancia = google.maps.geometry.spherical.computeDistanceBetween(marker.position, my_marker.position);
+
+                                if(distancia === metro){
+                                  markers_cercanos.push(marker); //markers cercanos guardados
+                                  i++;
+                                }
+                            });
+                        }
+                    });
+                    //muestro los markers mas cercanos
+                    markers.forEach(function(marker){
+                        if(jQuery.inArray(marker, markers_cercanos) == -1){
+                           marker.setMap(null);
+                        }
+                    });
+                }
+            }else{
+                onoffControl(false);
+                //checkbox sin marcar
+                markers.forEach(function(marker){
+                    infoWindow.close();
+                    marker.setMap(map);
+                    onoffControl(false);
+                });
+            }
+       });
     }
 
     $(document).ready(function(){

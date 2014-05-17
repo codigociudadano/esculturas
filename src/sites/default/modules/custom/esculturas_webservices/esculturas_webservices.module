@@ -21,14 +21,48 @@
  * cosas como taxonomias, noticias, etc.
  */
 function esculturas_webservices_services_resources() {
-  module_load_include('inc', 'esculturas_webservices', 'resources/node_resource');
   module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
   module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
 
   $resources = array();
-  $resources += ew_node_resource_definition();
   $resources += ew_esculturas_resource_definition();
   $resources += ew_autores_resource_definition();
 
   return $resources;
+}
+
+function ew_get_href($entity, $id = null, $filters = null) {
+  if(!isset($entity)) {
+    throw new Error('$entity must be provided.');
+  }
+
+  global $base_url;
+  $api_base_path =  $base_url;
+  $api_base_path .= "/". services_get_server_info("endpoint_path", "");
+
+  $href .= $api_base_path;
+  $href .= "/".$entity;
+
+  if($id) {
+    $href .= "/".$id;
+  }
+
+  if($filters) {
+    $href .= "?";
+    $query = array();
+    foreach ($filters as $filter => $values) {
+      if(is_array($values)){
+        foreach ($values as $i => $value) {
+          $query[]= $filter."[".$i."]=".$value;
+        }
+      }
+      else {
+        $query[]= $filter."=".$values;
+      }
+    }
+
+    $href .= implode($query, "&");
+  }
+
+  return $href;
 }

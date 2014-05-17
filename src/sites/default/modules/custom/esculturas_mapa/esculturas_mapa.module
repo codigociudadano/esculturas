@@ -40,8 +40,8 @@ function esculturas_mapa_theme() {
  * Displays put together the information and displays the "/mapa" section of the site.
  */
 function esculturas_mapa_page() {
+    drupal_add_js('https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=true_or_false', 'external');
   drupal_add_js(drupal_get_path('module', 'esculturas_mapa') . '/js/mapa.js');
-
   //traer todas las esculturas
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
@@ -140,6 +140,7 @@ function esculturas_mapa_page() {
     $categorias = array($materiales, $tipos, $autores, $eventos);
     $esculturas = array();
 
+    //recorro esculturas
     foreach($entities_esculturas as $e){
 
     $location = array();

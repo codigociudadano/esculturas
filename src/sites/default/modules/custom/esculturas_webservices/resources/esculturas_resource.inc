@@ -108,19 +108,19 @@ function _ew_esculturas_resource_index($page = '0' ,$pagesize = '5') {
       foreach ($tags_terms as $tag_term) {
         $tag = new stdClass();
         $tag->id = $tag_term->tid;
-        $tag->href = "/api/v1/esculturas/esculturas/tag/".$tag_term->tid;
+        $tag->href = ew_get_href("esculturas", null, array("tags"=>$tag_term->tid));
         $tag->name = $tag_term->name;
         $tags[] = $tag;
       }
 
       // Fill resource info
       $resource->id = $row->id;
-      $resource->href = "/api/v1/esculturas/esculturas/".$resource->id;
+      $resource->href = ew_get_href("esculturas", $resource->id);
       $resource->name = $row->title;
       $resource->image = file_create_url($fotos[0]['uri']);
       $resource->autor = array(
         "id" => $autor->nid,
-        "href" => "/api/v1/esculturas/autores/".$autor->nid,
+        "href" => ew_get_href("autores", $autor->id),
         "name" => $autor->title
       );
       $resource->tags = $tags;
