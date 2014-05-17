@@ -4,38 +4,62 @@ Catálogo de las esculturas que se pueden encontrar en la ciudad de Resistencia.
 
 ## Tabla de contenido
 
- - [Instalación](#instalacion)
+ - [Requerimientos](#requerimientos)
+ - [Instalacion](#instalacion)
  - [Bugs y peticiones de nuevas features](#Bugs-y-peticiones-de-nuevas-features)
- - [Documentación](#documentacion)
+ - [Documentacion](#documentacion)
  - [Contribuir](#contribuir)
  - [Comunidad](#comunidad)
 
-## Instalación
+## Requerimientos
 
-Clonar el repositorio:  `git clone https://github.com/codigociudadano/esculturas.git`.
+Para que puedas ayudarnos en este proyecto se requiere tener instalado:
+ - Los requerimientos mínimos de Drupal: https://drupal.org/requirements
+ - Drush (interfaz de linea de comandos para Drupal)
+   - En Ubuntu: sudo apt-get install drush
+   - Otros Sist. Op: ver https://drupal.org/node/1791676
 
-Configurar un Virtual Host de Apache para que apunte a src/ donde el servername sea local.esculturas.
+## Instalacion
 
-Añadir local.esculturas a la tabla de hosts (/etc/hosts).
+1) Clonar el repositorio:  `git clone https://github.com/codigociudadano/esculturas.git`.
 
-Crear una base de datos MYSQL llamada esculturas.
+2) Configurar un Virtual Host de Apache para que apunte a src/ donde el servername sea local.esculturas. 
+   Un ejemplo: 
+   ```
+    <VirtualHost *:80>      
+      DocumentRoot {DocumentRoot de Apache}/esculturas/src
+      ServerName local.esculturas
+      RewriteEngine On
+      RewriteOptions inherit
+      CustomLog /var/log/apache2/esculturas.log combined
+      <Directory {DocumentRoot de Apache}/esculturas/src>
+        Options +FollowSymLinks Indexes
+        AllowOverride All
+        order allow,deny
+        allow from all
+      </Directory>
+    </VirtualHost>
+   ```
 
-Crear un usuario esculturas en MYSQL con la password esculturas y que tenga accesso full en la base esculturas.
+3) Añadir local.esculturas a la tabla de hosts (/etc/hosts).
 
-Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz).
+4) Crear una base de datos MYSQL llamada esculturas.
 
-Importar el dump de la base de datos de prueba.
+5) Crear un usuario esculturas en MYSQL con la password esculturas y que tenga accesso full en la base esculturas.
 
-Limpiar las Caches de Drupal con drush.
+6) Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz).
 
-Entrar con el browser a local.esculturas.
+7) Importar el dump de la base de datos de prueba.
 
+8) Desde `src/` correr con drush: `bash scripts/adjust-db-to-site.sh`
+
+9) Entrar con el browser a http://local.esculturas.
 
 ## Bugs y peticiones de nuevas features
 
 Si encontraste un bug, tenés un error o querés pedir una feature nueva? Podés agregarlo a la [lista de issues](https://github.com/codigociudadano/esculturas/issues). Te pedimos por favor, antes de agregar tu idea o problema, revisá si no hay un pedido similar que fué hecho anteriormente.
 
-## Documentación
+## Documentacion
 
 Por el momento, la documentación del sitio está disponible en este [doc](https://github.com/codigociudadano/esculturas)
 
@@ -45,26 +69,27 @@ El sitio esta hecho en su mayoría con varias tecnologías, principalmente en Dr
 
 ### PHP ####
  
- - Manual de PHP: [Link](http://www.php.net/manual/es/)
+ - [Manual de PHP](http://www.php.net/manual/es/)
 
 ### Drupal ###
- - Documentación oficial: [Link](https://drupal.org/documentation)
- - Foro oficial: [Link](https://drupal.org/forum)
- - Drupal Answers : [Link](http://drupal.stackexchange.com/)
+ - [Documentación oficial Drupal](https://drupal.org/documentation)
+ - [Foro oficial](https://drupal.org/forum)
+ - [Drupal Answers](http://drupal.stackexchange.com/) (pertence a la red Stack Exchange)
 
 ### HTML/CSS/Javascript
 
- - (General) Mozilla Developer Network español: [Link](https://developer.mozilla.org/es/)
- - (Javascript) Eloquent Javascript: [Link](http://eloquentjavascript.net/contents.html)
- - (jQuery) jQuery API Documentation: [Link](http://api.jquery.com/)
- - (jQuery) jQuery enlightment: [Link](http://jqueryenlightenment.com/jquery_enlightenment.pdf)
+ - (General) [Mozilla Developer Network español](https://developer.mozilla.org/es/)
+ - (Javascript) [Eloquent Javascript](http://eloquentjavascript.net/contents.html)
+ - (jQuery) [jQuery API Documentation](http://api.jquery.com/)
+ - (jQuery) [jQuery enlightment](http://jqueryenlightenment.com/jquery_enlightenment.pdf)
 
 ### Google Map
 
- - Google developers - Google Map API: [Link](https://developers.google.com/maps/)
+ - Google developers - [Google Map API](https://developers.google.com/maps/)
 
 ## Comunidad
 
  Seguí las ultimas noticias de Esculturas y mas sobre Código Ciudadano en:
  - El sitio oficial: [Link](http://www.codigociudadano.com.ar/)
- - Seguí a [@CiudadanoCo en Twitter](https://twitter.com/CiudadanoCo)
+ - Seguinos en Facebook[CiudadanosC](https://www.facebook.com/CiudadanosC)
+ - Seguinos en Twitter: [@CiudadanoCo](https://twitter.com/CiudadanoCo)
