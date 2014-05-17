@@ -38,8 +38,5 @@ jquery_update
 diff
 addtoany
 esculturas_cms
-<<<<<<< HEAD
 esculturas_permisos
-=======
 services_documentation
->>>>>>> 0dace50825c7fd00e0e62dc94f06e2a28e3fe2dd
