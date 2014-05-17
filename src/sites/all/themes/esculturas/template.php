@@ -35,3 +35,8 @@ function esculturas_is_single() {
 
     return false;
 }
+
+function render_search_form() {
+    $block = module_invoke('search', 'block_view', 'search');
+    return render($block);
+}
