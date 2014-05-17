@@ -38,3 +38,4 @@ jquery_update
 diff
 addtoany
 esculturas_cms
+services_documentation

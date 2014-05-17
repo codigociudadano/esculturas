@@ -1,5 +1,8 @@
 <?php
 
+module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
+module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
+
 /**
  * Implements hook_perm().
  *
@@ -21,8 +24,6 @@
  * cosas como taxonomias, noticias, etc.
  */
 function esculturas_webservices_services_resources() {
-  module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
-  module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
 
   $resources = array();
   $resources += ew_esculturas_resource_definition();
