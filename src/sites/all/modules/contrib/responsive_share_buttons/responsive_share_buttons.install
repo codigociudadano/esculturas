@@ -1,0 +1,22 @@
+<?php 
+/**
+ * Implements hook_install().
+ */
+
+function responsive_share_buttons_install() {
+  define('facebook' , "facebook");
+  define('twitter' , "twitter");
+  define('digg' , "digg");
+  define('stumbleupon' , "stumbleupon");
+  define('delicious' , "delicious");
+  define('google' , "google");
+  $buttons_array = array('facebook' => 'facebook', 'twitter' => 'twitter', 'digg' => 'digg', 'stumbleupon' => 'stumbleupon', 'delicious' => 'delicious', 'google' => 'google');
+  variable_set('responsive_share_buttons', $buttons_array);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function responsive_share_buttons_uninstall() {
+  variable_del('responsive_share_buttons');
+}

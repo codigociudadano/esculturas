@@ -1,3 +1,11 @@
+body {
+    background-color: #292929;
+}
+
+div#page {
+    background-color: #fff;
+}
+
 input {
   padding: 0px;
 }
@@ -135,4 +143,16 @@ body.node-type-page h1.page-title {
   height: auto;
   max-width: 100%;
   margin: 0px;
+}
+
+
+span.a2a_kit.a2a_kit_size_32.a2a_target.addtoany_list {
+    position: absolute;
+    top: 18px;
+    right: 0;
+    width: 184px;
+}
+
+body.page-node div#content-wrap {
+    position: relative;
 }
