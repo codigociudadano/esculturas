@@ -1,0 +1,8 @@
+name = Esculturas Core
+description = Codigo General para el Sitio de Esculturas
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = esculturas_core
+
+dependencies[] = services

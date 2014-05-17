@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_menu.
+ */
+function esculturas_core_menu() {
+    $items['homepage'] = array(
+        //'title' => 'Resistenciarte',
+        'description' => '',
+        'page callback' => 'esculturas_core_homepage',
+        'access callback' => true,
+        'type' => MENU_CALLBACK,
+
+    );
+
+    return $items;
+}
+
+function esculturas_core_homepage() {
+    return '';
+}

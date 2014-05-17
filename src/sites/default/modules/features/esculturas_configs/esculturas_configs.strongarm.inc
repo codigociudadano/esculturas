@@ -108,7 +108,7 @@ function esculturas_configs_strongarm() {
     'autores' => 'autores',
     'escultura' => 'escultura',
     'eventos' => 'eventos',
-    'page' => 'page',
+    'page' => 0,
   );
   $export['addtoany_nodetypes'] = $strongarm;
 

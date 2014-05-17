@@ -1,0 +1,5 @@
+<?php
+
+function esculturas_core_update_7001() {
+
+}
