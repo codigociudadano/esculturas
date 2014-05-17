@@ -3,11 +3,11 @@
 /**
  * Implements hook_menu.
  */
-function esculturas_core_menu() {
+function esculturas_cms_menu() {
     $items['homepage'] = array(
         //'title' => 'Resistenciarte',
         'description' => '',
-        'page callback' => 'esculturas_core_homepage',
+        'page callback' => 'esculturas_cms_homepage',
         'access callback' => true,
         'type' => MENU_CALLBACK,
 
@@ -16,6 +16,6 @@ function esculturas_core_menu() {
     return $items;
 }
 
-function esculturas_core_homepage() {
+function esculturas_cms_homepage() {
     return '';
 }
