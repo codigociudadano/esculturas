@@ -90,6 +90,9 @@
             ?>
         </select></span>
         <span style="float: left;"><button id="ubicame">Ubicame!</button></span>
+        <div class="checkbox_cercanas">
+            <span style="float: left;"><input type="checkbox"/><label>Esculturas cercanas</label></span>
+        </div>
         </td>
         <td>
             <div id="map_canvas" style="width:825px; height:600px;"></div>
