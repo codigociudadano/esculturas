@@ -164,3 +164,41 @@ body.page-node .comments {
 body.front h1.page-title {
     display: none;
 }
+
+.field.field-name-field-ubicacion {
+    float: left;
+    width: 40%;
+    margin-right: 30px;
+}
+
+.field.field-name-field-mapa {
+    float: left;
+    width: 30%;
+}
+
+.field.field-name-field-mapa .field-label {
+    display: none;
+}
+
+.field.field-name-field-tags {
+    clear: both;
+}
+
+td.views-field.views-field-field-fotos {
+    text-align: center;
+}
+
+.galleryformatter-greenarrows .gallery-thumbs .wrapper {
+    background: none;
+}
+
+.galleryformatter-greenarrows .view-full {
+    background: url("../images/lupa.png") no-repeat scroll 0 0 transparent;
+    width: 46px;
+    height: 46px;
+}
+
+.galleryformatter-greenarrows a:hover .view-full:hover {
+    background: url("../images/lupa.png") no-repeat scroll 0 0 transparent;
+    background-size: 46px 46px;
+}

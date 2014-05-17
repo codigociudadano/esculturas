@@ -13,7 +13,7 @@ function esculturas_preprocess_page(&$vars) {
 function esculturas_preprocess_node(&$variables) {
   $node = $variables['node'];
   $variables['fb_comments'] = '';
-  if (in_array($node->type, array('escultura', 'autores', 'eventos'))) {
+  if (esculturas_is_single() && in_array($node->type, array('escultura', 'autores', 'eventos'))) {
     $variables['fb_comments'] = esculturas_get_fb_comments();
   }
 }
@@ -25,4 +25,13 @@ function esculturas_get_fb_comments() {
          data-numposts="20"
          data-colorscheme="light"></div>
     </div>';
+}
+
+function esculturas_is_single() {
+
+    if (arg(0) == 'node' && is_numeric(arg(1))) {
+        return true;
+    }
+
+    return false;
 }

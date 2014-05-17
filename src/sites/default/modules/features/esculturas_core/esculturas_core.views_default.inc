@@ -174,11 +174,10 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['field_tipo']['id'] = 'field_tipo';
   $handler->display->display_options['fields']['field_tipo']['table'] = 'field_data_field_tipo';
   $handler->display->display_options['fields']['field_tipo']['field'] = 'field_tipo';
-  /* Campo: Contenido: Body */
+  /* Campo: Contenido: Información del Evento */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = 'Información del Evento';
   $handler->display->display_options['fields']['body']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['body']['alter']['more_link'] = TRUE;
   $handler->display->display_options['fields']['body']['alter']['more_link_text'] = 'Leer Mas';
