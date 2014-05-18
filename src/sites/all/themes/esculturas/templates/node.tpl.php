@@ -118,7 +118,7 @@
     </footer>
     <?php endif; ?>
 
-    <?php print $fb_comments; ?>
+    <?php print !empty($fb_comments) ? $fb_comments : ''; ?>
 <?php if (!$page): ?>
 </article> <!-- /.node -->
 <?php endif; ?>
