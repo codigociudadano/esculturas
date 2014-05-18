@@ -45,11 +45,11 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
 
 4) Crear una base de datos MYSQL llamada esculturas.
    
-  ````sql CREATE DATABASE esculturas;````
+  ````CREATE DATABASE esculturas;````
 
 5) Crear un usuario esculturas en MYSQL con la password esculturas y que tenga accesso full en la base esculturas.
   
-  ````sql GRANT ALL PRIVILEGES ON esculturas.* TO esculturas@localhost IDENTIFIED BY 'esculturas''````
+  ````GRANT ALL PRIVILEGES ON esculturas.* TO esculturas@localhost IDENTIFIED BY 'esculturas'````
 
 6) Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz).
 
