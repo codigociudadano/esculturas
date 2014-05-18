@@ -19,7 +19,7 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
    - En Ubuntu: sudo apt-get install drush
    - Otros Sist. Op: ver https://drupal.org/node/1791676
 
-## Instalacion
+## Instalación
 
 1) Clonar el repositorio:  `git clone https://github.com/codigociudadano/esculturas.git`.
 
