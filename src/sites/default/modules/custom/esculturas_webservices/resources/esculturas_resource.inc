@@ -211,29 +211,26 @@ function _ew_esculturas_resource_index($page, $pagesize) {
  * @return array
  */
 function _ew_esculturas_resource_retrieve($id) {
-  $query = "SELECT n.nid AS id,
-              n.title AS name
-            FROM {node} n
-            WHERE (n.nid = :id)
-              AND ((n.status = '1')
-              AND (n.type IN  ('escultura')))";
+  $query = db_select("node", "n")
+             ->fields("n", array("nid"))
+             ->condition("n.nid", $id)
+             ->condition("n.status", 1)
+             ->condition("n.type", "escultura");
 
   ## TODO: Add Caching.
 
-  $result = db_query($query, array(
-      'id' => $id
-  ))->fetchObject();
+  $result = $query->execute()->fetchObject();
 
-  $response = array(
-    "href"=> ew_get_href(array(
-      "entity"=>"esculturas",
-      "id"=>$id
-    ))
-  );
+  $response = array();
+
+  $response["href"] = ew_get_href(array(
+    "entity"=>"esculturas",
+    "id"=>$id
+  ));
 
   if ($result) {
-    $response["data"] = $result;
-    ## TODO: Add more fields.
+    $node = node_load($result->nid);
+    $response["data"] = $node;
   }
   else {
     $response = services_error(t("Recurso con id:".$id." no encontrado."), 404);
@@ -267,7 +264,7 @@ function _ew_esculturas_retrieve_doc() {
           name: "Humanidad"
         }
       ]',
-    '#path' => 'esculturas',       
+    '#path' => 'esculturas',
   );
   return $element;
 }
@@ -278,8 +275,8 @@ function _ew_esculturas_retrieve_doc() {
 function _ew_esculturas_index_doc() {
   $element = array(
     '#name' => t('Obtener esculturas'),
-    '#description' => t('Retorna la esculturas por pagina. El tamaño de la pagina es customizable.'),    
-    '#request_url' => t('esculturas?page=1&pagesize=12'),    
+    '#description' => t('Retorna la esculturas por pagina. El tamaño de la pagina es customizable.'),
+    '#request_url' => t('esculturas?page=1&pagesize=12'),
     '#response' => '
       {
       id: "11",
@@ -317,7 +314,7 @@ function _ew_esculturas_index_doc() {
         }
       ]
       }',
-    '#path' => 'esculturas',       
+    '#path' => 'esculturas',
   );
   return $element;
 }
