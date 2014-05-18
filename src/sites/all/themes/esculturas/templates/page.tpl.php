@@ -70,8 +70,8 @@
       <div id="logo" class="site-branding col-sm-6">
         <div id="site-logo">
             <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                <img class="isologo" src="/sites/all/themes/esculturas/images/logo-image.png" alt="<?php print t('Home'); ?>" />
-                <img class="txtlogo" src="/sites/all/themes/esculturas/images/logo.png" alt="<?php print t('Home'); ?>" />
+              <img class="isologo" src="<?php print $base_path . path_to_theme() . "/images/logo-image.png"; ?>" alt="<?php print t('Home'); ?>" />
+              <img class="txtlogo" src="<?php print $base_path . path_to_theme() . "/images/logo.png"?> " alt="<?php print t('Home'); ?>" />
             </a>
         </div>
         <!--<h1 id="site-title">
