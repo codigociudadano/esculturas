@@ -28,11 +28,9 @@ function esculturas_get_fb_comments() {
 }
 
 function esculturas_is_single() {
-
     if (arg(0) == 'node' && is_numeric(arg(1))) {
         return true;
     }
-
     return false;
 }
 

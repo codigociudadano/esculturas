@@ -916,6 +916,27 @@ function esculturas_permisos_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'view api_v1_esculturas esculturas index documentation'.
+  $permissions['view api_v1_esculturas esculturas index documentation'] = array(
+    'name' => 'view api_v1_esculturas esculturas index documentation',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'services_documentation',
+  );
+
+  // Exported permission: 'view api_v1_esculturas esculturas retrieve documentation'.
+  $permissions['view api_v1_esculturas esculturas retrieve documentation'] = array(
+    'name' => 'view api_v1_esculturas esculturas retrieve documentation',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'services_documentation',
+  );
+
   // Exported permission: 'view own unpublished content'.
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
@@ -932,6 +953,17 @@ function esculturas_permisos_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'view services documentation'.
+  $permissions['view services documentation'] = array(
+    'name' => 'view services documentation',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'services_documentation',
   );
 
   // Exported permission: 'view the administration theme'.
