@@ -68,12 +68,18 @@
   <header id="masthead" class="site-header container" role="banner">
     <div class="row">
       <div id="logo" class="site-branding col-sm-6">
-        <?php if ($logo): ?><div id="site-logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a></div><?php endif; ?>
-        <h1 id="site-title">
+        <div id="site-logo">
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                <img class="isologo" src="/sites/all/themes/esculturas/images/logo-image.png" alt="<?php print t('Home'); ?>" />
+                <img class="txtlogo" src="/sites/all/themes/esculturas/images/logo.png" alt="<?php print t('Home'); ?>" />
+            </a>
+        </div>
+        <!--<h1 id="site-title">
           <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-        </h1>
+        </h1>-->
+        <div class="search">
+            <?php echo render_search_form(); ?>
+        </div>
       </div>
       <div class="col-sm-6 mainmenu">
         <div class="mobilenavi"></div>

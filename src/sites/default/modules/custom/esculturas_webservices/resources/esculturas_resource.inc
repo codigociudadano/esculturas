@@ -20,6 +20,7 @@ function ew_esculturas_resource_definition() {
               'module' => 'esculturas_webservices',
               'name' => 'resources/esculturas_resource'),
           'callback' => '_ew_esculturas_resource_retrieve',
+          'documentation callback' => '_ew_esculturas_retrieve_doc',
           'args' => array(
             array(
               'name' => 'id',
@@ -40,6 +41,7 @@ function ew_esculturas_resource_definition() {
             'module' => 'esculturas_webservices',
             'name' => 'resources/esculturas_resource'),
           'callback' => '_ew_esculturas_resource_index',
+          'documentation callback' => '_ew_esculturas_index_doc',
           'args' => array(
             array(
               'name' => 'page',
@@ -195,7 +197,9 @@ function _ew_esculturas_resource_index($page, $pagesize) {
     }
   }
 
-  ## TODO: Add Caching.
+  /**
+   * @todo: Add Caching.
+   */
 
   return $response;
 }
@@ -236,4 +240,84 @@ function _ew_esculturas_resource_retrieve($id) {
   }
 
   return $response;
+}
+
+/**
+ * Documentacion de calback para operacion de retrieve.
+ */
+function _ew_esculturas_retrieve_doc() {
+  $element = array(
+    '#name' => t('Obtener escultura'),
+    '#description' => t('Retorna la escultura segun Id pasado como parametro.'),
+    '#request_url' => t('esculturas?id=11'),
+    '#response' => '
+      id: "11",
+      href: "http://esculturas.local/api/v1/esculturas/11",
+      name: "Uxor",
+      image: "http://esculturas.local/sites/default/files/esculturas/imagefield_LvvddA.png",
+      autor: {
+        id: "16",
+        href: "http://esculturas.local/api/v1/autores",
+        name: "Diam Erat"
+      },
+      tags: [
+        {
+          id: "10",
+          href: "http://esculturas.local/api/v1/esculturas?tags=10",
+          name: "Humanidad"
+        }
+      ]',
+    '#path' => 'esculturas',       
+  );
+  return $element;
+}
+
+/**
+ * Documentacion de calback para operacion de retrieve.
+ */
+function _ew_esculturas_index_doc() {
+  $element = array(
+    '#name' => t('Obtener esculturas'),
+    '#description' => t('Retorna la esculturas por pagina. El tamaño de la pagina es customizable.'),    
+    '#request_url' => t('esculturas?page=1&pagesize=12'),    
+    '#response' => '
+      {
+      id: "11",
+      href: "http://esculturas.local/api/v1/esculturas/11",
+      name: "Uxor",
+      image: "http://esculturas.local/sites/default/files/esculturas/imagefield_LvvddA.png",
+      autor: {
+        id: "16",
+        href: "http://esculturas.local/api/v1/autores",
+        name: "Diam Erat"
+      },
+      tags: [
+        {
+          id: "10",
+          href: "http://esculturas.local/api/v1/esculturas?tags=10",
+          name: "Humanidad"
+        }
+      ]
+      },
+      {
+      id: "11",
+      href: "http://esculturas.local/api/v1/esculturas/11",
+      name: "Uxor",
+      image: "http://esculturas.local/sites/default/files/esculturas/imagefield_LvvddA.png",
+      autor: {
+        id: "16",
+        href: "http://esculturas.local/api/v1/autores",
+        name: "Diam Erat"
+      },
+      tags: [
+        {
+          id: "10",
+          href: "http://esculturas.local/api/v1/esculturas?tags=10",
+          name: "Humanidad"
+        }
+      ]
+      }',
+    '#path' => 'esculturas',       
+  );
+  return $element;
 }

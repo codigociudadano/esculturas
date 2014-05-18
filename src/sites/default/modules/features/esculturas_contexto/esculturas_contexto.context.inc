@@ -23,18 +23,7 @@ function esculturas_contexto_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views-esculturas-block_1' => array(
-          'module' => 'views',
-          'delta' => 'esculturas-block_1',
-          'region' => 'content_bottom',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
 
   // Translatables

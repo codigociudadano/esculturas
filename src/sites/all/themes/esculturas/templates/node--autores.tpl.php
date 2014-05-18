@@ -118,7 +118,10 @@
     </footer>
     <?php endif; ?>
 
+    <?php echo views_embed_view('esculturas', 'block_1'); ?>
+
     <?php print !empty($fb_comments) ? $fb_comments : ''; ?>
+
 <?php if (!$page): ?>
 </article> <!-- /.node -->
 <?php endif; ?>
