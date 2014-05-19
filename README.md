@@ -19,7 +19,7 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
    - En Ubuntu: sudo apt-get install drush
    - Otros Sist. Op: ver https://drupal.org/node/1791676
 
-## Instalacion
+## Instalación
 
 1) Clonar el repositorio:  `git clone https://github.com/codigociudadano/esculturas.git`.
 
@@ -44,8 +44,12 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
 3) Añadir local.esculturas a la tabla de hosts (/etc/hosts).
 
 4) Crear una base de datos MYSQL llamada esculturas.
+   
+  ````CREATE DATABASE esculturas;````
 
 5) Crear un usuario esculturas en MYSQL con la password esculturas y que tenga accesso full en la base esculturas.
+  
+  ````GRANT ALL PRIVILEGES ON esculturas.* TO esculturas@localhost IDENTIFIED BY 'esculturas'````
 
 6) Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz).
 
@@ -59,7 +63,7 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
 
 Si encontraste un bug, tenés un error o querés pedir una feature nueva? Podés agregarlo a la [lista de issues](https://github.com/codigociudadano/esculturas/issues). Te pedimos por favor, antes de agregar tu idea o problema, revisá si no hay un pedido similar que fué hecho anteriormente.
 
-## Documentacion
+## Documentación
 
 Por el momento, la documentación del sitio está disponible en este [doc](https://github.com/codigociudadano/esculturas)
 
@@ -90,6 +94,6 @@ El sitio esta hecho en su mayoría con varias tecnologías, principalmente en Dr
 ## Comunidad
 
  Seguí las ultimas noticias de Esculturas y mas sobre Código Ciudadano en:
- - El sitio oficial: [Link](http://www.codigociudadano.com.ar/)
+ - El sitio oficial: [Codigo Ciudadano](http://www.codigociudadano.co/)
  - Seguinos en Facebook[CiudadanosC](https://www.facebook.com/CiudadanosC)
  - Seguinos en Twitter: [@CiudadanoCo](https://twitter.com/CiudadanoCo)
