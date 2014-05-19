@@ -285,10 +285,12 @@ a {
 }
 
 #main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    color: #444;
-    background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #444;
+  background-color: #fff;
+  padding-top: 6px;
+  margin-bottom: 0px;
 }
 
 div#page {
@@ -365,4 +367,9 @@ h1.page-title {
     .search {
         display: none;
     }
+}
+
+#primary, #sidebar {
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
