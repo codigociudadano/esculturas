@@ -293,27 +293,6 @@
                 }
         });
 
-//desactivar ciertos controles
-        function ocultarCheckboxes(flag){
-            $('.checkboxes input').attr("disabled", flag);
-            $('.checkboxes input').attr("checked", false);
-            $("#autores").attr("disabled", flag);
-            $("#eventos").attr("disabled", flag);
-        }
-
-
-        function ocultarCheckBoxCercanas(flag){
-            if(flag){
-             $("#ubicame").attr('value', 'Ubicame');
-             $('.checkbox_cercanas input').hide();
-             $('label[id="label"]').hide();
-            }else{
-             $("#ubicame").attr('value', 'Quitar ubicación');
-             $('.checkbox_cercanas input').show();
-             $('label[id="label"]').show();
-            } 
-        }
-
 //checkbox top 5 esculturas cercanas
 
         $('.checkbox_cercanas input').click(function (){
@@ -361,7 +340,27 @@
                     ocultarCheckboxes(false);
                 });
             }
-       });
+       });       
+
+        function ocultarCheckboxes(flag){
+            $('.checkboxes input').attr("disabled", flag);
+            $('.checkboxes input').attr("checked", false);
+            $("#autores").attr("disabled", flag);
+            $("#eventos").attr("disabled", flag);
+        }
+
+
+        function ocultarCheckBoxCercanas(flag){
+            if(flag){
+             $("#ubicame").attr('value', 'Ubicame');
+             $('.checkbox_cercanas input').hide();
+             $('label[id="label"]').hide();
+            }else{
+             $("#ubicame").attr('value', 'Quitar ubicación');
+             $('.checkbox_cercanas input').show();
+             $('label[id="label"]').show();
+            } 
+        }        
     }
 
     $(document).ready(function(){
