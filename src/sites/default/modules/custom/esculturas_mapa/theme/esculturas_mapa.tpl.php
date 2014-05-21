@@ -48,56 +48,62 @@
 </style>
 
 <table>
-    <tr><td>
-<br><h2>Filtrar por:</h2>
-    <h3>Autor</h3>
-        <select id="autores" name="autores" style="overflow-y: auto; width: 300px;">
-            <option>Todos</option>
-            <option disabled>──────────</option>
-            <?php
-             $autores = $categorias[2];
-                foreach($autores as $a){
-                    echo '<option>'.$a.'</option>';
-                }
-            ?>
-        </select>
+    <tr>
+      <td>
+        <br>
+        <h2>Filtrar por:</h2>
+        <h3>Autor</h3>
+            <select id="autores" name="autores" style="overflow-y: auto; width: 300px;">
+                <option>Todos</option>
+                <option disabled>──────────</option>
+                <?php
+                 $autores = $categorias[2];
+                    foreach($autores as $a){
+                        echo '<option>'.$a.'</option>';
+                    }
+                ?>
+            </select>
         <div class="checkboxes">
-      <span style="float: left; margin-right: 10px; "><h3>Material</h3>
-          <?php
-          $materiales = $categorias[0];
-          foreach($materiales as $m){
-              echo '<input type="checkbox" value="'.$m.'"/><label> '.$m.'</label><br />';
-          }
-          ?>
-       </span>
-        <span style="float: left;"><h3>Tipo</h3>
-            <?php
-            $tipos = $categorias[1];
-            foreach($tipos as $t){
-                echo '<input type="checkbox" value="'.$t.'"/><label> '.$t.'</label><br />';
-            }
-            ?></span>
-        </div><h3>Evento</h3>
-        <span style="float: left; margin-right: 10px;">
-        <select id="eventos" name="eventos" style="overflow-y: auto;">
-            <option>Todos</option>
-            <option disabled>──────────</option>
-            <?php
-            $eventos = $categorias[3];
-            foreach($eventos as $e){
-                echo '<option>'.$e.'</option>';
-            }
-            ?>
-        </select></span>
-        <span style="float: left;"><button id="ubicame">Ubicame!</button></span>
-        <div class="checkbox_cercanas">
-            <span style="float: left;"><input type="checkbox"/><label>Esculturas cercanas</label></span>
+           <span style="float: left; margin-right: 10px; "><h3>Material</h3>
+              <?php
+              $materiales = $categorias[0];
+              foreach($materiales as $m){
+                  echo '<input type="checkbox" value="'.$m.'"/><label> '.$m.'</label><br />';
+              }
+              ?>
+           </span>
+           <span style="float: left;"><h3>Tipo</h3>
+                <?php
+                $tipos = $categorias[1];
+                foreach($tipos as $t){
+                    echo '<input type="checkbox" value="'.$t.'"/><label> '.$t.'</label><br />';
+                }
+                ?>
+           </span>
         </div>
+            <h3>Evento</h3>
+            <span style="float: left; margin-right: 10px;">
+                <select id="eventos" name="eventos" style="overflow-y: auto;">
+                    <option>Todos</option>
+                    <option disabled>──────────</option>
+                    <?php
+                    $eventos = $categorias[3];
+                    foreach($eventos as $e){
+                        echo '<option>'.$e.'</option>';
+                    }
+                    ?>
+                </select>
+            </span>
+        <span style="float: left;">
+            <input type="button" id="ubicame" value="Ubicame"></button>
+        </span>
+            <div class="checkbox_cercanas">
+                <span style="float: right;"><input type="checkbox"/><label id="label">Top 5 esculturas cercanas</label></span>
+            </div>
         </td>
         <td>
             <div id="map_canvas" style="width:825px; height:600px;"></div>
-        </td></tr>
-        <!--<td style="width: 140px;">-->
-
+        </td>
+    </tr>
 </table>
 

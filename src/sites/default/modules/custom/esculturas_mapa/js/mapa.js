@@ -20,14 +20,15 @@
     var my_infoWindow = null;
     var markers = new Array();
     var markers_cercanos = new Array();
-    var my_iconSource = 'http://earth.google.com/images/kml-icons/track-directional/track-8.png';
+    var iconSource = "https://www.craigslist.org/images/map/marker-icon.png";
+    var my_iconSource = 'http://www.wicfy.com/images/newmarkers/home-marker.png';
     
     function initialize() {
 
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
-        $('.checkbox_cercanas input').attr("disabled", true);
+        ocultarCheckBoxCercanas(true);
 
         esculturas.forEach( function(escultura){
             var e = [escultura[0], escultura[1], escultura[2], escultura[3]];
@@ -39,6 +40,7 @@
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(e[1].lat, e[1].lon),
                 map: map,
+                icon: iconSource,
                 title: e[0].titulo,
                 tag: [e[0].autor, e[0].material, e[0].tipo, e[0].evento] //arreglo de tags para filtrar los markers
             });
@@ -209,80 +211,107 @@
 //geolocalización
 
         $("#ubicame").click(function (){
-           //si el navegador es compatible cn geolocalización
-           if(navigator.geolocation){
-               if(my_marker){
-                   my_marker.setMap(null);
+           //si ya existe el marker de mi posicion lo elimina y oculta el checkbox esculturas cercanas con su label
+            if(my_marker){
+                my_marker.setMap(null);
+                my_marker = null;
+               
+               ocultarCheckBoxCercanas(true);
+
+                ocultarCheckboxes(false);
+
+                markers.forEach(function(marker){
+                    infoWindow.close();
+                    marker.setMap(map);
+                    map.setZoom(mapOptions.zoom);
+                    map.setCenter(mapOptions.center);
+                    ocultarCheckboxes(false);
+                });
+
+            //sino si el navegador es compatible con geolocalización
+            }else if(navigator.geolocation && my_marker === null){                   
+
+                   var my_String = '<h5>Aquí estas!</h5>';
+
+                   navigator.geolocation.getCurrentPosition(function(position) {
+                       var pos = new google.maps.LatLng(position.coords.latitude,
+                           position.coords.longitude);
+
+                       my_infoWindow = new google.maps.InfoWindow({
+                                maxWidth: 200,
+                                position: pos,
+                                content: my_String
+                            });
+
+                       my_marker = new google.maps.Marker({
+                                position: pos,
+                                map: map,
+                                title: 'Aquí estas!',
+                                icon: my_iconSource,
+                                animation: google.maps.Animation.BOUNCE
+                            });
+
+                       infoWindow.close();
+                       my_infoWindow.open(map, my_marker);
+
+                            google.maps.event.addListener(my_marker, 'click', function(){
+                                my_infoWindow.setContent(my_String);
+                                my_infoWindow.open(map, my_marker);
+                            });
+
+                            google.maps.event.addListener(my_marker, 'dblclick', function(){
+                                my_infoWindow.close(map, my_marker);
+                                my_marker.setMap(null);                                
+                                ocultarCheckBoxCercanas(true);
+                                markers.forEach(function(marker){
+                                    infoWindow.close();
+                                    marker.setMap(map);
+                                });
+                            });
+
+                       map.setCenter(pos);
+                       map.setZoom(16);
+
+                           ocultarCheckBoxCercanas(false);
+
+                   }, function() {
+                       //si el servicio falla por x motivo
+                       handleNoGeolocation(true);
+                   });
+               } else {
+                   //si el browser no soporta geolocalización
+                   handleNoGeolocation(false);
                }
 
-               var my_String = '<h5>Aquí estas!</h5>';
-
-               navigator.geolocation.getCurrentPosition(function(position) {
-                   var pos = new google.maps.LatLng(position.coords.latitude,
-                       position.coords.longitude);
-
-                   my_infoWindow = new google.maps.InfoWindow({
-                            maxWidth: 200,
-                            position: pos,
-                            content: my_String
-                        });
-
-                   my_marker = new google.maps.Marker({
-                            position: pos,
-                            map: map,
-                            title: 'Aquí estas!',
-                            icon: my_iconSource,
-                            animation: google.maps.Animation.BOUNCE
-                        });
-
-                   infoWindow.close();
-                   my_infoWindow.open(map, my_marker);
-
-                        google.maps.event.addListener(my_marker, 'click', function(){
-                            my_infoWindow.setContent(my_String);
-                            my_infoWindow.open(map, my_marker);
-                        });
-
-                        google.maps.event.addListener(my_marker, 'dblclick', function(){
-                            my_infoWindow.close(map, my_marker);
-                            my_marker.setMap(null);
-                            $('.checkbox_cercanas input').attr("disabled", true);
-                            markers.forEach(function(marker){
-                                infoWindow.close();
-                                marker.setMap(map);
-                            });
-                        });
-
-                   map.setCenter(pos);
-                   map.setZoom(16);
-
-                       $('.checkbox_cercanas input').attr("disabled", false);
-
-               }, function() {
-                   //si el servicio falla por x motivo
-                   handleNoGeolocation(true);
-               });
-           } else {
-               //si el browser no soporta geolocalización
-               handleNoGeolocation(false);
-           }
-
-            function handleNoGeolocation(errorFlag) {
-                if (errorFlag) {
-                    alert('Error: Este servicio ha fallado.');
-                } else {
-                    alert('Error: Su navegador no soporta este servicio.');
+                function handleNoGeolocation(errorFlag) {
+                    ocultarCheckBoxCercanas(false);
+                    if (errorFlag) {
+                        alert('Error: Este servicio ha fallado.');                        
+                    } else {
+                        alert('Error: Su navegador no soporta este servicio.');
+                    }
                 }
-            }
         });
 
 //desactivar ciertos controles
-
-        function onoffControl(flag){
+        function ocultarCheckboxes(flag){
             $('.checkboxes input').attr("disabled", flag);
             $('.checkboxes input').attr("checked", false);
             $("#autores").attr("disabled", flag);
             $("#eventos").attr("disabled", flag);
+        }
+
+
+        function ocultarCheckBoxCercanas(flag){
+            if(flag){
+             $("#ubicame").attr('value', 'Ubicame');
+             $('.checkbox_cercanas input').hide();
+             $('label[id="label"]').hide();
+            }else{
+             $("#ubicame").attr('value', 'Quitar ubicación');
+             $('.checkbox_cercanas input').show();
+             $('label[id="label"]').show();
+            } 
         }
 
 //checkbox top 5 esculturas cercanas
@@ -290,7 +319,7 @@
         $('.checkbox_cercanas input').click(function (){
 
             if ($('.checkbox_cercanas input').is(':checked')) {
-                onoffControl(true);
+                ocultarCheckboxes(true);
 
                 var metros = new Array();
 
@@ -324,12 +353,12 @@
                     });
                 }
             }else{
-                onoffControl(false);
                 //checkbox sin marcar
+                ocultarCheckboxes(false);
                 markers.forEach(function(marker){
                     infoWindow.close();
                     marker.setMap(map);
-                    onoffControl(false);
+                    ocultarCheckboxes(false);
                 });
             }
        });
