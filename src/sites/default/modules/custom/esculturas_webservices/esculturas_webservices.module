@@ -1,5 +1,8 @@
 <?php
 
+module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
+module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
+
 /**
  * Implements hook_perm().
  *
@@ -21,8 +24,6 @@
  * cosas como taxonomias, noticias, etc.
  */
 function esculturas_webservices_services_resources() {
-  module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
-  module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
 
   $resources = array();
   $resources += ew_esculturas_resource_definition();
@@ -31,7 +32,13 @@ function esculturas_webservices_services_resources() {
   return $resources;
 }
 
-function ew_get_href($entity, $id = null, $filters = null) {
+function ew_get_href($resource_descriptor) {
+  $entity = $resource_descriptor["entity"];
+  $id = $resource_descriptor["id"];
+  $filters = $resource_descriptor["filters"];
+  $page = $resource_descriptor["page"];
+  $pagesize = $resource_descriptor["pagesize"];
+
   if(!isset($entity)) {
     throw new Error('$entity must be provided.');
   }
@@ -47,9 +54,9 @@ function ew_get_href($entity, $id = null, $filters = null) {
     $href .= "/".$id;
   }
 
-  if($filters) {
-    $href .= "?";
-    $query = array();
+  $query = array();
+
+  if(isset($filters)) {
     foreach ($filters as $filter => $values) {
       if(is_array($values)){
         foreach ($values as $i => $value) {
@@ -60,7 +67,18 @@ function ew_get_href($entity, $id = null, $filters = null) {
         $query[]= $filter."=".$values;
       }
     }
+  }
 
+  if(isset($page)){
+    $query[]= "page=".$page;
+  }
+
+  if(isset($pagesize)){
+    $query[]= "pagesize=".$pagesize;
+  }
+
+  if(!empty($query)){
+    $href .= "?";
     $href .= implode($query, "&");
   }
 

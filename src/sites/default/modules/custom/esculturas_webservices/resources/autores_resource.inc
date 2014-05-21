@@ -14,7 +14,7 @@ function ew_autores_resource_definition() {
     'autores' => array(
       'operations' => array(
         'retrieve' => array(
-          'help' => 'Obtener un Autor.',
+          'help' => 'Obtener un autor.',
           'file' => array(
               'type' => 'inc',
               'module' => 'esculturas_webservices',
@@ -26,7 +26,7 @@ function ew_autores_resource_definition() {
               'optional' => FALSE,
               'source' => array('path' => 0),
               'type' => 'int',
-              'description' => 'Id del Autor a obtener.',
+              'description' => 'Id del autor a obtener.',
             ),
           ),
           'access callback' => '_node_resource_access',
@@ -46,7 +46,7 @@ function ew_autores_resource_definition() {
               'optional' => TRUE,
               'type' => 'int',
               'description' => 'Numero de pagina.',
-              'default value' => 0,
+              // 'default value' => 0,
               'source' => array('param' => 'page'),
             ),
             array(
@@ -54,7 +54,7 @@ function ew_autores_resource_definition() {
               'optional' => TRUE,
               'type' => 'int',
               'description' => 'Numero de elementos por pagina.',
-              'default value' => variable_get('services_node_index_page_size', 20),
+              // 'default value' => 20,
               'source' => array('param' => 'pagesize'),
             ),
           ),
@@ -66,7 +66,9 @@ function ew_autores_resource_definition() {
 
 }
 
+define("EW_AUTORES_DEFAULT_PAGE", 0);
 define("EW_AUTORES_MAX_PAGESIZE", 100);
+define("EW_AUTORES_DEFAULT_PAGESIZE", 20);
 
 /**
  *
@@ -75,38 +77,90 @@ define("EW_AUTORES_MAX_PAGESIZE", 100);
  * @param string $pagesize | cantidad de resultados por pagina a obtener.
  * @return array
  */
-function _ew_autores_resource_index($page = '0' ,$pagesize = '5') {
-  $query = "SELECT n.nid AS id,
-              n.title AS name
-            FROM {node} n
-            WHERE ((n.status = '1') AND (n.type IN  ('autores')))";
+function _ew_autores_resource_index($page, $pagesize) {
 
-  if($pagesize > EW_AUTORES_MAX_PAGESIZE) {
-    return services_error("pagesize should not be greater than ".MAX_PAGESIZE);
+  $page_val = isset($page)?$page:EW_AUTORES_DEFAULT_PAGE;
+  $pagesize_val = isset($pagesize)?$pagesize:EW_AUTORES_DEFAULT_PAGESIZE;
+
+  if($pagesize_val > EW_AUTORES_MAX_PAGESIZE) {
+    return services_error("pagesize should not be greater than ".EW_AUTORES_MAX_PAGESIZE);
   }
 
-  $result = db_query_range($query, $page, $pagesize, array());
+  $query = db_select("node", "n")
+              ->fields("n", array("nid"))
+              ->condition("n.status", "1")
+              ->condition("n.type", "autores");
+
+  $count = $query->countQuery()->execute()->fetchField();
+  $max_pages = ceil($count/$pagesize_val) - 1;
+
+  if($pagesize_val > EW_AUTORES_MAX_PAGESIZE) {
+    return services_error("pagesize should not be greater than ".EW_AUTORES_MAX_PAGESIZE);
+  }
+
+  if($page_val > $max_pages) {
+    return services_error("Page ".$page_val." is out of range. (Total Pages: ".$max_pages.")");
+  }
+
+  $result = $query->range($page_val*$pagesize_val, $pagesize_val)->execute();
 
   $response = array();
+
+  $response["href"] = ew_get_href(array(
+    "entity" => "autores",
+    "page" => $page,
+    "pagesize" => $pagesize
+  ));
+
+  if($page_val > 0 ) {
+    $response["prev"] = ew_get_href(array(
+      "entity"=>"autores",
+      "page"=>$page_val-1,
+      "pagesize"=>$pagesize
+    ));
+  }
+
+  if($page_val < $max_pages) {
+    $response["next"] = ew_get_href(array(
+      "entity"=>"autores",
+      "page"=>$page_val+1,
+      "pagesize"=>$pagesize
+    ));
+  }
+
+  $response["max_pages"] = $max_pages;
+
+  $response["data"] = array();
+
   if ($result) {
+
     while ($row = $result->fetchObject()) {
+      //Init response
       $resource = new stdClass();
       //Open Node Base Info
-      $node = node_load($row->id);
+      $node = node_load($row->nid);
       // Pictures Info
       $fotos = field_get_items('node', $node, 'field_fotos');
 
       // Fill resource info
-      $resource->id = $row->id;
-      $resource->href = ew_get_href("autores", $resource->id);
-      $resource->name = $row->name;
+      $resource->id = $row->nid;
+
+      $resource->href = ew_get_href(array(
+        "entity"=> "autores",
+        "id"=> $resource->id
+      ));
+
+      $resource->name = $node->title;
+
       $resource->image = file_create_url($fotos[0]['uri']);
 
-      $response[] = $resource;
+      $response["data"][] = $resource;
     }
   }
 
-  ## TODO: Add Caching.
+  /**
+   * @todo: Add Caching.
+   */
 
   return $response;
 }
@@ -114,26 +168,30 @@ function _ew_autores_resource_index($page = '0' ,$pagesize = '5') {
 /**
  *
  *
- * @param string $id | Id de la escultura a obtener.
+ * @param string $id | Id de la autor a obtener.
  * @return array
  */
 function _ew_autores_resource_retrieve($id) {
-  $query = "SELECT n.nid AS id,
-              n.title AS name
-            FROM {node} n
-            WHERE (n.nid = :id)
-              AND ((n.status = '1')
-              AND (n.type IN  ('autores')))";
+  $query = db_select("node", "n")
+             ->fields("n", array("nid"))
+             ->condition("n.nid", $id)
+             ->condition("n.status", 1)
+             ->condition("n.type", "autores");
 
   ## TODO: Add Caching.
 
-  $result = db_query($query, array(
-      'id' => $id
-  ))->fetchObject();
+  $result = $query->execute()->fetchObject();
+
+  $response = array();
+
+  $response["href"] = ew_get_href(array(
+    "entity"=>"autores",
+    "id"=>$id
+  ));
 
   if ($result) {
-    $response = $result;
-    ## TODO: Add more fields.
+    $node = node_load($result->nid);
+    $response["data"] = $node;
   }
   else {
     $response = services_error(t("Recurso con id:".$id." no encontrado."), 404);

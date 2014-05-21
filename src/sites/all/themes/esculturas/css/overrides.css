@@ -1,3 +1,11 @@
+body {
+    background-color: #4b4b4d;
+}
+
+div#page {
+    background-color: #fff;
+}
+
 input {
   padding: 0px;
 }
@@ -135,4 +143,233 @@ body.node-type-page h1.page-title {
   height: auto;
   max-width: 100%;
   margin: 0px;
+}
+
+
+span.a2a_kit.a2a_kit_size_32.a2a_target.addtoany_list {
+    position: absolute;
+    top: 18px;
+    right: 0;
+    width: 184px;
+}
+
+body.page-node div#content-wrap {
+    position: relative;
+}
+
+body.page-node .comments {
+    margin: 50px 0px;
+}
+
+body.front h1.page-title {
+    display: none;
+}
+
+.field.field-name-field-ubicacion {
+    float: left;
+    width: 40%;
+    margin-right: 30px;
+}
+
+.field.field-name-field-mapa {
+    float: left;
+    width: 30%;
+}
+
+.field.field-name-field-mapa .field-label {
+    display: none;
+}
+
+.field.field-name-field-tags {
+    clear: both;
+}
+
+td.views-field.views-field-field-fotos {
+    text-align: center;
+}
+
+.galleryformatter-greenarrows .gallery-thumbs .wrapper {
+    background: none;
+}
+
+.galleryformatter-greenarrows .view-full {
+    background: url("../images/lupa.png") no-repeat scroll 0 0 transparent;
+    width: 46px;
+    height: 46px;
+}
+
+.galleryformatter-greenarrows a:hover .view-full:hover {
+    background: url("../images/lupa.png") no-repeat scroll 0 0 transparent;
+    background-size: 46px 46px;
+}
+
+header div.row {
+    background-color: #009681;
+    color: #fff;
+}
+
+div.col-sm-6.mainmenu {
+    background-color: #5d5d60;
+    min-height: 42px;
+    color: #fff;
+    float: none;
+    width: 100%;
+}
+
+#main-menu li {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#main-menu li.leaf.active-trail {
+    background-color: #005962;
+}
+
+#main-menu {
+    height: 45px;
+    border-bottom: none;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+}
+
+#navigation {
+    float: none;
+    color: #fff;
+}
+
+#main-menu a.active, #main-menu > ul > li > a.active-trail,
+#main-menu li a {
+    color: #FFF;
+}
+
+#main-menu a.active,
+#main-menu li a:hover {
+    color: #009bb8;
+}
+
+#logo {
+    float: none;
+    width: 100%;
+    min-height: 100px;
+}
+
+#logo h1#site-title a {
+    color: #fff;
+}
+
+a:visited,
+a {
+    color: #009681;
+}
+
+#breadcrumbs {
+    display: none;
+}
+
+.views-field-title a {
+    color: #000 !important;
+}
+
+#slidebox {
+    max-height: 550px;
+    position: relative;
+    background: #000;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #444;
+  background-color: #fff;
+  padding-top: 6px;
+  margin-bottom: 0px;
+}
+
+div#page {
+    background-color: #4b4b4d;
+    color: #fff;
+}
+
+.site-footer {
+    padding: 10px 0px;
+    background: #4b4b4d;
+    font-size: 12px;
+}
+
+h1.page-title {
+    color: #4b4b4b;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background-color: #ccc;
+    padding: 5px 20px;
+    text-transform: uppercase;
+    border-left: 20px solid #009bb8;
+}
+
+#slidebox > ul.slides > li.flex-active-slide > div > h2 {
+    background-color: #009681;
+    opacity: 0.95;
+}
+
+.txtlogo {
+    height: 40px;
+    margin-left: 10px;
+}
+
+.isologo {
+    height: 40px;
+}
+
+#logo {
+    min-height: 50px;
+}
+
+.search {
+    position: absolute;
+    right: 20px;
+    top: 19px;
+}
+
+.search input[type=text] {
+    width: 200px;
+    height: 31px;
+    border: 0px;
+    margin-right: 0px;
+}
+
+.search input[type=submit] {
+    background: none;
+    border: 0;
+    color: aliceblue;
+    background-image: url(../images/lupa.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    background-position: 10px;
+    width: 40px;
+    text-indent: -100px;
+    overflow: hidden;
+}
+
+
+@media all and (max-width: 713px) and (min-width: 0px) {
+    .search {
+        display: none;
+    }
+}
+
+#primary, #sidebar {
+  padding-top: 0px;
+  padding-bottom: 20px;
 }

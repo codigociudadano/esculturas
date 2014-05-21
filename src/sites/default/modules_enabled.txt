@@ -36,3 +36,7 @@ views_ui
 wysiwyg
 jquery_update
 diff
+addtoany
+esculturas_cms
+esculturas_permisos
+services_documentation

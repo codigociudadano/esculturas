@@ -1,0 +1,10 @@
+name = Responsive Share Buttons
+description = CSS/jQuery responsive share buttons placed in blocks
+core = 7.x
+configure = admin/config/user-interface/responsive_share_buttons
+; Information added by  packaging script on 2013-12-02
+version = "7.x-1.2"
+core = "7.x"
+project = "responsive_share_buttons"
+datestamp = "1385991823"
+

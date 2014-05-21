@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Module to enable CSS responsive share buttons.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function responsive_share_buttons_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case 'admin/config/modules#description':
+      $output .= t('Add a responsive social media share block to all pages.');
+      break;
+
+    case 'admin/config/user-interface/responsive_share_buttons':
+      $output .= t('<p>This is a simple module that adds a social media block to all pages.</p>');
+      break;
+  }
+  return $output;
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function responsive_share_buttons_menu() {
+  $items['admin/config/user-interface/responsive_share_buttons'] = array(
+    'title' => 'Responsive Share Buttons',
+    'description' => 'Configure Responsive Share Buttons.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('responsive_share_buttons_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'responsive_share_buttons.admin.inc',
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function responsive_share_buttons_theme($existing, $type, $theme, $path){
+  $button_array = variable_get("responsive_share_buttons", NULL);
+  return array(
+    'responsive_share_buttons' => array(
+      'template' => 'responsive_share_buttons',
+      'variables'=> array(
+        'facebook' => $button_array['facebook'],
+        'twitter' => $button_array['twitter'],
+        'digg' => $button_array['digg'],
+        'stumbleupon' => $button_array['stumbleupon'],
+        'delicious' => $button_array['delicious'],
+        'google' => $button_array['google'],
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function responsive_share_buttons_page_alter(&$page) {
+  // get the speed for the animation
+  //$animatespeed = variable_get("responsive_share_buttons_animate_speed", '400');
+  //drupal_add_js(array('responsive_share_buttons' => array('animateSpeed' => $animatespeed)), array('type' => 'setting'));
+  drupal_add_css(drupal_get_path('module', 'responsive_share_buttons') . '/css/responsive_share_buttons.css', array('group' => CSS_DEFAULT, 'basename' => '/css/responsive_share_buttons.css'));
+  drupal_add_js(drupal_get_path('module', 'responsive_share_buttons') .'/js/responsive_share_buttons.js');
+  $page['page_top']['responsive_share_buttons'] = array(
+    '#weight' => -1000, 
+    '#markup' => theme('responsive_share_buttons'),
+  );
+}

@@ -75,44 +75,50 @@
  */
 ?>
 <?php if (!$page): ?>
-  <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 <?php endif; ?>
-  <?php if (!$page): ?>
-      <header>
-  <?php endif; ?>
-      <?php print render($title_prefix); ?>
-      <?php if (!$page): ?>
-      <h2 class="title" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-  
-      <?php if ($display_submitted): ?>
-        <ul class="meta clearfix">
-          <li><strong>Posted on:</strong> <?php print $date; ?></li>
-          <li><strong>By:</strong> <?php print $name; ?></li>   
-        </ul>
-      <?php endif; ?>
 
     <?php if (!$page): ?>
-      </header>
-  <?php endif; ?>
+    <header>
+    <?php endif; ?>
 
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php
-      // Hide comments and links now so that we can render them later.
-      hide($content['comments']);
-      hide($content['links']);
-      print render($content);
-    ?>
-  </div>
+    <?php print render($title_prefix); ?>
 
-  <?php if (!empty($content['links'])): ?>
+    <?php if (!$page): ?>
+    <h2 class="title" <?php print $title_attributes; ?>>
+        <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+    </h2>
+    <?php endif; ?>
+
+    <?php print render($title_suffix); ?>
+
+    <?php if ($display_submitted): ?>
+    <ul class="meta clearfix">
+        <li><strong>Posted on:</strong> <?php print $date; ?></li>
+        <li><strong>By:</strong> <?php print $name; ?></li>
+    </ul>
+    <?php endif; ?>
+
+    <?php if (!$page): ?>
+    </header>
+    <?php endif; ?>
+
+    <div class="content"<?php print $content_attributes; ?>>
+        <?php
+        // Hide comments and links now so that we can render them later.
+        hide($content['comments']);
+        hide($content['links']);
+        print render($content);
+        ?>
+    </div>
+
+    <?php if (!empty($content['links'])): ?>
     <footer>
-      <?php print render($content['links']); ?>
+        <?php print render($content['links']); ?>
     </footer>
-  <?php endif; ?>
+    <?php endif; ?>
 
-  <?php print render($content['comments']); ?>
+    <?php print !empty($fb_comments) ? $fb_comments : ''; ?>
 <?php if (!$page): ?>
-  </article> <!-- /.node -->
+</article> <!-- /.node -->
 <?php endif; ?>

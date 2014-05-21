@@ -71,15 +71,15 @@ Algunos ejemplos de Endpoints que les pueden ir sirviendo.
 
 ## Traer 20 nodos
 
-http://esculturas.codigociudadano.com.ar/api/v1/node
+http://dev.resistenciarte.org/api/v1/node
 
 ## Treaer los proximos 20 nodos
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?page=2
+http://dev.resistenciarte.org/api/v1/node?page=2
 
 ## Limitar las fields para traer
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?page=1&fields=nid,title
+http://dev.resistenciarte.org/api/v1/node?page=1&fields=nid,title
 
   Notar parámetro fields
   
@@ -87,47 +87,47 @@ http://esculturas.codigociudadano.com.ar/api/v1/node?page=1&fields=nid,title
   
 ## Traer solo Esculturas
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?type=escultura
+http://dev.resistenciarte.org/api/v1/node?type=escultura
 
 ## Traer solo Autores
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?type=autores
+http://dev.resistenciarte.org/api/v1/node?type=autores
 
 ## Traer solo Eventos
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?type=eventos
+http://dev.resistenciarte.org/api/v1/node?type=eventos
 
 ## Traer mas de 20 item
 
-http://esculturas.codigociudadano.com.ar/api/v1/node?pagesize=50
+http://dev.resistenciarte.org/api/v1/node?pagesize=50
 
   Nota no abusar de page size sino va a matar al server, Cachear el total de nodos puede ser una buena opción.
  
 ## Traer info de un nid
 
-http://esculturas.codigociudadano.com.ar/api/v1/node/1457
+http://dev.resistenciarte.org/api/v1/node/1457
 
   nid = 1457
   
 ## Traer imagenes de una escultura
 
-http://esculturas.codigociudadano.com.ar/api/v1/file/828
+http://dev.resistenciarte.org/api/v1/file/828
 
   828 = fid que pueden sacar al traer la info de esculturas
   
 ## Traer las Taxonomias
 
-http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_vocabulary
+http://dev.resistenciarte.org/api/v1/taxonomy_vocabulary
 
 Aca van a tener que tener en cuenta los vids que son los ids de taxonomias
 
 ## Traer los terminos de una Taxonomia
 
- http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term?vid=4
+ http://dev.resistenciarte.org/api/v1/taxonomy_term?vid=4
  
 ## Traer un Termino puntual con su TID (term id).
 
-http://esculturas.codigociudadano.com.ar/api/v1/taxonomy_term/21
+http://dev.resistenciarte.org/api/v1/taxonomy_term/21
 
 ## Traer las Esculturas de un termino
 
@@ -135,7 +135,7 @@ TBD (To be done), no tengo esto todavía :S
 
 ## Trear las N esculturas próximas a una coordenada lat/long
 
-http://esculturas.codigociudadano.com.ar/api/v1/closest_nodes_by_coord?lat=-27.454528&lon=-58.976896
+http://dev.resistenciarte.org/api/v1/closest_nodes_by_coord?lat=-27.454528&lon=-58.976896
 
 Opcionalmente se puede indicar el nro de items qty_nodes=5
 Opcionalmente se puede indicar la distancia a cubrir dist=50

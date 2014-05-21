@@ -22,6 +22,7 @@ function esculturas_mapa_services_resources() {
           ),
           'callback' => 'em_get_closest_nodes_by_coord',
           'access arguments' => array('em get closest nodes by coord'),
+          
           'args' => array(
             array(
               'name' => 'lat',
@@ -34,7 +35,7 @@ function esculturas_mapa_services_resources() {
               'name' => 'lon',
               'optional' => FALSE,
               'type' => 'string',
-              'description' => t('The langitude of the coordinate.'),
+              'description' => t('The longitude of the coordinate.'),
               'source' => array('param' => 'lon'),
             ),
             array(
@@ -60,3 +61,4 @@ function esculturas_mapa_services_resources() {
   );
   return $resources;
 }
+
