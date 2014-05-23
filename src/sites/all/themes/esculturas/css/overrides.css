@@ -367,6 +367,15 @@ h1.page-title {
     .search {
         display: none;
     }
+
+    #logo {
+        margin: 20px auto 15px;
+        width: 472px;
+    }
+
+    div.col-sm-6.mainmenu {
+        padding-top: 15px;
+    }
 }
 
 #primary, #sidebar {
