@@ -47,6 +47,7 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['field_fotos']['field'] = 'field_fotos';
   $handler->display->display_options['fields']['field_fotos']['label'] = '';
   $handler->display->display_options['fields']['field_fotos']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_fotos']['empty'] = '<img src=\'/sites/all/themes/esculturas/images/default_220.png\' />';
   $handler->display->display_options['fields']['field_fotos']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_fotos']['settings'] = array(
     'image_style' => 'listados',
@@ -103,6 +104,7 @@ function esculturas_core_views_default_views() {
     t('‹ anterior'),
     t('siguiente ›'),
     t('última »'),
+    t('<img src=\'/sites/all/themes/esculturas/images/default_220.png\' />'),
     t('Nacionalidad'),
     t('Page'),
   );
@@ -174,10 +176,11 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['field_tipo']['id'] = 'field_tipo';
   $handler->display->display_options['fields']['field_tipo']['table'] = 'field_data_field_tipo';
   $handler->display->display_options['fields']['field_tipo']['field'] = 'field_tipo';
-  /* Campo: Contenido: Información del Evento */
+  /* Campo: Contenido: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Información del Evento';
   $handler->display->display_options['fields']['body']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['body']['alter']['more_link'] = TRUE;
   $handler->display->display_options['fields']['body']['alter']['more_link_text'] = 'Leer Mas';

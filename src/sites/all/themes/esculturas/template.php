@@ -19,8 +19,10 @@ function esculturas_preprocess_node(&$variables) {
 }
 
 function esculturas_get_fb_comments() {
+    $host = $_SERVER['HTTP_HOST'];
+    $url = 'http://'. $host . base_path() . current_path();
     return '<div class="comments">
-    <div class="fb-comments" data-href="http://www.resistenciarte.org"
+    <div class="fb-comments" data-href="' . $url . '"
          data-width="100%"
          data-numposts="20"
          data-colorscheme="light"></div>

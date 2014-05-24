@@ -1,0 +1,6 @@
+name = Chapay Import
+description = Importa data de Chapay
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = chapay_import
