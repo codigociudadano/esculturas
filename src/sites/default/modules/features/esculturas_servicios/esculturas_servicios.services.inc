@@ -62,18 +62,9 @@ function esculturas_servicios_default_services_endpoint() {
         ),
       ),
     ),
-    'ew_node' => array(
+    'file' => array(
       'operations' => array(
         'retrieve' => array(
-          'enabled' => '1',
-        ),
-        'create' => array(
-          'enabled' => '1',
-        ),
-        'update' => array(
-          'enabled' => '1',
-        ),
-        'delete' => array(
           'enabled' => '1',
         ),
         'index' => array(

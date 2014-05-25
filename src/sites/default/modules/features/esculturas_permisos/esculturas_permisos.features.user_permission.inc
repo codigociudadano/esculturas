@@ -724,6 +724,8 @@ function esculturas_permisos_user_default_permissions() {
     'name' => 'get a system variable',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'services',
   );
@@ -733,6 +735,8 @@ function esculturas_permisos_user_default_permissions() {
     'name' => 'get any binary files',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'services',
   );
@@ -742,6 +746,8 @@ function esculturas_permisos_user_default_permissions() {
     'name' => 'get own binary files',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'services',
   );
@@ -778,6 +784,8 @@ function esculturas_permisos_user_default_permissions() {
     'name' => 'perform unlimited index queries',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'services',
   );
