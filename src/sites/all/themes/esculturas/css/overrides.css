@@ -282,6 +282,7 @@ a {
 div#page {
     background-color: #4b4b4d;
     color: #fff;
+    min-width: 482px;
 }
 
 .site-footer {
