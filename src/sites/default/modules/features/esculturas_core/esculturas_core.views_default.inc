@@ -31,7 +31,7 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Enviar';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Reiniciar';
   $handler->display->display_options['pager']['type'] = 'mini';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '9';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['tags']['first'] = '« primera';
@@ -84,6 +84,21 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'autores' => 'autores',
   );
+  /* Filter criterion: Contenido: Título */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Autor';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -106,6 +121,7 @@ function esculturas_core_views_default_views() {
     t('última »'),
     t('<img src=\'/sites/all/themes/esculturas/images/default_220.png\' />'),
     t('Nacionalidad'),
+    t('Autor'),
     t('Page'),
   );
   $export['autores'] = $view;
@@ -161,13 +177,6 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Campo: Contenido: Participantes */
-  $handler->display->display_options['fields']['field_autor']['id'] = 'field_autor';
-  $handler->display->display_options['fields']['field_autor']['table'] = 'field_data_field_autor';
-  $handler->display->display_options['fields']['field_autor']['field'] = 'field_autor';
-  $handler->display->display_options['fields']['field_autor']['settings'] = array(
-    'link' => 0,
-  );
   /* Campo: Contenido: Material */
   $handler->display->display_options['fields']['field_material']['id'] = 'field_material';
   $handler->display->display_options['fields']['field_material']['table'] = 'field_data_field_material';
@@ -176,19 +185,10 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['field_tipo']['id'] = 'field_tipo';
   $handler->display->display_options['fields']['field_tipo']['table'] = 'field_data_field_tipo';
   $handler->display->display_options['fields']['field_tipo']['field'] = 'field_tipo';
-  /* Campo: Contenido: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = 'Información del Evento';
-  $handler->display->display_options['fields']['body']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['body']['alter']['more_link'] = TRUE;
-  $handler->display->display_options['fields']['body']['alter']['more_link_text'] = 'Leer Mas';
-  $handler->display->display_options['fields']['body']['alter']['trim'] = TRUE;
-  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '200',
-  );
+  /* Campo: Contenido: Ubicación */
+  $handler->display->display_options['fields']['field_ubicacion']['id'] = 'field_ubicacion';
+  $handler->display->display_options['fields']['field_ubicacion']['table'] = 'field_data_field_ubicacion';
+  $handler->display->display_options['fields']['field_ubicacion']['field'] = 'field_ubicacion';
   /* Sort criterion: Contenido: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -208,11 +208,13 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'escultura' => 'escultura',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Contenido: Título */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Nombre ';
@@ -223,42 +225,11 @@ function esculturas_core_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: Contenido: Tipo (field_tipo) */
-  $handler->display->display_options['filters']['field_tipo_tid']['id'] = 'field_tipo_tid';
-  $handler->display->display_options['filters']['field_tipo_tid']['table'] = 'field_data_field_tipo';
-  $handler->display->display_options['filters']['field_tipo_tid']['field'] = 'field_tipo_tid';
-  $handler->display->display_options['filters']['field_tipo_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_tipo_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_tipo_tid']['expose']['operator_id'] = 'field_tipo_tid_op';
-  $handler->display->display_options['filters']['field_tipo_tid']['expose']['label'] = 'Tipo';
-  $handler->display->display_options['filters']['field_tipo_tid']['expose']['operator'] = 'field_tipo_tid_op';
-  $handler->display->display_options['filters']['field_tipo_tid']['expose']['identifier'] = 'field_tipo_tid';
-  $handler->display->display_options['filters']['field_tipo_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_tipo_tid']['vocabulary'] = 'tipo';
-  /* Filter criterion: Contenido: Material (field_material) */
-  $handler->display->display_options['filters']['field_material_tid']['id'] = 'field_material_tid';
-  $handler->display->display_options['filters']['field_material_tid']['table'] = 'field_data_field_material';
-  $handler->display->display_options['filters']['field_material_tid']['field'] = 'field_material_tid';
-  $handler->display->display_options['filters']['field_material_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_material_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_material_tid']['expose']['operator_id'] = 'field_material_tid_op';
-  $handler->display->display_options['filters']['field_material_tid']['expose']['label'] = 'Material';
-  $handler->display->display_options['filters']['field_material_tid']['expose']['operator'] = 'field_material_tid_op';
-  $handler->display->display_options['filters']['field_material_tid']['expose']['identifier'] = 'field_material_tid';
-  $handler->display->display_options['filters']['field_material_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_material_tid']['vocabulary'] = 'material';
   /* Filter criterion: Contenido: Año del Evento (field_ano) */
   $handler->display->display_options['filters']['field_ano_value']['id'] = 'field_ano_value';
   $handler->display->display_options['filters']['field_ano_value']['table'] = 'field_data_field_ano';
   $handler->display->display_options['filters']['field_ano_value']['field'] = 'field_ano_value';
+  $handler->display->display_options['filters']['field_ano_value']['group'] = 1;
   $handler->display->display_options['filters']['field_ano_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_ano_value']['expose']['operator_id'] = 'field_ano_value_op';
   $handler->display->display_options['filters']['field_ano_value']['expose']['label'] = 'Año ';
@@ -269,6 +240,42 @@ function esculturas_core_views_default_views() {
     1 => 0,
     3 => 0,
   );
+  /* Filter criterion: Contenido: Tipo (field_tipo) */
+  $handler->display->display_options['filters']['field_tipo_tid']['id'] = 'field_tipo_tid';
+  $handler->display->display_options['filters']['field_tipo_tid']['table'] = 'field_data_field_tipo';
+  $handler->display->display_options['filters']['field_tipo_tid']['field'] = 'field_tipo_tid';
+  $handler->display->display_options['filters']['field_tipo_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_tipo_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_tipo_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_tipo_tid']['expose']['operator_id'] = 'field_tipo_tid_op';
+  $handler->display->display_options['filters']['field_tipo_tid']['expose']['label'] = 'Tipo';
+  $handler->display->display_options['filters']['field_tipo_tid']['expose']['operator'] = 'field_tipo_tid_op';
+  $handler->display->display_options['filters']['field_tipo_tid']['expose']['identifier'] = 'field_tipo_tid';
+  $handler->display->display_options['filters']['field_tipo_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_tipo_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_tipo_tid']['vocabulary'] = 'tipo';
+  /* Filter criterion: Contenido: Material (field_material) */
+  $handler->display->display_options['filters']['field_material_tid']['id'] = 'field_material_tid';
+  $handler->display->display_options['filters']['field_material_tid']['table'] = 'field_data_field_material';
+  $handler->display->display_options['filters']['field_material_tid']['field'] = 'field_material_tid';
+  $handler->display->display_options['filters']['field_material_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_material_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_material_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_material_tid']['expose']['operator_id'] = 'field_material_tid_op';
+  $handler->display->display_options['filters']['field_material_tid']['expose']['label'] = 'Material';
+  $handler->display->display_options['filters']['field_material_tid']['expose']['operator'] = 'field_material_tid_op';
+  $handler->display->display_options['filters']['field_material_tid']['expose']['identifier'] = 'field_material_tid';
+  $handler->display->display_options['filters']['field_material_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_material_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_material_tid']['vocabulary'] = 'material';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -386,11 +393,9 @@ function esculturas_core_views_default_views() {
     t('‹ anterior'),
     t('siguiente ›'),
     t('última »'),
-    t('Participantes'),
     t('Material'),
     t('Tipo'),
-    t('Información del Evento'),
-    t('Leer Mas'),
+    t('Ubicación'),
     t('Nombre '),
     t('Año '),
     t('Page'),

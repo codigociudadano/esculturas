@@ -124,10 +124,6 @@ body.node-type-page h1.page-title {
   margin: 0px;
 }
 
-.google_map_field_display {
-  margin : 10px auto;
-}
-
 .galleryformatter-greenarrows .gallery-thumbs .arrow {
   bottom: 25px;
   display: block;
@@ -165,16 +161,6 @@ body.front h1.page-title {
     display: none;
 }
 
-.field.field-name-field-ubicacion {
-    float: left;
-    width: 40%;
-    margin-right: 30px;
-}
-
-.field.field-name-field-mapa {
-    float: left;
-    width: 30%;
-}
 
 .field.field-name-field-mapa .field-label {
     display: none;
@@ -381,4 +367,16 @@ h1.page-title {
 #primary, #sidebar {
   padding-top: 0px;
   padding-bottom: 20px;
+}
+
+div.galleryformatter.galleryview.galleryformatter-greenarrows {
+}
+
+div.field.field-name-body.field-type-text-with-summary.field-label-hidden,
+div.field.field-name-field-autor.field-type-entityreference.field-label-inline.clearfix {
+    clear: both;
+}
+
+.google-map-field > div {
+    margin: 10px auto;
 }

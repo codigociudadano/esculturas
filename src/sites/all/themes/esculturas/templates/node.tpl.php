@@ -73,6 +73,7 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
+
 ?>
 <?php if (!$page): ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
