@@ -16,13 +16,15 @@ $databases = array(
         ),
 );
 
-if ($_SERVER['HTTP_HOST'] === 'dev.resistenciarte.org') {
+if ($_SERVER['HTTP_HOST'] === 'dev.resistenciarte.org' || $_SERVER['HTTP_HOST'] === 'dev.resistenciarte.org:8008') {
     $databases['default']['default']['database'] = 'resistenciarte_dev';
     $databases['default']['default']['username'] = 'resistenciarte';
     $databases['default']['default']['password'] = 'res123';
 }
 
-if ($_SERVER['HTTP_HOST'] === 'resistenciarte.org' || $_SERVER['HTTP_HOST'] === 'www.resistenciarte.org') {
+if ($_SERVER['HTTP_HOST'] === 'resistenciarte.org' || $_SERVER['HTTP_HOST'] === 'www.resistenciarte.org' ||
+    $_SERVER['HTTP_HOST'] === 'resistenciarte.org:8008' || $_SERVER['HTTP_HOST'] === 'www.resistenciarte.org:8008')
+{
     $databases['default']['default']['database'] = 'resistenciarte_prd';
     $databases['default']['default']['username'] = 'resistenciarte';
     $databases['default']['default']['password'] = 'res123';
