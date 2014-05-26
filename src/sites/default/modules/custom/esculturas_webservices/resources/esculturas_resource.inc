@@ -108,6 +108,14 @@ function ew_esculturas_resource_definition() {
               'source' => array('param' => 'tag'),
             ),
             array(
+              'name' => 'autor',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, Autor de esculturas.',
+              // 'default value' => 20,
+              'source' => array('param' => 'autor'),
+            ),
+            array(
               'name' => 'evento',
               'optional' => TRUE,
               'type' => 'int',
@@ -135,7 +143,7 @@ define("EW_ESCULTURAS_DEFAULT_PAGESIZE", 20);
  * @param string $pagesize | cantidad de resultados por pagina a obtener.
  * @return array
  */
-function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat, $long, $dist, $tag, $evento) {
+function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat, $long, $dist, $tag, $autor, $evento) {
 
   $page_val = isset($page)?$page:EW_ESCULTURAS_DEFAULT_PAGE;
   $pagesize_val = isset($pagesize)?$pagesize:EW_ESCULTURAS_DEFAULT_PAGESIZE;
@@ -145,6 +153,7 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
   }
 
   $query = db_select("node", "n")
+              ->distinct(TRUE)
               ->fields("n", array("nid"))
               ->condition("n.status", "1")
               ->condition("n.type", "escultura");
@@ -156,8 +165,25 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
 
    if(isset($tipo)) {
      $query->leftJoin("field_data_field_tipo", "fdft", "(n.nid = fdft.entity_id)");
-     $query->condition("fdft.field_tipo_tid", $material);
+     $query->condition("fdft.field_tipo_tid", $tipo);
    }
+
+   if(isset($tag)) {
+     $query->leftJoin("field_data_field_tags", "fdftg", "(n.nid = fdftg.entity_id)");
+     $query->condition("fdftg.field_tags_tid", $tag);
+   }
+
+   if(isset($autor)) {
+     $query->leftJoin("field_data_field_autor", "fdfa", "(n.nid = fdfa.entity_id)");
+     $query->condition("fdfa.field_autor_target_id", $autor);
+   }
+
+   if(isset($evento)) {
+     $query->leftJoin("field_data_field_evento", "fdfe", "(n.nid = fdfe.entity_id)");
+     $query->condition("fdfe.field_evento_tid", $evento);
+   }
+
+  //  die((string) $query);
 
   $count = $query->countQuery()->execute()->fetchField();
   $max_pages = ceil($count/$pagesize_val) - 1;
