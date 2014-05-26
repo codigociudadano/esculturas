@@ -136,6 +136,7 @@ define("EW_ESCULTURAS_DEFAULT_PAGE", 0);
 define("EW_ESCULTURAS_MAX_PAGESIZE", 100);
 define("EW_ESCULTURAS_DEFAULT_PAGESIZE", 20);
 define("EW_ESCULTURAS_DISTANCE_CONVERSION", 1/1000);
+define("EW_ESCULTURAS_DISTANCE_REVERSE", 1000);
 
 /**
  *
@@ -306,6 +307,10 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
       ));
 
       $resource->name = $node->title;
+
+      if(isset($row->distance)) {
+        $resource->distance = $row->distance * EW_ESCULTURAS_DISTANCE_REVERSE;
+      }
 
       $resource->image = file_create_url($fotos[0]['uri']);
 
