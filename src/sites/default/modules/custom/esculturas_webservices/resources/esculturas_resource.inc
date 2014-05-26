@@ -147,6 +147,7 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
 
   $page_val = isset($page)?$page:EW_ESCULTURAS_DEFAULT_PAGE;
   $pagesize_val = isset($pagesize)?$pagesize:EW_ESCULTURAS_DEFAULT_PAGESIZE;
+  $filters = array();
 
   if($pagesize_val > EW_ESCULTURAS_MAX_PAGESIZE) {
     return services_error("pagesize should not be greater than ".EW_ESCULTURAS_MAX_PAGESIZE);
@@ -161,26 +162,31 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
    if(isset($material)) {
      $query->leftJoin("field_data_field_material", "fdfm", "(n.nid = fdfm.entity_id)");
      $query->condition("fdfm.field_material_tid", $material);
+     $filters["material"]=$material;
    }
 
    if(isset($tipo)) {
      $query->leftJoin("field_data_field_tipo", "fdft", "(n.nid = fdft.entity_id)");
      $query->condition("fdft.field_tipo_tid", $tipo);
+     $filters["tipo"]=$tipo;
    }
 
    if(isset($tag)) {
      $query->leftJoin("field_data_field_tags", "fdftg", "(n.nid = fdftg.entity_id)");
      $query->condition("fdftg.field_tags_tid", $tag);
+     $filters["tag"]=$tag;
    }
 
    if(isset($autor)) {
      $query->leftJoin("field_data_field_autor", "fdfa", "(n.nid = fdfa.entity_id)");
      $query->condition("fdfa.field_autor_target_id", $autor);
+     $filters["autor"]=$autor;
    }
 
    if(isset($evento)) {
      $query->leftJoin("field_data_field_evento", "fdfe", "(n.nid = fdfe.entity_id)");
      $query->condition("fdfe.field_evento_tid", $evento);
+     $filters["evento"]=$evento;
    }
 
   //  die((string) $query);
@@ -203,14 +209,16 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
   $response["href"] = ew_get_href(array(
     "entity" => "esculturas",
     "page" => $page,
-    "pagesize" => $pagesize
+    "pagesize" => $pagesize,
+    "filters"=>$filters
   ));
 
   if($page_val > 0 ) {
     $response["prev"] = ew_get_href(array(
       "entity"=>"esculturas",
       "page"=>$page_val-1,
-      "pagesize"=>$pagesize
+      "pagesize"=>$pagesize,
+      "filters"=>$filters
     ));
   }
 
@@ -218,7 +226,8 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
     $response["next"] = ew_get_href(array(
       "entity"=>"esculturas",
       "page"=>$page_val+1,
-      "pagesize"=>$pagesize
+      "pagesize"=>$pagesize,
+      "filters"=>$filters
     ));
   }
 
