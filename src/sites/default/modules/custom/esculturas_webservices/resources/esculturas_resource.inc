@@ -59,6 +59,62 @@ function ew_esculturas_resource_definition() {
               // 'default value' => 20,
               'source' => array('param' => 'pagesize'),
             ),
+            array(
+              'name' => 'material',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, material de la escultura.',
+              // 'default value' => 20,
+              'source' => array('param' => 'material'),
+            ),
+            array(
+              'name' => 'tipo',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, tipo de escultura.',
+              // 'default value' => 20,
+              'source' => array('param' => 'tipo'),
+            ),
+            array(
+              'name' => 'lat',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, geolocalizacion de la escultura.',
+              // 'default value' => 20,
+              'source' => array('param' => 'lat'),
+            ),
+            array(
+              'name' => 'long',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, geolocalizacion de la escultura.',
+              // 'default value' => 20,
+              'source' => array('param' => 'long'),
+            ),
+            array(
+              'name' => 'dist',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, geolocalizacion de la escultura, rango de distancia del punto proveido por lat y long.',
+              // 'default value' => 20,
+              'source' => array('param' => 'dist'),
+            ),
+            array(
+              'name' => 'tag',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Filtro, Taxonomia asignada a las esculturas.',
+              // 'default value' => 20,
+              'source' => array('param' => 'tag'),
+            ),
+            array(
+              'name' => 'evento',
+              'optional' => TRUE,
+              'type' => 'int',
+              'description' => 'Numero de elementos por pagina.',
+              // 'default value' => 20,
+              'source' => array('param' => 'evento'),
+            ),
           ),
           'access arguments' => array('access content'),
         ),
@@ -79,7 +135,7 @@ define("EW_ESCULTURAS_DEFAULT_PAGESIZE", 20);
  * @param string $pagesize | cantidad de resultados por pagina a obtener.
  * @return array
  */
-function _ew_esculturas_resource_index($page, $pagesize) {
+function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat, $long, $dist, $tag, $evento) {
 
   $page_val = isset($page)?$page:EW_ESCULTURAS_DEFAULT_PAGE;
   $pagesize_val = isset($pagesize)?$pagesize:EW_ESCULTURAS_DEFAULT_PAGESIZE;
@@ -92,6 +148,16 @@ function _ew_esculturas_resource_index($page, $pagesize) {
               ->fields("n", array("nid"))
               ->condition("n.status", "1")
               ->condition("n.type", "escultura");
+
+   if(isset($material)) {
+     $query->leftJoin("field_data_field_material", "fdfm", "(n.nid = fdfm.entity_id)");
+     $query->condition("fdfm.field_material_tid", $material);
+   }
+
+   if(isset($tipo)) {
+     $query->leftJoin("field_data_field_tipo", "fdft", "(n.nid = fdft.entity_id)");
+     $query->condition("fdft.field_tipo_tid", $material);
+   }
 
   $count = $query->countQuery()->execute()->fetchField();
   $max_pages = ceil($count/$pagesize_val) - 1;
