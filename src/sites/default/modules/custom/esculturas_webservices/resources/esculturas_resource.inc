@@ -78,7 +78,7 @@ function ew_esculturas_resource_definition() {
             array(
               'name' => 'lat',
               'optional' => TRUE,
-              'type' => 'int',
+              'type' => 'string',
               'description' => 'Filtro, geolocalizacion de la escultura.',
               // 'default value' => 20,
               'source' => array('param' => 'lat'),
@@ -86,7 +86,7 @@ function ew_esculturas_resource_definition() {
             array(
               'name' => 'long',
               'optional' => TRUE,
-              'type' => 'int',
+              'type' => 'string',
               'description' => 'Filtro, geolocalizacion de la escultura.',
               // 'default value' => 20,
               'source' => array('param' => 'long'),
@@ -94,9 +94,9 @@ function ew_esculturas_resource_definition() {
             array(
               'name' => 'dist',
               'optional' => TRUE,
-              'type' => 'int',
-              'description' => 'Filtro, geolocalizacion de la escultura, rango de distancia del punto proveido por lat y long.',
-              // 'default value' => 20,
+              'type' => 'string',
+              'description' => 'Filtro, geolocalizacion de la escultura, rango de distancia del punto proveido por lat y long (en metros).',
+              'default value' => 100,
               'source' => array('param' => 'dist'),
             ),
             array(
@@ -135,6 +135,7 @@ function ew_esculturas_resource_definition() {
 define("EW_ESCULTURAS_DEFAULT_PAGE", 0);
 define("EW_ESCULTURAS_MAX_PAGESIZE", 100);
 define("EW_ESCULTURAS_DEFAULT_PAGESIZE", 20);
+define("EW_ESCULTURAS_DISTANCE_CONVERSION", 1/1000);
 
 /**
  *
@@ -189,7 +190,32 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
      $filters["evento"]=$evento;
    }
 
-  //  die((string) $query);
+   if(isset($lat) || isset($long)) {
+     if(!isset($lat) || !isset($long)) {
+       return services_error("lat and long should be defined togheter.");
+     }
+
+     // From MTs to KMs.
+     $dist_convert = $dist * EW_ESCULTURAS_DISTANCE_CONVERSION;
+
+     $query->leftJoin("field_data_field_mapa", "fdfmp", "(n.nid = fdfmp.entity_id)");
+     $query->addExpression("
+       (  6371 * acos( cos( radians( :lat ))
+               * cos( radians( fdfmp.field_mapa_lat ) )
+               * cos( radians( fdfmp.field_mapa_lon )
+         - radians( :long ) )
+         + sin(radians( :lat ) )
+               * sin(radians( fdfmp.field_mapa_lat ) ) ) )", "distance", array(":lat"=>$lat,":long"=>$long));
+    $query->havingCondition("distance", $dist_convert, "<");
+    $query->havingCondition("distance", 0, ">");
+    $query->orderBy("distance", "ASC");
+
+     $filters["lat"]=$lat;
+     $filters["long"]=$long;
+     $filters["dist"]=$dist;
+   }
+
+    // die((string) $query);
 
   $count = $query->countQuery()->execute()->fetchField();
   $max_pages = ceil($count/$pagesize_val) - 1;
