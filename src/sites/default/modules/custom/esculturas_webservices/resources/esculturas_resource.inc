@@ -314,14 +314,16 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
 
       $resource->image = file_create_url($fotos[0]['uri']);
 
-      $resource->autor = array(
-        "id" => $autor->nid,
-        "href" => ew_get_href(array(
-          "entity"=> "autores",
-          "id"=> $autor->nid
-        )),
-        "name" => $autor->title
-      );
+      if(isset($autor) && isset($autor->nid)) {
+        $resource->autor = array(
+          "id" => $autor->nid,
+          "href" => ew_get_href(array(
+            "entity"=> "autores",
+            "id"=> $autor->nid
+          )),
+          "name" => $autor->title
+        );
+      }
 
       $resource->tags = $tags;
 
