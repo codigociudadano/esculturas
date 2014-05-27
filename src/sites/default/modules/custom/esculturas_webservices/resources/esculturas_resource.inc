@@ -199,6 +199,8 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
      // From MTs to KMs.
      $dist_convert = $dist * EW_ESCULTURAS_DISTANCE_CONVERSION;
 
+     $query->addField("fdfmp", "field_mapa_lat", "latitude");
+     $query->addField("fdfmp", "field_mapa_lon", "longitude");
      $query->leftJoin("field_data_field_mapa", "fdfmp", "(n.nid = fdfmp.entity_id)");
      $query->addExpression("
        (  6371 * acos( cos( radians( :lat ))
@@ -216,7 +218,7 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
      $filters["dist"]=$dist;
    }
 
-    // die((string) $query);
+      // die((string) $query);
 
   $count = $query->countQuery()->execute()->fetchField();
   $max_pages = ceil($count/$pagesize_val) - 1;
@@ -309,6 +311,7 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
       $resource->name = $node->title;
 
       if(isset($row->distance)) {
+        $resource->location = array((float) $row->latitude, (float) $row->longitude);
         $resource->distance = $row->distance * EW_ESCULTURAS_DISTANCE_REVERSE;
       }
 
