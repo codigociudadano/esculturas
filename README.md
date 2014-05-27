@@ -51,17 +51,17 @@ Para que puedas ayudarnos en este proyecto se requiere tener instalado:
   
   ````GRANT ALL PRIVILEGES ON esculturas.* TO esculturas@localhost IDENTIFIED BY 'esculturas'````
 
-6) Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.co/downloads/esculturas/esculturasdb-latest.tar.gz).
+6) Bajar la ultima base de datos para development desde [aqui](http://www.codigociudadano.com.ar/downloads/esculturas/esculturasdb-latest.tar.gz).
 
 7) Importar el dump de la base de datos de prueba.
 
-8) Desde `src/` correr con drush: `bash scripts/adjust-db-to-site.sh`
+8) Desde `src/` correr con drush: `bash scripts/adjust-db-to-site.sh default`
 
-9) Entrar con el browser a http://local.esculturas.
+9) Entrar con el browser a http://local.esculturas
 
 ## Bugs y peticiones de nuevas features
 
-Si encontraste un bug, tenés un error o querés pedir una feature nueva? Podés agregarlo a la [lista de issues](https://github.com/codigociudadano/esculturas/issues). Te pedimos por favor, antes de agregar tu idea o problema, revisá si no hay un pedido similar que fué hecho anteriormente.
+Si encontraste un bug, tenés un error, problemas para levantar el entorno o querés pedir una feature nueva? Podés agregarlo a la [lista de issues](https://github.com/codigociudadano/esculturas/issues). Te pedimos por favor, antes de agregar tu idea o problema, revisá si no hay un pedido similar que fué hecho anteriormente.
 
 ## Documentación
 
