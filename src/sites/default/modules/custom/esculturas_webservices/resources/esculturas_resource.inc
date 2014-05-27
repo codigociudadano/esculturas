@@ -315,7 +315,13 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
         $resource->distance = $row->distance * EW_ESCULTURAS_DISTANCE_REVERSE;
       }
 
-      $resource->image = file_create_url($fotos[0]['uri']);
+      if(isset($fotos[0])){
+        $resource->image = file_create_url($fotos[0]['uri']);
+      }
+      else {
+        global $base_url;
+        $resource->image = $base_url."/".drupal_get_path("theme", "esculturas")."/images/default_escultura.png";
+      }
 
       if(isset($autor) && isset($autor->nid)) {
         $resource->autor = array(
