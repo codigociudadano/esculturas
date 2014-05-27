@@ -1,5 +1,11 @@
 <?php
 
+define("EW_ESCULTURAS_DEFAULT_PAGE", 0);
+define("EW_ESCULTURAS_MAX_PAGESIZE", 100);
+define("EW_ESCULTURAS_DEFAULT_PAGESIZE", 20);
+define("EW_ESCULTURAS_DISTANCE_CONVERSION", 1/1000);
+define("EW_ESCULTURAS_DISTANCE_REVERSE", 1000);
+
 /**
  * Define la firma de los recursos disponibles para nodos.
  *
@@ -132,11 +138,6 @@ function ew_esculturas_resource_definition() {
 
 }
 
-define("EW_ESCULTURAS_DEFAULT_PAGE", 0);
-define("EW_ESCULTURAS_MAX_PAGESIZE", 100);
-define("EW_ESCULTURAS_DEFAULT_PAGESIZE", 20);
-define("EW_ESCULTURAS_DISTANCE_CONVERSION", 1/1000);
-define("EW_ESCULTURAS_DISTANCE_REVERSE", 1000);
 
 /**
  *
@@ -389,7 +390,7 @@ function _ew_esculturas_retrieve_doc() {
   $element = array(
     '#name' => t('Obtener escultura'),
     '#description' => t('Retorna la escultura segun Id pasado como parametro.'),
-    '#request_url' => t('esculturas?id=11'),
+    '#request_url' => 'esculturas/457',
     '#response' => '
       id: "11",
       href: "http://esculturas.local/api/v1/esculturas/11",
@@ -416,48 +417,15 @@ function _ew_esculturas_retrieve_doc() {
  * Documentacion de calback para operacion de retrieve.
  */
 function _ew_esculturas_index_doc() {
+  
   $element = array(
     '#name' => t('Obtener esculturas'),
     '#description' => t('Retorna la esculturas por pagina. El tamaño de la pagina es customizable.'),
-    '#request_url' => t('esculturas?page=1&pagesize=12'),
-    '#response' => '
-      {
-      id: "11",
-      href: "http://esculturas.local/api/v1/esculturas/11",
-      name: "Uxor",
-      image: "http://esculturas.local/sites/default/files/esculturas/imagefield_LvvddA.png",
-      autor: {
-        id: "16",
-        href: "http://esculturas.local/api/v1/autores",
-        name: "Diam Erat"
-      },
-      tags: [
-        {
-          id: "10",
-          href: "http://esculturas.local/api/v1/esculturas?tags=10",
-          name: "Humanidad"
-        }
-      ]
-      },
-      {
-      id: "11",
-      href: "http://esculturas.local/api/v1/esculturas/11",
-      name: "Uxor",
-      image: "http://esculturas.local/sites/default/files/esculturas/imagefield_LvvddA.png",
-      autor: {
-        id: "16",
-        href: "http://esculturas.local/api/v1/autores",
-        name: "Diam Erat"
-      },
-      tags: [
-        {
-          id: "10",
-          href: "http://esculturas.local/api/v1/esculturas?tags=10",
-          name: "Humanidad"
-        }
-      ]
-      }',
+    '#request_url' => 'api/v1/esculturas?page=0&pagesize=1',
+//    '#response' => json_format('{href: "http://esculturas.local/api/v1/esculturas?page=0&pagesize=1",next: "http://esculturas.local/api/v1/esculturas?page=1&pagesize=1",max_pages: 999,data: [{id: "457",href: "http://esculturas.local/api/v1/esculturas/457",name: "Gemino Pertineo",image: "http://esculturas.local/sites/default/files/esculturas/imagefield_VSgeIF.jpeg",autor: {id: "42",href: "http://esculturas.local/api/v1/autores/42",name: "Modo Sit Ut Venio"},tags: [{id: "10",href: "http://esculturas.local/api/v1/esculturas?tags=10",name: "Humanidad"}]}]}'),
+    '#response' => '{href: "http://esculturas.local/api/v1/esculturas?page=0&pagesize=1",next: "http://esculturas.local/api/v1/esculturas?page=1&pagesize=1",max_pages: 999,data: [{id: "457",href: "http://esculturas.local/api/v1/esculturas/457",name: "Gemino Pertineo",image: "http://esculturas.local/sites/default/files/esculturas/imagefield_VSgeIF.jpeg",autor: {id: "42",href: "http://esculturas.local/api/v1/autores/42",name: "Modo Sit Ut Venio"},tags: [{id: "10",href: "http://esculturas.local/api/v1/esculturas?tags=10",name: "Humanidad"}]}]}',
     '#path' => 'esculturas',
-  );
+  );  
+ 
   return $element;
 }

@@ -1,7 +1,10 @@
 <?php
 
+module_load_include('inc', 'services', 'includes/services.runtime');
 module_load_include('inc', 'esculturas_webservices', 'resources/esculturas_resource');
 module_load_include('inc', 'esculturas_webservices', 'resources/autores_resource');
+// Libreria externa para formatear output the JSON en 5.3
+//module_load_include('php', 'esculturas_webservices', 'include/nicejson');
 
 /**
  * Implements hook_perm().
