@@ -152,7 +152,13 @@ function _ew_autores_resource_index($page, $pagesize) {
 
       $resource->name = $node->title;
 
-      $resource->image = file_create_url($fotos[0]['uri']);
+      if(isset($fotos[0])){
+        $resource->image = file_create_url($fotos[0]['uri']);
+      }
+      else {
+        global $base_url;
+        $resource->image = $base_url."/".drupal_get_path("theme", "esculturas")."/images/default.png";
+      }
 
       $response["data"][] = $resource;
     }
