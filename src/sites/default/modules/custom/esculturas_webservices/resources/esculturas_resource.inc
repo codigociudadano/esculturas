@@ -146,7 +146,7 @@ function ew_esculturas_resource_definition() {
  * @param string $pagesize | cantidad de resultados por pagina a obtener.
  * @return array
  */
-function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat, $long, $dist, $tag, $autor, $evento) {
+function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat, $long, $dist, $tag, $autor, $evento, $omitAutor = false) {
 
   $page_val = isset($page)?$page:EW_ESCULTURAS_DEFAULT_PAGE;
   $pagesize_val = isset($pagesize)?$pagesize:EW_ESCULTURAS_DEFAULT_PAGESIZE;
@@ -324,7 +324,7 @@ function _ew_esculturas_resource_index($page, $pagesize, $material, $tipo, $lat,
         $resource->image = $base_url."/".drupal_get_path("theme", "esculturas")."/images/default_escultura.png";
       }
 
-      if(isset($autor) && isset($autor->nid)) {
+      if(!$omitAutor && isset($autor) && isset($autor->nid)) {
         $resource->autor = array(
           "id" => $autor->nid,
           "href" => ew_get_href(array(
@@ -417,7 +417,7 @@ function _ew_esculturas_retrieve_doc() {
  * Documentacion de calback para operacion de retrieve.
  */
 function _ew_esculturas_index_doc() {
-  
+
   $element = array(
     '#name' => t('Obtener esculturas'),
     '#description' => t('Retorna la esculturas por pagina. El tamaño de la pagina es customizable.'),
@@ -425,7 +425,7 @@ function _ew_esculturas_index_doc() {
 //    '#response' => json_format('{href: "http://esculturas.local/api/v1/esculturas?page=0&pagesize=1",next: "http://esculturas.local/api/v1/esculturas?page=1&pagesize=1",max_pages: 999,data: [{id: "457",href: "http://esculturas.local/api/v1/esculturas/457",name: "Gemino Pertineo",image: "http://esculturas.local/sites/default/files/esculturas/imagefield_VSgeIF.jpeg",autor: {id: "42",href: "http://esculturas.local/api/v1/autores/42",name: "Modo Sit Ut Venio"},tags: [{id: "10",href: "http://esculturas.local/api/v1/esculturas?tags=10",name: "Humanidad"}]}]}'),
     '#response' => '{href: "http://esculturas.local/api/v1/esculturas?page=0&pagesize=1",next: "http://esculturas.local/api/v1/esculturas?page=1&pagesize=1",max_pages: 999,data: [{id: "457",href: "http://esculturas.local/api/v1/esculturas/457",name: "Gemino Pertineo",image: "http://esculturas.local/sites/default/files/esculturas/imagefield_VSgeIF.jpeg",autor: {id: "42",href: "http://esculturas.local/api/v1/autores/42",name: "Modo Sit Ut Venio"},tags: [{id: "10",href: "http://esculturas.local/api/v1/esculturas?tags=10",name: "Humanidad"}]}]}',
     '#path' => 'esculturas',
-  );  
- 
+  );
+
   return $element;
 }

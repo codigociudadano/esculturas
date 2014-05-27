@@ -28,6 +28,14 @@ function ew_autores_resource_definition() {
               'type' => 'int',
               'description' => 'Id del autor a obtener.',
             ),
+            array(
+              'name' => 'esculturas',
+              'optional' => TRUE,
+              'type' => 'boolean',
+              'description' => 'Inculir listado de esculturas del autor.',
+              'default value' => FALSE,
+              'source' => array('param' => 'esculturas'),
+            ),
           ),
           'access callback' => '_node_resource_access',
           'access arguments' => array('view'),
@@ -177,7 +185,7 @@ function _ew_autores_resource_index($page, $pagesize) {
  * @param string $id | Id de la autor a obtener.
  * @return array
  */
-function _ew_autores_resource_retrieve($id) {
+function _ew_autores_resource_retrieve($id, $esculturas) {
   $query = db_select("node", "n")
              ->fields("n", array("nid"))
              ->condition("n.nid", $id)
@@ -198,6 +206,10 @@ function _ew_autores_resource_retrieve($id) {
   if ($result) {
     $node = node_load($result->nid);
     $response["data"] = $node;
+
+    if($esculturas) {
+      $response["esculturas"] = _ew_esculturas_resource_index(0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $node->nid, NULL, TRUE);
+    }
   }
   else {
     $response = services_error(t("Recurso con id:".$id." no encontrado."), 404);
