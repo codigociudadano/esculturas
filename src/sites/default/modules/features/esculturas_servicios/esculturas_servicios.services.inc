@@ -82,6 +82,16 @@ function esculturas_servicios_default_services_endpoint() {
         ),
       ),
     ),
+    'taxonomy_term' => array(
+      'operations' => array(
+        'retrieve' => array(
+          'enabled' => '1',
+        ),
+        'index' => array(
+          'enabled' => '1',
+        ),
+      ),
+    ),
   );
   $endpoint->debug = 1;
   $export['api_v1_esculturas'] = $endpoint;
