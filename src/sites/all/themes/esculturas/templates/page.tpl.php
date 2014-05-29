@@ -85,7 +85,7 @@
         <div class="mobilenavi"></div>
         <nav id="navigation" role="navigation">
           <div id="main-menu">
-            <?php 
+            <?php
               if (module_exists('i18n_menu')) {
                 $main_menu_tree = i18n_menu_translated_tree(variable_get('menu_main_links_source', 'main-menu'));
               } else {
@@ -102,7 +102,7 @@
 
   <?php if ($is_front): ?>
   <?php if (theme_get_setting('slideshow_display','esculturas')): ?>
-  <?php 
+  <?php
     $slide1_head = check_plain(theme_get_setting('slide1_head','esculturas'));   $slide1_desc = check_markup(theme_get_setting('slide1_desc','esculturas'), 'full_html'); $slide1_url = check_plain(theme_get_setting('slide1_url','esculturas'));
     $slide2_head = check_plain(theme_get_setting('slide2_head','esculturas'));   $slide2_desc = check_markup(theme_get_setting('slide2_desc','esculturas'), 'full_html'); $slide2_url = check_plain(theme_get_setting('slide2_url','esculturas'));
     $slide3_head = check_plain(theme_get_setting('slide3_head','esculturas'));   $slide3_desc = check_markup(theme_get_setting('slide3_desc','esculturas'), 'full_html'); $slide3_url = check_plain(theme_get_setting('slide3_url','esculturas'));
@@ -174,7 +174,7 @@
   <?php endif; ?>
 
     <div id="main-content">
-    <div class="container"> 
+    <div class="container">
       <div class="row">
         <?php if(!empty($page['sidebar_first'])) { $primary_col = 8; } else { $primary_col = 12; } ?>
         <div id="primary" class="content-area col-sm-<?php print $primary_col; ?>">
@@ -205,7 +205,7 @@
         <?php if (!empty($page['sidebar_first'])): ?>
           <aside id="sidebar" class="col-sm-4" role="complementary">
            <?php print render($page['sidebar_first']); ?>
-          </aside> 
+          </aside>
         <?php endif; ?>
       </div>
     </div>
@@ -249,7 +249,7 @@
     <div class="container">
       <div class="row">
         <div class="fcred col-sm-12">
-          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a><div class=""></div>
+          <?php print t('Desarrollado por')?> <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a><div class=""></div>
         </div>
       </div>
     </div>
