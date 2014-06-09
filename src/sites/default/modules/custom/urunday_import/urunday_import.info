@@ -1,0 +1,6 @@
+name = Urunday Import
+description = Importa data de Urunday
+core = 7.x
+package = Esculturas
+version = 7.x-1.0
+project = urunday_import
