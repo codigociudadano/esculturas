@@ -1,9 +1,3 @@
-<script type="text/javascript">
-       esculturas = <?php echo json_encode($esculturas); ?>;
-       categorias = <?php echo json_encode($categorias); ?>;
-
-</script>
-
 <style>
     #map-canvas {
         max-width: none;
@@ -40,52 +34,58 @@
 
   div.scrollWrapper:hover {
       height:300px;
-      width:300px;  
+      width:300px;
       overflow-y: auto;
           
     }
 
-</style>
+    .scrollable{
+        overflow-y: auto;
+        width: 300; /* adjust this width depending to amount of text to display */
+        height: 200px; /* adjust height depending on number of options to display */
+    }
+    .scrollable select{
+        border: none;
+    }
 
-<table>
-    <tr>
-      <td>
-        <br>
-        <h2>Filtrar por:</h2>
-        <h3>Autor</h3>
-            <select id="autores" name="autores" style="overflow-y: auto; width: 300px;">
-                <option>Todos</option>
-                <option disabled>──────────</option>
-                <?php
-                 $autores = $categorias[2];
-                    foreach($autores as $a){
-                        echo '<option>'.$a.'</option>';
-                    }
-                ?>
-            </select>
+</style>
+        <div class="row" align="center"  style="margin-bottom:10px">
+            <div style="float: left; margin-right: 10px;"><h3>Autor</h3>
+              <select id="autores" name="autores" class="multiselect dropdown-toggle" data-toggle="dropdown" align="center">
+                    <option>Todos</option>
+                    <?php
+                     $autores = $categorias[2];
+                        foreach($autores as $a){
+                            echo '<option>'.$a.'</option>';
+                        }
+                    ?>
+              </select>
+          </div>
         <div class="checkboxes">
-           <span style="float: left; margin-right: 10px; "><h3>Material</h3>
-              <?php
-              $materiales = $categorias[0];
-              foreach($materiales as $m){
-                  echo '<input type="checkbox" value="'.$m.'"/><label> '.$m.'</label><br />';
-              }
-              ?>
-           </span>
-           <span style="float: left;"><h3>Tipo</h3>
+            <div style="float: left; margin-right: 10px;"><h3>Materiales</h3>
+               <select class="multiselect" multiple="multiple">
+               <?php
+                  $materiales = $categorias[0];
+                  foreach($materiales as $m){
+                      echo '<option value="'.$m.'">'.$m.'</option>';
+                  }
+                  ?>
+               </select>
+           </div>
+            <div style="float: left; margin-right: 10px;"><h3>Tipos</h3>
+               <select class="multiselect" multiple="multiple">
                 <?php
                 $tipos = $categorias[1];
                 foreach($tipos as $t){
-                    echo '<input type="checkbox" value="'.$t.'"/><label> '.$t.'</label><br />';
+                    echo '<option value="'.$t.'">'.$t.'</option>';
                 }
                 ?>
-           </span>
+               </select>
+           </div>
         </div>
-            <h3>Evento</h3>
-            <span style="float: left; margin-right: 10px;">
-                <select id="eventos" name="eventos" style="overflow-y: auto;">
+            <div style="float: left; margin-right: 10px;"><h3>Evento</h3>
+                <select id="eventos" name="eventos" class="multiselect dropdown-toggle" data-toggle="dropdown" align="center">
                     <option>Todos</option>
-                    <option disabled>──────────</option>
                     <?php
                     $eventos = $categorias[3];
                     foreach($eventos as $e){
@@ -93,17 +93,31 @@
                     }
                     ?>
                 </select>
-            </span>
-        <span style="float: left;">
-            <input type="button" id="ubicame" value="Ubicame"></button>
-        </span>
-            <div class="checkbox_cercanas">
-                <span style="float: right;"><input type="checkbox"/><label id="label">Top 5 esculturas cercanas</label></span>
             </div>
-        </td>
-        <td>
-            <div id="map_canvas" style="width:825px; height:600px;"></div>
-        </td>
-    </tr>
-</table>
+            <div style="float: left; margin-left: 10px;">
+                <h3 id="h3">Top 5 esculturas cercanas </h3>
+                <input class="btn btn-danger" type="button" id="cercanas" value="Mostrar" style="float: center"/>
+            </div>
+            <div style="float: right"><h3>Mi ubicación</h3>
+                <input class="btn btn-danger" type="button" id="ubicame" value="Ubicame" style="float: center"/>
+            </div>
+    </div>
+
+    <div class="well">
+        <div id="map_canvas" style="width:100%; height:500px;"></div>
+    </div>
+<script type="text/javascript">
+    esculturas = <?php echo json_encode($esculturas); ?>;
+    categorias = <?php echo json_encode($categorias); ?>;
+</script>
+<script type="text/javascript">
+    jQuery('.multiselect').multiselect({
+        templates: {
+            button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
+            ul: '<ul class="multiselect-container dropdown-menu" style="max-height: 200px; overflow-y: auto; overflow-x: hidden;"></ul>',
+            filter: '<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text"></div>',
+            li: '<li><a href="javascript:void(0);"><label></label></a></li>'
+        }
+    });
+</script>
 

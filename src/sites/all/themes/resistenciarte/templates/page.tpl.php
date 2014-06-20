@@ -1,11 +1,10 @@
 <?php
-
 /**
  * @file
  * Default theme implementation to display a single Drupal page.
  *
  * The doctype, html, head and body tags are not in this template. Instead they
- * can be found in the html.tpl.php template in this directory.
+ * can be found in the html.templates.php template in this directory.
  *
  * Available variables:
  *
@@ -35,7 +34,7 @@
  *   the site, if they have been configured.
  * - $breadcrumb: The breadcrumb trail for the current page.
  *
- * Page content (in order of occurrence in the default page.tpl.php):
+ * Page content (in order of occurrence in the default page.templates.php):
  * - $title_prefix (array): An array containing additional output populated by
  *   modules, intended to be displayed in front of the main title tag that
  *   appears in the template.
@@ -64,93 +63,147 @@
  * - $page['header']: Items for the header region.
  * - $page['footer']: Items for the footer region.
  *
+ * @see bootstrap_preprocess_page()
  * @see template_preprocess()
  * @see template_preprocess_page()
+ * @see bootstrap_process_page()
  * @see template_process()
- * @see html.tpl.php
+ * @see html.templates.php
  *
  * @ingroup themeable
  */
 ?>
-
-  <div id="page-wrapper"><div id="page">
-
-    <div id="header"><div class="section clearfix">
-
-      <?php if ($logo): ?>
-        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
-      <?php endif; ?>
-
-      <?php if ($site_name || $site_slogan): ?>
-        <div id="name-and-slogan">
-          <?php if ($site_name): ?>
-            <?php if ($title): ?>
-              <div id="site-name"><strong>
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </strong></div>
-            <?php else: /* Use h1 when the content title is empty */ ?>
-              <h1 id="site-name">
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </h1>
+<div class="container">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-6"><?php if ($logo): ?>
+                <a>
+                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                </a>
             <?php endif; ?>
-          <?php endif; ?>
+        </div>
+        <div class="col-lg-3" style="float: right;">
+            <div class="input-group">
+                <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-search"></span> </button>
+      </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <div id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
+        <div class="navbar-wrapper">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-          <?php if ($site_slogan): ?>
-            <div id="site-slogan"><?php print $site_slogan; ?></div>
-          <?php endif; ?>
-        </div> <!-- /#name-and-slogan -->
-      <?php endif; ?>
+        <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
+            <div class="navbar-collapse collapse">
+                <nav role="navigation">
+                    <?php if (!empty($primary_nav)): ?>
+                        <?php print render($primary_nav); ?>
+                    <?php endif; ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><div class="leaf" style="margin-right: 10px"><i class="fa fa-facebook fa-2x"></i></div><!--?php if (!empty($secondary_nav)): ?-->
+                                <!--?php print render($secondary_nav); ?-->
+                            <!--?php endif; ?--></li>
+                        <li><div class="leaf" style="margin-right: 10px"><i class="fa fa-twitter fa-2x"></i></div>
+                        <li><div class="leaf" style="margin-right: 10px"><i class="fa fa-google-plus fa-2x"></i></div>
+                    </ul>
+                    <?php if (!empty($page['navigation'])): ?>
+                        <?php print render($page['navigation']); ?>
+                    <?php endif; ?>
+                </nav>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 
-      <?php print render($page['header']); ?>
+<div class="main-container container">
+    <?php if ($is_front): ?>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
 
-    </div></div> <!-- /.section, /#header -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="..." alt="...">
+                    <div class="carousel-caption">
+                        ...
+                    </div>
+                </div>
+                ...
+            </div>
 
-    <?php if ($main_menu || $secondary_menu): ?>
-      <div id="navigation"><div class="section">
-        <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
-        <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Secondary menu'))); ?>
-      </div></div> <!-- /.section, /#navigation -->
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
     <?php endif; ?>
 
-    <?php if ($breadcrumb): ?>
-      <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+    <?php if (!$is_front): ?>
+        <div class="row">
+
+            <?php if (!empty($page['sidebar_first'])): ?>
+                <aside class="col-sm-3" role="complementary">
+                    <?php print render($page['sidebar_first']); ?>
+                </aside>  <!-- /#sidebar-first -->
+            <?php endif; ?>
+
+            <section<?php print $content_column_class; ?>>
+             <div class="well">
+                <?php if (!empty($page['highlighted'])): ?>
+                    <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+                <?php endif; ?>
+                <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+                <a id="main-content"></a>
+                <?php print render($title_prefix); ?>
+                <?php if (!empty($title)): ?>
+                    <h1 class="page-header"><?php print $title; ?></h1>
+                <?php endif; ?>
+                <?php print render($title_suffix); ?>
+                <?php print $messages; ?>
+                <?php if (!empty($tabs)): ?>
+                    <?php print render($tabs); ?>
+                <?php endif; ?>
+                <?php if (!empty($page['help'])): ?>
+                    <?php print render($page['help']); ?>
+                <?php endif; ?>
+                <?php if (!empty($action_links)): ?>
+                    <ul class="action-links"><?php print render($action_links); ?></ul>
+                <?php endif; ?>
+                <?php print render($page['content']); ?>
+                 </div>
+            </section>
+
+            <?php if (!empty($page['sidebar_second'])): ?>
+                <aside class="col-sm-3" role="complementary">
+                    <?php print render($page['sidebar_second']); ?>
+                </aside>  <!-- /#sidebar-second -->
+            <?php endif; ?>
+
+        </div>
     <?php endif; ?>
+</div>
+<footer class="footer container">
+        <div class="row">
+            <div class="fcred col-sm-12">
+                <?php print t('Desarrollado por')?> <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a><div class=""></div>
+            </div>
+    </div>
+</footer>
 
-    <?php print $messages; ?>
 
-    <div id="main-wrapper"><div id="main" class="clearfix">
-
-      <div id="content" class="column"><div class="section">
-        <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-        <a id="main-content"></a>
-        <?php print render($title_prefix); ?>
-        <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-        <?php print render($title_suffix); ?>
-        <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-        <?php print render($page['help']); ?>
-        <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-        <?php print render($page['content']); ?>
-        <?php print $feed_icons; ?>
-      </div></div> <!-- /.section, /#content -->
-
-      <?php if ($page['sidebar_first']): ?>
-        <div id="sidebar-first" class="column sidebar"><div class="section">
-          <?php print render($page['sidebar_first']); ?>
-        </div></div> <!-- /.section, /#sidebar-first -->
-      <?php endif; ?>
-
-      <?php if ($page['sidebar_second']): ?>
-        <div id="sidebar-second" class="column sidebar"><div class="section">
-          <?php print render($page['sidebar_second']); ?>
-        </div></div> <!-- /.section, /#sidebar-second -->
-      <?php endif; ?>
-
-    </div></div> <!-- /#main, /#main-wrapper -->
-
-    <div id="footer"><div class="section">
-      <?php print render($page['footer']); ?>
-    </div></div> <!-- /.section, /#footer -->
-
-  </div></div> <!-- /#page, /#page-wrapper -->

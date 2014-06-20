@@ -1,0 +1,422 @@
+body {
+    background-color: #039a7c!important;
+}
+
+div#page {
+    background-color: #039a7c!important;
+}
+
+input {
+    padding: 0px;
+}
+
+html.js input.form-autocomplete {
+    background-position: 100% 4px;
+}
+
+body.node-type-page h1.page-title {
+    display: none ;
+}
+
+.galleryview {
+    margin-bottom: 50px;
+}
+
+.page-node #content-wrap .gallery-slides img {
+    border: 0px;
+    padding: 0px;
+    max-width: 100%;
+    margin: 0px;
+}
+
+#map_canvas img { max-width: none; }
+
+#page div.field {
+    margin-bottom: 10px;
+}
+
+#outerImageContainer {
+    border-radius: 20px;
+}
+
+#imageData {
+    display: none;
+}
+
+#imageContainer img {
+    border-radius: 20px;
+}
+
+.views-exposed-widgets {
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+}
+
+#slidebox > ul.slides > li.flex-active-slide > div > h2 {
+    background-color: #f4473a;
+    opacity: 0.95;
+}
+
+.view-autores td,
+.view-display-id-page .view-esculturas td {
+    width: auto;
+    text-align: center;
+}
+
+#primary td {
+    vertical-align: top;
+    border: 0px;
+}
+
+#primary .view-display-id-page td {
+    padding: 10px;
+    margin: 10px;
+    border: 0px;
+    width: 50%;
+}
+
+#primary .view-display-id-page table {
+    border: 0px;
+}
+
+.view-display-id-page  .views-field-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0px 20px;
+    opacity: 0.90;
+}
+
+.views-field-title a {
+    color: #000;
+}
+
+.view-display-id-page .views-field.views-field-field-fotos  {
+    float: left;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.view-display-id-page .views-field {
+    text-align: left;
+}
+
+.view-display-id-page .views-field .field-content {
+    display: inline;
+}
+
+.field-name-field-premios .field-items {
+    margin: 10px;
+}
+
+.field-name-field-premios .field-items .field-item {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted #eee;
+}
+
+.field-name-field-premios .field-items .field-item.last {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.google_map_field_display {
+    margin : 10px auto;
+}
+
+.galleryformatter-greenarrows .gallery-thumbs .arrow {
+    bottom: 25px;
+    display: block;
+    height: 46px;
+    position: absolute;
+    text-indent: -9999px;
+    width: 46px;
+}
+
+.page-node.node-type-page #content-wrap img {
+    border: 0px;
+    padding: 0px;
+    height: auto;
+    max-width: 100%;
+    margin: 0px;
+}
+
+
+span.a2a_kit.a2a_kit_size_32.a2a_target.addtoany_list {
+    position: absolute;
+    top: 18px;
+    right: 0;
+    width: 184px;
+}
+
+body.page-node div#content-wrap {
+    position: relative;
+}
+
+body.page-node .comments {
+    margin: 50px 0px;
+}
+
+body.front h1.page-title {
+    display: none;
+}
+
+.field.field-name-field-ubicacion {
+    float: left;
+    width: 40%;
+    margin-right: 30px;
+}
+
+.field.field-name-field-mapa {
+    float: left;
+    width: 30%;
+}
+
+.field.field-name-field-mapa .field-label {
+    display: none;
+}
+
+.field.field-name-field-tags {
+    clear: both;
+}
+
+td.views-field.views-field-field-fotos {
+    text-align: center;
+}
+
+.galleryformatter-greenarrows .gallery-thumbs .wrapper {
+    background: none;
+}
+
+.galleryformatter-greenarrows .view-full {
+    background: url("../images/lupa.png") no-repeat scroll 0 0 transparent;
+    width: 46px;
+    height: 46px;
+}
+
+.galleryformatter-greenarrows a:hover .view-full:hover {
+    background: url("../images/lupa.png") no-repeat scroll 0 0 transparent;
+    background-size: 46px 46px;
+}
+
+header div.row {
+    background-color: #009681;
+    color: #fff;
+}
+
+div.col-sm-6.mainmenu {
+    background-color: #fff;
+    min-height: 42px;
+    color: #fff;
+    float: none;
+    width: 100%;
+}
+
+#main-menu li {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#main-menu li.leaf.active-trail {
+    background-color: #005962;
+}
+
+#main-menu {
+    height: 45px;
+    border-bottom: none;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+}
+
+#navigation {
+    float: none;
+    color: #fff;
+}
+
+#main-menu a.active, #main-menu > ul > li > a.active-trail,
+#main-menu li a {
+    color: #FFF;
+}
+
+#main-menu a.active,
+#main-menu li a:hover {
+    color: #009bb8;
+}
+
+#logo {
+    float: none;
+    width: 100%;
+    min-height: 100px;
+}
+
+#logo h1#site-title a {
+    color: #fff;
+}
+
+a:visited,
+a {
+    color: #009681;
+}
+
+#breadcrumbs {
+    display: none;
+}
+
+.views-field-title a {
+    color: #000 !important;
+}
+
+#slidebox {
+    max-height: 550px;
+    position: relative;
+    background: #000;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #444;
+    background-color: #fff;
+    padding-top: 6px;
+    margin-bottom: 0px;
+}
+
+div#page {
+    background-color: #4b4b4d;
+    color: #fff;
+}
+
+.site-footer {
+    padding: 10px 0px;
+    background: #4b4b4d;
+    font-size: 12px;
+}
+
+h1.page-title {
+    color: #4b4b4b;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background-color: #ccc;
+    padding: 5px 20px;
+    text-transform: uppercase;
+    border-left: 20px solid #009bb8;
+}
+
+#slidebox > ul.slides > li.flex-active-slide > div > h2 {
+    background-color: #009681;
+    opacity: 0.95;
+}
+
+.txtlogo {
+    height: 40px;
+    margin-left: 10px;
+}
+
+.isologo {
+    height: 40px;
+}
+
+#logo {
+    min-height: 50px;
+}
+
+.search {
+    position: absolute;
+    right: 20px;
+    top: 19px;
+}
+
+.search input[type=text] {
+    width: 200px;
+    height: 31px;
+    border: 0px;
+    margin-right: 0px;
+}
+
+.search input[type=submit] {
+    background: none;
+    border: 0;
+    color: aliceblue;
+    background-image: url(../images/lupa.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border-radius: 0;
+    box-shadow: none;
+    background-position: 10px;
+    width: 40px;
+    text-indent: -100px;
+    overflow: hidden;
+}
+
+
+@media all and (max-width: 713px) and (min-width: 0px) {
+    .search {
+        display: none;
+    }
+}
+
+#primary, #sidebar {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.btn-danger {
+    background-color: #038168!important;
+    border-color: #038168!important;
+}
+
+.btn-default{
+    color: #inherit!important;
+    border-color: #038168!important;
+}
+
+.navbar-toggle{
+    float: left!important;
+    margin-left: 0px!important;
+    color: #fff!important;
+    background-color: #038168!important;
+    border-color: #038168!important;
+
+}
+
+.well{
+    min-height: 20px;
+    margin-top: 0px!important;
+    padding: 15px!important;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.page-header {
+    padding-bottom: 0px!important;
+    color: #039a7c!important;
+    margin-top: 0px;
+    margin: 40px 0 20px;
+    border-bottom: none!important;
+}
+
+.leaf:hover{
+    color: #039a7c!important;
+}
+
+.multiselect-container{
+    border-color: #039a7c!important;
+}

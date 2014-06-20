@@ -11,7 +11,7 @@
  * See COPYRIGHT.txt and LICENSE.txt.
  */
 
-/**
+/**1
  * Root directory of Drupal installation.
  */
 define('DRUPAL_ROOT', getcwd());
