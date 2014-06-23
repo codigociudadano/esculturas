@@ -8,4 +8,6 @@ jQuery(document).ready( function(){
         columnWidth: 260,
         itemSelector: '.views-row'
     });
+
 });
+
