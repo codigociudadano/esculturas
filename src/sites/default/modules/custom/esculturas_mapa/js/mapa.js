@@ -29,6 +29,13 @@
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
+        //evento que detecta el tamaño de la ventana del browser y centraliza el mapa
+        google.maps.event.addDomListener(window, "resize", function() {
+            var center = map.getCenter();
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(center);
+        });
+
         ocultarBotonCercanas(true);
 
         esculturas.forEach( function(escultura){
@@ -53,7 +60,7 @@
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                     var contentString = null;
-                    contentString = '<div>'+
+                    contentString = '<div style="border-color: #038168!important">'+
                         '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
                             '<div class="scrollWrapper">'+
@@ -351,6 +358,8 @@
             }
        });
 
+
+
         function ocultarCheckboxes(flag){
             $('.checkboxes input').attr("disabled", flag);
             $('.checkboxes input').attr("checked", false);
@@ -369,13 +378,13 @@
             if(flag){
              $("#ubicame").attr('value', 'Ubicame');
              $('#cercanas').hide();
-             $('h3[id="h3"]').hide();
+             $('h4[id="h4"]').hide();
             }else{
-             $("#ubicame").attr('value', 'Quitar ubicación');
+             $("#ubicame").attr('value', 'Quitar');
              $('#cercanas').show();
-             $('h3[id="h3"]').show();
+             $('h4[id="h4"]').show();
             } 
-        }        
+        }
     }
     initialize();
 

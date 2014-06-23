@@ -7,6 +7,10 @@ stylesheets[all][0] = css/overrides.css
 stylesheets[all][1] = css/bootstrap.css
 stylesheets[all][2] = css/font-awesome.css
 
+scripts[0]=js/bootstrap.js
+scripts[1]=js/masonry.pkgd.min.js
+scripts[2]=js/theme.js
+
 regions[highlighted]    = Highlighted
 regions[sidebar_first]  = First Sidebar
 regions[sidebar_second] = Second Sidebar

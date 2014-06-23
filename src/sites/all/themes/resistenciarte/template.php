@@ -16,3 +16,4 @@ function resistenciarte_process_html(&$vars) {
     $classes[] = theme_get_setting('font_size');
     $vars['classes'] = trim(implode(' ', $classes));
 }
+

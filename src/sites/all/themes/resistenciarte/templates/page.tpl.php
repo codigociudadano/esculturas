@@ -74,19 +74,19 @@
  */
 ?>
 <div class="container">
-    <div class="row" style="margin-top: 20px">
-        <div class="col-lg-6"><?php if ($logo): ?>
+    <div class="row">
+        <div class="col-md-8"><?php if ($logo): ?>
                 <a>
                     <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
                 </a>
             <?php endif; ?>
         </div>
-        <div class="col-lg-3" style="float: right;">
+        <div class="col-md-4">
             <div class="input-group">
-                <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-search"></span> </button>
-      </span>
+                <input type="text" class="form-control" placeholder="Buscar">
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-search"></span> </button>
+                  </span>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
@@ -108,11 +108,11 @@
                         <?php print render($primary_nav); ?>
                     <?php endif; ?>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><div class="leaf" style="margin-right: 10px"><i class="fa fa-facebook fa-2x"></i></div><!--?php if (!empty($secondary_nav)): ?-->
+                        <li><div class="leaf facebook"><i class="fa fa-facebook"></i></div><!--?php if (!empty($secondary_nav)): ?-->
                                 <!--?php print render($secondary_nav); ?-->
                             <!--?php endif; ?--></li>
-                        <li><div class="leaf" style="margin-right: 10px"><i class="fa fa-twitter fa-2x"></i></div>
-                        <li><div class="leaf" style="margin-right: 10px"><i class="fa fa-google-plus fa-2x"></i></div>
+                        <li><div class="leaf twitter"><i class="fa fa-twitter"></i></div>
+                        <li><div class="leaf google-plus"><i class="fa fa-google-plus"></i></div>
                     </ul>
                     <?php if (!empty($page['navigation'])): ?>
                         <?php print render($page['navigation']); ?>
@@ -172,7 +172,7 @@
                 <a id="main-content"></a>
                 <?php print render($title_prefix); ?>
                 <?php if (!empty($title)): ?>
-                    <h1 class="page-header"><?php print $title; ?></h1>
+                    <h3 class="page-header"><?php print $title; ?></h3>
                 <?php endif; ?>
                 <?php print render($title_suffix); ?>
                 <?php print $messages; ?>

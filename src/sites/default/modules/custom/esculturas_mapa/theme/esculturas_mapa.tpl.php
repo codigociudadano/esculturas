@@ -49,8 +49,8 @@
     }
 
 </style>
-        <div class="row" align="center"  style="margin-bottom:10px">
-            <div style="float: left; margin-right: 10px;"><h3>Autor</h3>
+        <div id="row" align="center">
+            <div id="mapa_control"><h4>Autor</h4>
               <select id="autores" name="autores" class="multiselect dropdown-toggle" data-toggle="dropdown" align="center">
                     <option>Todos</option>
                     <?php
@@ -62,8 +62,8 @@
               </select>
           </div>
         <div class="checkboxes">
-            <div style="float: left; margin-right: 10px;"><h3>Materiales</h3>
-               <select class="multiselect" multiple="multiple">
+            <div id="mapa_control"><h4>Materiales</h4>
+               <select class="multiselect" multiple="multiple" align="center">
                <?php
                   $materiales = $categorias[0];
                   foreach($materiales as $m){
@@ -72,8 +72,8 @@
                   ?>
                </select>
            </div>
-            <div style="float: left; margin-right: 10px;"><h3>Tipos</h3>
-               <select class="multiselect" multiple="multiple">
+            <div id="mapa_control"><h4>Tipos</h4>
+               <select class="multiselect" multiple="multiple" align="center">
                 <?php
                 $tipos = $categorias[1];
                 foreach($tipos as $t){
@@ -83,7 +83,7 @@
                </select>
            </div>
         </div>
-            <div style="float: left; margin-right: 10px;"><h3>Evento</h3>
+            <div id="mapa_control"><h4>Evento</h4>
                 <select id="eventos" name="eventos" class="multiselect dropdown-toggle" data-toggle="dropdown" align="center">
                     <option>Todos</option>
                     <?php
@@ -94,17 +94,17 @@
                     ?>
                 </select>
             </div>
-            <div style="float: left; margin-left: 10px;">
-                <h3 id="h3">Top 5 esculturas cercanas </h3>
-                <input class="btn btn-danger" type="button" id="cercanas" value="Mostrar" style="float: center"/>
+            <div class="control-ubicame"><h4>Mi ubicación</h4>
+                <input class="btn btn-danger" type="button" id="ubicame" value="Ubicame" align"center"/>
             </div>
-            <div style="float: right"><h3>Mi ubicación</h3>
-                <input class="btn btn-danger" type="button" id="ubicame" value="Ubicame" style="float: center"/>
+            <div id="mapa_control">
+                <h4 id="h4">Top 5 esculturas cercanas </h4>
+                <input class="btn btn-danger" type="button" id="cercanas" value="Mostrar" align="center"/>
             </div>
     </div>
 
-    <div class="well">
-        <div id="map_canvas" style="width:100%; height:500px;"></div>
+    <div id="row">
+        <div id="map_canvas"></div>
     </div>
 <script type="text/javascript">
     esculturas = <?php echo json_encode($esculturas); ?>;
@@ -114,7 +114,7 @@
     jQuery('.multiselect').multiselect({
         templates: {
             button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
-            ul: '<ul class="multiselect-container dropdown-menu" style="max-height: 200px; overflow-y: auto; overflow-x: hidden;"></ul>',
+            ul: '<ul class="multiselect-container dropdown-menu" style="max-height: 150px; overflow-y: auto; overflow-x: hidden;"></ul>',
             filter: '<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text"></div>',
             li: '<li><a href="javascript:void(0);"><label></label></a></li>'
         }
