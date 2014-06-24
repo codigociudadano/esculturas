@@ -60,7 +60,7 @@
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                     var contentString = null;
-                    contentString = '<div style="border-color: #038168!important">'+
+                    contentString = '<div style="color: #333; border-color: #038168!important;">'+
                         '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
                             '<div class="scrollWrapper">'+
