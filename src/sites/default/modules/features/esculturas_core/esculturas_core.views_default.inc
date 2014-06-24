@@ -31,15 +31,14 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Enviar';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Reiniciar';
   $handler->display->display_options['pager']['type'] = 'mini';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '40';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['tags']['first'] = '« primera';
   $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ anterior';
   $handler->display->display_options['pager']['options']['tags']['next'] = 'siguiente ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'última »';
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '2';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Campo: Contenido: Fotos */
   $handler->display->display_options['fields']['field_fotos']['id'] = 'field_fotos';
@@ -147,15 +146,14 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Enviar';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Reiniciar';
   $handler->display->display_options['pager']['type'] = 'mini';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '40';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['tags']['first'] = '« primera';
   $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ anterior';
   $handler->display->display_options['pager']['options']['tags']['next'] = 'siguiente ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'última »';
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '2';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Campo: Contenido: Fotos */
   $handler->display->display_options['fields']['field_fotos']['id'] = 'field_fotos';
@@ -289,44 +287,10 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'field_fotos' => 'field_fotos',
-    'title' => 'title',
-    'field_material' => 'field_material',
-    'field_tipo' => 'field_tipo',
-  );
-  $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'field_fotos' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'title' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_material' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_tipo' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Campo: Contenido: Fotos */
@@ -337,7 +301,7 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['field_fotos']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_fotos']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_fotos']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'listados',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_fotos']['delta_limit'] = '1';
@@ -346,9 +310,10 @@ function esculturas_core_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Nombre de la Obra';
+  $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Campo: Contenido: Material */
   $handler->display->display_options['fields']['field_material']['id'] = 'field_material';
   $handler->display->display_options['fields']['field_material']['table'] = 'field_data_field_material';
@@ -401,7 +366,6 @@ function esculturas_core_views_default_views() {
     t('Page'),
     t('Bloque'),
     t('Esculturas del Autor'),
-    t('Nombre de la Obra'),
     t('Todo(s)'),
   );
   $export['esculturas'] = $view;

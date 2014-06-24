@@ -97,7 +97,6 @@ body.node-type-page h1.page-title {
     font-size: 20px;
     font-weight: bold;
     color: #fff;
-    margin: 0px 20px;
     opacity: 0.90;
 }
 
@@ -106,17 +105,16 @@ body.node-type-page h1.page-title {
 }
 
 .view-display-id-page .views-field.views-field-field-fotos  {
-    float: left;
     width: 220px;
-    margin-right: 20px;
 }
 
 .view-display-id-page .views-field {
     text-align: left;
+    margin: 15px 0px;
 }
 
 .view-display-id-page .views-field .field-content {
-    display: inline;
+    display: block;
 }
 
 .field-name-field-premios .field-items {
@@ -276,7 +274,12 @@ div.col-sm-6.mainmenu {
 
 a:visited,
 a {
-    color: #009681;
+    color: #009681 !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+ color: #428bca !important;
 }
 
 #breadcrumbs {
@@ -472,7 +475,7 @@ h1.page-title {
     text-transform:uppercase!important;
     padding-bottom: 0px!important;
     color: #039a7c!important;
-    margin: 0px 0 -1px!important;
+    margin: 0px 0px 20px 0px!important;
     border-bottom: none!important;
     font-weight:bold;
 }
@@ -499,11 +502,26 @@ body{
     background-color: #039a7c!important;
 }
 
+.view-autores .views-row,
 .view-esculturas .views-row{
     width: 260px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    border-bottom: 5px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .view-autores .views-row{
     width: 260px;
+    margin-bottom: 20px;
+    margin-left: 15px;
 }
 
+#block-views-esculturas-block-1 h2 {
+  border-bottom: 3px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  font-size: 20px;
+}

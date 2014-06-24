@@ -111,7 +111,12 @@
                         <li><div class="leaf facebook"><i class="fa fa-facebook"></i></div><!--?php if (!empty($secondary_nav)): ?-->
                                 <!--?php print render($secondary_nav); ?-->
                             <!--?php endif; ?--></li>
-                        <li><div class="leaf twitter"><i class="fa fa-twitter"></i></div>
+                        <li>
+                          <div class="leaf twitter">
+                            <a href="">
+                              <i class="fa fa-twitter"></i>
+                            </a>
+                          </div>
                         <li><div class="leaf google-plus"><i class="fa fa-google-plus"></i></div>
                     </ul>
                     <?php if (!empty($page['navigation'])): ?>
@@ -136,12 +141,24 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="..." alt="...">
+                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide1.png' ?>">
                     <div class="carousel-caption">
-                        ...
+                        Slide 1
                     </div>
                 </div>
-                ...
+                <div class="item active">
+                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide2.png' ?>">
+                    <div class="carousel-caption">
+                        Slide 2
+                    </div>
+                </div>
+                <div class="item active">
+                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide3.png' ?>">
+                    <div class="carousel-caption">
+                        Slide 3
+                    </div>
+                </div>
+
             </div>
 
             <!-- Controls -->
@@ -186,6 +203,9 @@
                     <ul class="action-links"><?php print render($action_links); ?></ul>
                 <?php endif; ?>
                 <?php print render($page['content']); ?>
+                <?php if (!empty($page['content_bottom'])): ?>
+                  <?php print render($page['content_bottom']); ?>
+                <?php endif; ?>
                  </div>
             </section>
 
