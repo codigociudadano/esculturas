@@ -12,6 +12,7 @@
 
     };
 
+    var flag_btn_cercanas;
     var map = null;
     var i = 0;
     var marker = null;
@@ -28,7 +29,14 @@
         map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
-        ocultarCheckBoxCercanas(true);
+        //evento que detecta el tamaño de la ventana del browser y centraliza el mapa
+        google.maps.event.addDomListener(window, "resize", function() {
+            var center = map.getCenter();
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(center);
+        });
+
+        ocultarBotonCercanas(true);
 
         esculturas.forEach( function(escultura){
             var e = [escultura[0], escultura[1], escultura[2], escultura[3]];
@@ -52,7 +60,7 @@
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                     var contentString = null;
-                    contentString = '<div>'+
+                    contentString = '<div style="border-color: #038168!important">'+
                         '<h1>'+e[0].titulo+'</h1>'+
                             '<div id="bodyContent">'+
                             '<div class="scrollWrapper">'+
@@ -87,6 +95,7 @@
        var autor = $("#autores").find(":selected").text(); 
        var evento = $("#eventos").find(":selected").text();
        var values = null;
+
 
 //checkboxes Material, Tipo y Evento
 
@@ -216,7 +225,7 @@
                 my_marker.setMap(null);
                 my_marker = null;
                
-               ocultarCheckBoxCercanas(true);
+               ocultarBotonCercanas(true);
 
                 ocultarCheckboxes(false);
 
@@ -262,9 +271,11 @@
                             google.maps.event.addListener(my_marker, 'dblclick', function(){
                                 my_infoWindow.close(map, my_marker);
                                 my_marker.setMap(null);                                
-                                ocultarCheckBoxCercanas(true);
+                                ocultarBotonCercanas(true);
                                 markers.forEach(function(marker){
                                     infoWindow.close();
+                                    map.setZoom(mapOptions.zoom);
+                                    map.setCenter(mapOptions.center);
                                     marker.setMap(map);
                                 });
                             });
@@ -272,7 +283,7 @@
                        map.setCenter(pos);
                        map.setZoom(16);
 
-                           ocultarCheckBoxCercanas(false);
+                           ocultarBotonCercanas(false);
 
                    }, function() {
                        //si el servicio falla por x motivo
@@ -284,7 +295,7 @@
                }
 
                 function handleNoGeolocation(errorFlag) {
-                    ocultarCheckBoxCercanas(false);
+                    ocultarBotonCercanas(false);
                     if (errorFlag) {
                         alert('Error: Este servicio ha fallado.');                        
                     } else {
@@ -295,9 +306,10 @@
 
 //checkbox top 5 esculturas cercanas
 
-        $('.checkbox_cercanas input').click(function (){
+        $('#cercanas').click(function (){
 
-            if ($('.checkbox_cercanas input').is(':checked')) {
+            if (!flag_btn_cercanas) {
+                cambiarBotonCercanas(false);
                 ocultarCheckboxes(true);
 
                 var metros = new Array();
@@ -331,8 +343,12 @@
                         }
                     });
                 }
+
+                flag_btn_cercanas = true;
+
             }else{
-                //checkbox sin marcar
+                flag_btn_cercanas = false;
+                cambiarBotonCercanas(true);
                 ocultarCheckboxes(false);
                 markers.forEach(function(marker){
                     infoWindow.close();
@@ -340,7 +356,9 @@
                     ocultarCheckboxes(false);
                 });
             }
-       });       
+       });
+
+
 
         function ocultarCheckboxes(flag){
             $('.checkboxes input').attr("disabled", flag);
@@ -349,22 +367,30 @@
             $("#eventos").attr("disabled", flag);
         }
 
-
-        function ocultarCheckBoxCercanas(flag){
+        function cambiarBotonCercanas(flag){
+            if(flag){
+                $("#cercanas").attr('value', 'Mostrar');
+            }else{
+                $("#cercanas").attr('value', 'Todas');
+            }
+        }
+        function ocultarBotonCercanas(flag){
             if(flag){
              $("#ubicame").attr('value', 'Ubicame');
-             $('.checkbox_cercanas input').hide();
-             $('label[id="label"]').hide();
+             $('#cercanas').hide();
+             $('h4[id="h4"]').hide();
             }else{
-             $("#ubicame").attr('value', 'Quitar ubicación');
-             $('.checkbox_cercanas input').show();
-             $('label[id="label"]').show();
+             $("#ubicame").attr('value', 'Quitar');
+             $('#cercanas').show();
+             $('h4[id="h4"]').show();
             } 
-        }        
+        }
     }
+    initialize();
 
     $(document).ready(function(){
-        initialize();
+
     });
 
 })(jQuery, document);
+

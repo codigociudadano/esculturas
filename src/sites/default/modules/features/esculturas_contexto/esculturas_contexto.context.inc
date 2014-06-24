@@ -19,11 +19,22 @@ function esculturas_contexto_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        '*' => '*',
+        'autores/*' => 'autores/*',
       ),
     ),
   );
-  $context->reactions = array();
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-esculturas-block_1' => array(
+          'module' => 'views',
+          'delta' => 'esculturas-block_1',
+          'region' => 'content_bottom',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
   $context->condition_mode = 0;
 
   // Translatables
