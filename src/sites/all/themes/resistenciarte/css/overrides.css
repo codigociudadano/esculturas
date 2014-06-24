@@ -285,6 +285,7 @@ a {
 
 .views-field-title a {
     color: #000 !important;
+
 }
 
 #slidebox {
@@ -499,11 +500,10 @@ body{
     background-color: #039a7c!important;
 }
 
-.view-esculturas .views-row{
-    width: 260px;
-}
 
+.view-esculturas .views-row,
 .view-autores .views-row{
     width: 260px;
+    margin-bottom: 10px!important;
 }
 
