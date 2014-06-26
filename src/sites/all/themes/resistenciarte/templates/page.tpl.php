@@ -140,44 +140,22 @@
 
 <div class="main-container container">
     <?php if ($is_front): ?>
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div class="my-slideshow">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
+            <ul class="bjqs">
+                <li>
                     <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide1.png' ?>">
-                    <div class="carousel-caption">
-                        Slide 1
-                    </div>
-                </div>
-                <div class="item active">
+                    <p class="bjqs-caption">saasdsadsad</p>
+                </li>
+                <li>
                     <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide2.png' ?>">
-                    <div class="carousel-caption">
-                        Slide 2
-                    </div>
-                </div>
-                <div class="item active">
+                    <p class="bjqs-caption">saasdsadsad2</p>
+                </li>
+                <li>
                     <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide3.png' ?>">
-                    <div class="carousel-caption">
-                        Slide 3
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+                    <p class="bjqs-caption">saasdsadsad3</p>
+                </li>
+            </ul>
         </div>
     <?php endif; ?>
 
@@ -235,5 +213,9 @@
             </div>
     </div>
 </footer>
+<script>
+
+</script>
+
 
 

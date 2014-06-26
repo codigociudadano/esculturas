@@ -489,7 +489,6 @@ a .fa-google-plus:hover{
     background-color: #fff!important;
 }
 
-
 .page-header {
     text-transform:uppercase!important;
     padding-bottom: 0px!important;
@@ -543,4 +542,31 @@ body{
 
 .view-content{
     margin-left: 20px!important;
+}
+
+ul.bjqs-controls.v-centered li a{
+    background-color: #fff!important;
+    color: #039a7c!important;
+    padding: 20px!important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6)!important;
+    filter: alpha(opacity=90)!important;
+    opacity: .9!important;
+    display: inline-block!important;
+}
+
+ul.bjqs-controls.v-centered li a:hover{
+    background-color: #026552!important;
+    color: #fff!important;
+}
+
+.bjqs-caption{
+    color: #fff!important;
+    font-weight: bold!important;
+    opacity: .9!important;
+    padding: 20px!important;
+    width: 100%!important;
+    background: rgba(0, 149, 111, 0.4)!important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6)!important;
+    filter: alpha(opacity=90)!important;
+    display: inline-block!important;
 }

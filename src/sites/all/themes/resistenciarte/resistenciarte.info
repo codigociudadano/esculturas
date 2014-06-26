@@ -4,11 +4,15 @@ engine = phptemplate
 base theme = bootstrap
 
 stylesheets[all][0] = css/overrides.css
-stylesheets[all][1] = css/bootstrap.css
-stylesheets[all][2] = css/font-awesome.css
+stylesheets[all][1] = css/bjqs.css
+stylesheets[all][2] = css/bootstrap.css
+stylesheets[all][3] = css/font-awesome.css
+stylesheets[all][4] = css/masonry-docs.css
 
-scripts[1]=js/masonry.pkgd.min.js
-scripts[3]=js/theme.js
+scripts[0] = js/masonry.pkgd.min.js
+scripts[1] = js/bjqs.min.js
+scripts[2] = js/theme.js
+
 
 regions[highlighted]    = Highlighted
 regions[sidebar_first]  = First Sidebar
