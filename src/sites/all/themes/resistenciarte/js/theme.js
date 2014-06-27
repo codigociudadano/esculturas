@@ -26,12 +26,17 @@ jQuery(document).ready( function($){
         'automatic' : true, // automatic
         'showcontrols' : true, // show next and prev controls
         'centercontrols' : true, // center controls verically
-        'nexttext' : '<i class="fa fa-chevron-right fa-3x"></i>', // Text for 'next' button (can use HTML)
-        'prevtext' : '<i class="fa fa-chevron-left fa-3x"></i>', // Text for 'previous' button (can use HTML)
-        'showmarkers' : true, // Show individual slide markers
-        'centermarkers' : true, // Center markers horizontally
+        'nexttext' : '<i class="fa fa-chevron-right fa-2x"></i>', // Text for 'next' button (can use HTML)
+        'prevtext' : '<i class="fa fa-chevron-left fa-2x"></i>', // Text for 'previous' button (can use HTML)
         'hoverpause' : true, // pause the slider on hover
         'usecaptions' : true,
 
     });
+
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+        if(!d.getElementById(id)){js=d.createElement(s);
+            js.id=id;js.src="https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js,fjs);
+        }}(document,"script","twitter-wjs");
+
 });

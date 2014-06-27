@@ -1,9 +1,9 @@
 body {
-    background-color: #039a7c!important;
+    background-color: #019682!important;
 }
 
 div#page {
-    background-color: #039a7c!important;
+    background-color: #019682!important;
 }
 
 input {
@@ -93,15 +93,14 @@ body.node-type-page h1.page-title {
     border: 0px;
 }
 
+.views-field-title a,
 .view-display-id-page  .views-field-title {
     font-size: 20px;
     font-weight: bold;
-    color: #fff;
+    color: #019682!important;
+    background-color: #ddd;
     opacity: 0.90;
-}
-
-.views-field-title a {
-    color: #000;
+    display: block;
 }
 
 .view-display-id-page .views-field.views-field-field-fotos  {
@@ -111,6 +110,7 @@ body.node-type-page h1.page-title {
 .view-display-id-page .views-field {
     text-align: left;
     margin: 15px 0px;
+
 }
 
 .view-display-id-page .views-field .field-content {
@@ -131,6 +131,11 @@ body.node-type-page h1.page-title {
     border: 0px;
     padding: 0px;
     margin: 0px;
+}
+
+.views-label{
+    background-color: #ddd;
+    display: block;
 }
 
 .google_map_field_display {
@@ -154,11 +159,15 @@ body.node-type-page h1.page-title {
     margin: 0px;
 }
 
+.addtoany_list.a2a_kit_size_32 > a {
+    font-size: 32px;
+    line-height: 0px;
+}
 
 span.a2a_kit.a2a_kit_size_32.a2a_target.addtoany_list {
     position: absolute;
-    top: 18px;
-    right: 0;
+    top: -50px;
+    right: -55px;
     width: 184px;
 }
 
@@ -176,13 +185,13 @@ body.front h1.page-title {
 
 .field.field-name-field-ubicacion {
     float: left;
-    width: 40%;
+    width: 100%;
     margin-right: 30px;
 }
 
 .field.field-name-field-mapa {
     float: left;
-    width: 30%;
+    width: 100%;
 }
 
 .field.field-name-field-mapa .field-label {
@@ -388,7 +397,7 @@ h1.page-title {
     padding-bottom: 20px;
 }
 
-.row{
+.main-container{
     margin-top: 20px!important;
 }
 
@@ -399,7 +408,7 @@ h1.page-title {
 .navbar {
     position: relative;
     min-height: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border: 1px solid transparent;
     width: 100%!important;
 }
@@ -416,16 +425,16 @@ a{
 }
 
 a:hover{
-    color: #039a7c!important;
+    color: #019682!important;
     text-decoration: none!important;
 }
 
 .field-content a{
-    color: #333!important;
+    color: #333;
 }
 
 .field-content a:hover{
-    color: #039a7c!important;
+    color: #019682!important;
 }
 
 a .fa-facebook:hover{
@@ -454,8 +463,8 @@ a .fa-google-plus:hover{
 
 .btn-default:focus,
 .btn-default:hover{
-    color: #039a7c!important;
-    border-color: #039a7c!important;
+    color: #019682!important;
+    border-color: #019682!important;
     background-color: inherit!important;
 }
 
@@ -471,13 +480,13 @@ a .fa-google-plus:hover{
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus{
-    color: #039a7c!important;
+    color: #019682!important;
     background-color: transparent!important;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus{
-    color: #039a7c!important;
+    color: #019682!important;
     background-color: transparent!important;
 }
 
@@ -492,7 +501,7 @@ a .fa-google-plus:hover{
 .page-header {
     text-transform:uppercase!important;
     padding-bottom: 0px!important;
-    color: #039a7c!important;
+    color: #019682!important;
     margin: 0px 0px 20px 0px!important;
     border-bottom: none!important;
     font-weight:bold;
@@ -506,25 +515,28 @@ body{
     float:right;
 }
 
-.container{
-    margin-bottom: 1px!important;
+.main-container {
+    margin-top: 10px!important;
+    margin-bottom: 10px!important;
 }
 
 .multiselect-container{
-    border-color: #039a7c!important;
+    border-color: #019682!important;
     color: #000!important;
+    text-align: left!important;
 }
 
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus{
-    background-color: #039a7c!important;
+    background-color: #019682!important;
     color: #fff!important;
+
 }
 
 .view-autores .views-row,
 .view-esculturas .views-row{
-    width: 200px;
+    width: 220px;
     margin-bottom: 20px;
     margin-left: 15px;
     border-bottom: 5px solid #ccc;
@@ -544,10 +556,14 @@ body{
     margin-left: 20px!important;
 }
 
+ul.bjqs-controls{
+    display: inline-block!important;
+}
+
 ul.bjqs-controls.v-centered li a{
     background-color: #fff!important;
-    color: #039a7c!important;
-    padding: 20px!important;
+    color: #019682!important;
+    padding: 10px!important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .6)!important;
     filter: alpha(opacity=90)!important;
     opacity: .9!important;
@@ -563,10 +579,58 @@ ul.bjqs-controls.v-centered li a:hover{
     color: #fff!important;
     font-weight: bold!important;
     opacity: .9!important;
-    padding: 20px!important;
+    padding: 30px!important;
     width: 100%!important;
     background: rgba(0, 149, 111, 0.4)!important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .6)!important;
     filter: alpha(opacity=90)!important;
     display: inline-block!important;
 }
+
+ol.bjqs-markers.h-centered{
+    display: none!important;
+}
+
+.node-autores,
+.node-escultura{
+    width: 715px!important;
+    margin-left: 30%!important;
+    margin-right: 30%!important;
+    position: relative;
+}
+
+.field-type-number-integer{
+    width: 100%;
+    height: 44px;
+}
+
+.field-label{
+    width: 426px!important;
+    height: 22px;
+    background-color: #ddd;
+}
+
+.field.field-name-field-mapa {
+    float: center;
+    width: 341px;
+}
+
+.header{
+    margin-top: 50px;
+}
+/*
+.field-name-body,
+.field-name-field-autor,
+.field-name-field-tipo,
+.field-name-field-material,
+.field-name-field-ubicacion{
+    float:right;
+    padding-left: 10px;
+}*/
+
+
+
+
+
+
+
