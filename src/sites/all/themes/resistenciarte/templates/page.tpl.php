@@ -110,7 +110,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <div class="leaf facebook">
-                                <a href="#" onClick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + location.href, '', 'height=550,width=525,left=100,top=100,menubar=0');">
+                             <a href="#" onClick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + location.href, '', 'height=550,width=525,left=100,top=100,menubar=0');">
                                     <i class="fa fa-facebook"></i>
                                 </a>
                             </div><!--?php if (!empty($secondary_nav)): ?-->
@@ -118,13 +118,13 @@
                             <!--?php endif; ?--></li>
                         <li>
                           <div class="leaf twitter">
-                                <a href="#" onClick="window.open('https://twitter.com/share?url='+location.href,'', 'height=550,width=525,left=100,top=100,menubar=0');return false;">
+                              <a href="#" onClick="window.open('https://twitter.com/share?url='+location.href,'', 'height=550,width=525,left=100,top=100,menubar=0');return false;">
                                     <i class="fa fa-twitter"></i>
                                 </a>
                           </div>
                         <li>
                            <div class="leaf google-plus">
-                                <a href="#" onClick="window.open('https://plus.google.com/share?url='+location.href,'', 'height=550,width=525,left=100,top=100,menubar=0');return false;">
+                             <a href="#" onClick="window.open('https://plus.google.com/share?url='+location.href,'', 'height=550,width=525,left=100,top=100,menubar=0');return false;">
                                     <i class="fa fa-google-plus"></i>
                                 </a>
                            </div>
