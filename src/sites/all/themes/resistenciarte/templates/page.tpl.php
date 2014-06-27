@@ -152,7 +152,7 @@
                     <p class="bjqs-caption">saasdsadsad2</p>
                 </li>
                 <li>
-                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide3.png' ?>">
+                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide7.png' ?>">
                     <p class="bjqs-caption">saasdsadsad3</p>
                 </li>
             </ul>

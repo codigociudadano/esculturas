@@ -26,8 +26,8 @@ jQuery(document).ready( function($){
         'automatic' : true, // automatic
         'showcontrols' : true, // show next and prev controls
         'centercontrols' : true, // center controls verically
-        'nexttext' : '<i class="fa fa-chevron-right fa-2x"></i>', // Text for 'next' button (can use HTML)
-        'prevtext' : '<i class="fa fa-chevron-left fa-2x"></i>', // Text for 'previous' button (can use HTML)
+        'nexttext' : '<i class="fa fa-chevron-right"></i>', // Text for 'next' button (can use HTML)
+        'prevtext' : '<i class="fa fa-chevron-left"></i>', // Text for 'previous' button (can use HTML)
         'hoverpause' : true, // pause the slider on hover
         'usecaptions' : true,
 
