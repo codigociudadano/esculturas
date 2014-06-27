@@ -2,3 +2,4 @@ dblog
 overlay
 toolbar
 update
+addtoany

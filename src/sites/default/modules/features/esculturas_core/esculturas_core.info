@@ -8,6 +8,7 @@ dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = galleryformatter
 dependencies[] = google_map_field
+dependencies[] = lightbox2
 dependencies[] = link
 dependencies[] = node
 dependencies[] = number

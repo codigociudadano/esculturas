@@ -93,14 +93,27 @@ body.node-type-page h1.page-title {
     border: 0px;
 }
 
-.views-field-title a,
-.view-display-id-page  .views-field-title {
+.views-field-title,
+.view-display-id-page .views-field-title{
     font-size: 20px;
     font-weight: bold;
-    color: #019682!important;
+    color: #019682;
     background-color: #ddd;
     opacity: 0.90;
     display: block;
+    border-radius: 3px;
+    text-align: center!important;
+}
+
+.views-field-title a:hover,
+.view-display-id-page .views-field-title a:hover{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff!important;
+    background-color: #019682;
+    opacity: 0.90;
+    display: block;
+    border-radius: 3px;
 }
 
 .view-display-id-page .views-field.views-field-field-fotos  {
@@ -425,7 +438,7 @@ a{
 }
 
 a:hover{
-    color: #019682!important;
+    color: #019682;
     text-decoration: none!important;
 }
 
@@ -434,7 +447,7 @@ a:hover{
 }
 
 .field-content a:hover{
-    color: #019682!important;
+    color: #019682;
 }
 
 a .fa-facebook:hover{
@@ -593,41 +606,51 @@ ol.bjqs-markers.h-centered{
 
 .node-autores,
 .node-escultura{
-    width: 715px!important;
-    margin-left: 30%!important;
-    margin-right: 30%!important;
+    max-width: 455px;
+    margin: 0px auto;
     position: relative;
 }
 
+.node-autores img,
+.node-escultura img{
+    min-width: 455px;
+    max-width: 455px;
+}
+
+
+/*
+.field-name-field-fotos{
+    max-width: 455px!important;
+    min-width: 455px
+}*/
+
 .field-type-number-integer{
-    width: 100%;
     height: 44px;
 }
 
 .field-label{
-    width: 426px!important;
+    max-width: 100%;
     height: 22px;
+    margin-top: 15px;
     background-color: #ddd;
 }
 
-.field.field-name-field-mapa {
-    float: center;
-    width: 341px;
+.views-label{
+    margin-top: 15px;
 }
 
 .header{
     margin-top: 50px;
 }
-/*
-.field-name-body,
-.field-name-field-autor,
-.field-name-field-tipo,
-.field-name-field-material,
-.field-name-field-ubicacion{
-    float:right;
-    padding-left: 10px;
-}*/
 
+.views-exposed-form .views-exposed-widget .form-submit {
+    margin-top: 1.6em;
+    margin-top: 27px!important;
+}
+
+.input-group {
+    margin-top: 15px;
+}
 
 
 

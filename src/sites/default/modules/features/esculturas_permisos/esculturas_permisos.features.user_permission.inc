@@ -131,15 +131,6 @@ function esculturas_permisos_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: 'administer addtoany'.
-  $permissions['administer addtoany'] = array(
-    'name' => 'administer addtoany',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'addtoany',
-  );
-
   // Exported permission: 'administer blocks'.
   $permissions['administer blocks'] = array(
     'name' => 'administer blocks',

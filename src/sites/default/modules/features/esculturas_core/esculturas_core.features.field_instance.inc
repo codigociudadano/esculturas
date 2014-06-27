@@ -18,11 +18,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -36,7 +36,7 @@ function esculturas_core_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Bio',
+    'label' => 'Biografía',
     'required' => 0,
     'settings' => array(
       'display_summary' => 1,
@@ -63,17 +63,9 @@ function esculturas_core_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'galleryformatter',
-        'settings' => array(
-          'link_to_full' => 1,
-          'link_to_full_style' => 0,
-          'linking_method' => 'show_full_link',
-          'modal' => 'lightbox2',
-          'slide_style' => 'galleryformatter_slide',
-          'style' => 'Greenarrows',
-          'thumb_style' => 'galleryformatter_thumb',
-        ),
-        'type' => 'galleryformatter_default',
+        'module' => 'lightbox2',
+        'settings' => array(),
+        'type' => 'lightbox2__lightshow__large__medium',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -172,11 +164,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -212,11 +204,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -257,16 +249,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => 1,
-          'scale' => 0,
-          'thousand_separator' => '',
-        ),
-        'type' => 'number_integer',
-        'weight' => 5,
+        'settings' => array(),
+        'type' => 'number_unformatted',
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -303,13 +290,13 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 4,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -342,13 +329,13 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 6,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -381,17 +368,9 @@ function esculturas_core_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'galleryformatter',
-        'settings' => array(
-          'link_to_full' => 1,
-          'link_to_full_style' => 0,
-          'linking_method' => 'show_full_link',
-          'modal' => 'lightbox2',
-          'slide_style' => 'galleryformatter_slide',
-          'style' => 'Greenarrows',
-          'thumb_style' => 'galleryformatter_thumb',
-        ),
-        'type' => 'galleryformatter_default',
+        'module' => 'lightbox2',
+        'settings' => array(),
+        'type' => 'lightbox2__lightshow__large__medium',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -450,7 +429,7 @@ function esculturas_core_field_default_field_instances() {
         'module' => 'google_map_field',
         'settings' => array(),
         'type' => 'google_map_field_formatter_default',
-        'weight' => 1,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -484,11 +463,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 8,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -524,8 +503,8 @@ function esculturas_core_field_default_field_instances() {
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 10,
+        'type' => 'text_plain',
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -561,11 +540,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 9,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -601,11 +580,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 7,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -638,11 +617,11 @@ function esculturas_core_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
+        'type' => 'text_plain',
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -805,7 +784,7 @@ function esculturas_core_field_default_field_instances() {
   t('Autor');
   t('Año de Elaboración');
   t('Año del Evento');
-  t('Bio');
+  t('Biografía');
   t('Descripcion');
   t('Evento');
   t('Fotos');
