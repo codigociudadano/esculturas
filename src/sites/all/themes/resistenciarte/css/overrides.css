@@ -150,6 +150,8 @@ body.node-type-page h1.page-title {
 .views-label{
     background-color: #DADADA;
     display: block;
+    border-radius: 0px 0px 8px 8px;
+    margin-top: 10px;
 }
 
 .google_map_field_display {
@@ -330,6 +332,7 @@ div#page {
 
 .fcred{
     color: #026552!important;
+    margin-top: 10px;
 }
 
 .fcred a{
@@ -618,24 +621,19 @@ ol.bjqs-markers.h-centered{
 
 .node-autores,
 .node-escultura{
-    max-width: 400px;
+    max-width: 500px;
     margin: 0px auto;
     position: relative;
+    display: block;
 }
 
 .node-autores img,
 .node-escultura img{
+    display: block;
     min-width: 400px;
-    max-width: 400px;
-    min-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-
-/*
-.field-name-field-fotos{
-    max-width: 455px!important;
-    min-width: 455px
-}*/
 
 .field-type-number-integer{
     height: 44px;
@@ -646,10 +644,7 @@ ol.bjqs-markers.h-centered{
     height: 22px;
     margin-top: 10px;
     background-color: #DADADA;
-}
-
-.views-label{
-    margin-top: 10px;
+    border-radius: 0px 0px 8px 8px;
 }
 
 .header{
@@ -675,6 +670,8 @@ h2.bjqs-caption{
     font-weight: normal;
 }
 
-
+.well{
+    margin-bottom: -9px!important;
+}
 
 
