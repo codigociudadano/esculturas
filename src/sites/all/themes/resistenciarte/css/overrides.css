@@ -665,7 +665,15 @@ ol.bjqs-markers.h-centered{
     margin-top: 15px;
 }
 
-
+h2.bjqs-caption{
+    display:block;
+    width:96%;
+    margin:0;
+    padding-right:100px;
+    position:absolute;
+    bottom:0;
+    font-weight: normal;
+}
 
 
 

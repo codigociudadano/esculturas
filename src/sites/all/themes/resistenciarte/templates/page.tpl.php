@@ -76,7 +76,7 @@
 <div class="container">
     <div class="row header">
         <div class="col-md-8"><?php if ($logo): ?>
-                <a>
+                <a href="">
                     <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
                 </a>
             <?php endif; ?>
@@ -145,16 +145,15 @@
             <ul class="bjqs">
                 <li>
                     <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide1.png' ?>">
-                    <p class="bjqs-caption">saasdsadsad</p>
+                    <h2 class="bjqs-caption">Descubra el “arte público” obteniendo información sobre la ubicación , artistas, historia, etc.</h2>
                 </li>
                 <li>
                     <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide3.png' ?>">
-                    <p class="bjqs-caption">saasdsadsad2</p>
+                    <h2 class="bjqs-caption">Lea más sobre los autores, sus biografías y sus obras en nuestra ciudad.</h2>
                 </li>
                 <li>
                     <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide7.png' ?>">
-                    <p class="bjqs-caption">saasdsadsad3</p>
-                </li>
+                    <h2 class="bjqs-caption">Aprenda sobre nuestros primeros monumentos urbanos y la historia de los mismos.</h2>
             </ul>
         </div>
     <?php endif; ?>
