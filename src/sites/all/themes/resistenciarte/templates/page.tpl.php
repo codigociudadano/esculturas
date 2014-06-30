@@ -76,7 +76,7 @@
 <div class="container">
     <div class="row header">
         <div class="col-md-8"><?php if ($logo): ?>
-                <a href="">
+                <a href="/">
                     <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
                 </a>
             <?php endif; ?>
