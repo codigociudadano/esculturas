@@ -152,7 +152,7 @@
                     <h2 class="bjqs-caption">Lea más sobre los autores, sus biografías y sus obras en nuestra ciudad.</h2>
                 </li>
                 <li>
-                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide7.png' ?>">
+                    <img src="<?php echo base_path() . drupal_get_path('theme', 'resistenciarte') . '/images/slide2.png' ?>">
                     <h2 class="bjqs-caption">Aprenda sobre nuestros primeros monumentos urbanos y la historia de los mismos.</h2>
             </ul>
         </div>
