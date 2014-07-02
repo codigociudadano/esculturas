@@ -630,7 +630,8 @@ ol.bjqs-markers.h-centered{
 .node-autores img,
 .node-escultura img{
     display: block;
-    min-width: 400px;
+    min-width: 200px;
+    min-height: 400px;
     margin-left: auto;
     margin-right: auto;
 }
