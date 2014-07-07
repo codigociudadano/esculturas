@@ -207,14 +207,17 @@
 </div>
 <footer class="footer container">
         <div class="row">
-            <div class="fcred col-sm-12">
+            <div class="fcred col-sm-8">
                 <?php print t('Desarrollado por')?> <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a><div class=""></div>
+            </div>
+            <div class="flinks col-sm-4">
+                <div class="flinks-wrapper">
+                  <a href="https://play.google.com/store/apps/details?id=com.jmv.codigociudadano.resistenciarte" class="link-gplay"><img src="<?= drupal_get_path('theme', 'resistenciarte').'/images/google_play_get.png'?>" alt="Disponible en Google Play"></a>
+                  <!--a href="#" class="link-wpstore"><img src="<?= drupal_get_path('theme', 'resistenciarte').'/images/wp_store_get.png'?>" alt="Descárgalo en la Tienda de Windows Phone"></a-->
+                </div>
             </div>
     </div>
 </footer>
 <script>
 
 </script>
-
-
-

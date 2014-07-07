@@ -332,7 +332,7 @@ div#page {
 
 .fcred{
     color: #026552!important;
-    margin-top: 10px;
+    line-height: 40px;
 }
 
 .fcred a{
@@ -675,4 +675,12 @@ h2.bjqs-caption{
     margin-bottom: -9px!important;
 }
 
+.flinks-wrapper {
+  background-color: #F8F8F8;
+  border-radius: 4px;
+  text-align: center;
+}
 
+.link-gplay, .link-wpstore {
+  margin-left: 4px;
+}
