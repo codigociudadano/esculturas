@@ -627,8 +627,8 @@ ol.bjqs-markers.h-centered{
     display: block;
 }
 
-.node-autores img,
-.node-escultura img{
+.node-autores .field-type-image img,
+.node-escultura ..field-type-image img{
     display: block;
     min-width: 200px;
     min-height: 400px;
