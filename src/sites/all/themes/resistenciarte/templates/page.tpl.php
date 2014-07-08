@@ -206,16 +206,19 @@
     <?php endif; ?>
 </div>
 <footer class="footer container">
-        <div class="row">
-            <div class="fcred col-sm-8">
-                <?php print t('Desarrollado por')?> <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a><div class=""></div>
+    <div class="row">
+        <div class="fcred col-sm-6">
+          <span class="fcred-caption">
+            <?php print t('Desarrollado por')?> <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a>
+          </span>
+        </div>
+        <div class="flinks col-sm-6">
+            <div class="flinks-wrapper">
+              <span class="flinks-caption"><?= t("ResistenciArte en tu celular:")?></span>
+              <a href="https://play.google.com/store/apps/details?id=com.jmv.codigociudadano.resistenciarte" class="link-gplay"><img src="<?= $base_path.drupal_get_path('theme', 'resistenciarte').'/images/google_play_get.png'?>" alt="Disponible en Google Play"></a>
+              <a href="http://www.windowsphone.com/s?appid=5e1cdb52-8ad9-4d38-987a-38ef7797054e" class="link-wpstore"><img src="<?= $base_path.drupal_get_path('theme', 'resistenciarte').'/images/wp_store_get.png'?>" alt="Descárgalo en la Tienda de Windows Phone"></a>
             </div>
-            <div class="flinks col-sm-4">
-                <div class="flinks-wrapper">
-                  <a href="https://play.google.com/store/apps/details?id=com.jmv.codigociudadano.resistenciarte" class="link-gplay"><img src="<?= drupal_get_path('theme', 'resistenciarte').'/images/google_play_get.png'?>" alt="Disponible en Google Play"></a>
-                  <!--a href="#" class="link-wpstore"><img src="<?= drupal_get_path('theme', 'resistenciarte').'/images/wp_store_get.png'?>" alt="Descárgalo en la Tienda de Windows Phone"></a-->
-                </div>
-            </div>
+        </div>
     </div>
 </footer>
 <script>

@@ -678,9 +678,35 @@ h2.bjqs-caption{
 .flinks-wrapper {
   background-color: #F8F8F8;
   border-radius: 4px;
-  text-align: center;
+  text-align: right;
+  line-height: 40px;
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: right;
 }
 
 .link-gplay, .link-wpstore {
   margin-left: 4px;
+  margin-right: 4px;
+}
+
+footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .flinks-caption {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fcred-caption,
+  .flinks-wrapper {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
