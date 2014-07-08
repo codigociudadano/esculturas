@@ -333,6 +333,7 @@ div#page {
 .fcred{
     color: #026552!important;
     line-height: 40px;
+    font-size: .8em;
 }
 
 .fcred a{
@@ -697,12 +698,21 @@ footer {
 }
 
 @media screen and (max-width: 1200px) {
+  .fcred {
+    margin-top: 1em;
+    line-height: 1em;
+  }
   .flinks-caption {
     display: none;
   }
 }
 
 @media screen and (max-width: 768px) {
+  .fcred {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
   .fcred-caption,
   .flinks-wrapper {
     display: block;

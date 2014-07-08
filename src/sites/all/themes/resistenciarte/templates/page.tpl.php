@@ -209,7 +209,8 @@
     <div class="row">
         <div class="fcred col-sm-6">
           <span class="fcred-caption">
-            <?php print t('Desarrollado por')?> <a href="http://www.codigociudadano.com.ar" target="_blank">Codigo Ciudadano</a>
+            <?= t('Desarrollado por')?> <a href="http://codigociudadano.cc" target="_blank"><?= t('Codigo Ciudadano') ?></a>
+            <?= t(' con colaboracion de la ')?> <a href="http://fundacionurunday.org" target="_blank"><?= t('Fundación Urunday') ?></a>
           </span>
         </div>
         <div class="flinks col-sm-6">
